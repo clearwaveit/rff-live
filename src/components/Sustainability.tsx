@@ -35,9 +35,10 @@ export default function Sustainability() {
   }, [])
 
   const phrases = [
-    "Committed to Responsible Sourcing",
-    "Helping Brands Meet Sustainability Targets",
-    "Driving Circular Economy"
+    "Committed to responsible sourcing",
+    "Helping brands meet sustainability targets",
+    "Driving circular plastic recovery",
+    "Reducing landfill through compliant recycling"
   ]
 
   return (

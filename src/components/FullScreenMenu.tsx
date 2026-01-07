@@ -23,7 +23,7 @@ const menuItems: MenuItem[] = [
     href: "/services",
   },
   { label: "Sustainability", href: "/sustainability" },
-  { label: "Newsroom", href: "/newsroom" },
+  // { label: "Newsroom", href: "/newsroom" },
   { label: "Contact Us", href: "/contact" },
 ]
 

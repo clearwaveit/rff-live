@@ -50,7 +50,54 @@ function ServiceCard({
   )
 }
 
-export default function ServicesHighlight() {
+export default function ServicesHighlight({
+  heading = (
+    <>
+      Recycling <span className="accent">services suited</span> <br />
+      <span className="accent">for every</span> industry across the UK
+    </>
+  ),
+  services = [
+    {
+      badge: "OUR SERVICES",
+      title: "Plastic Recycling",
+      desc: "End-to-end recycling solutions for a wide range of plastics, converting waste into high-quality recycled pellets through efficient, compliant processes.",
+      img: "/service-1.png",
+      icon: "/green-leaf.png",
+      bg: "bg-[#EAF8D5]",
+      href: "/services/plastic-recycling"
+    },
+    {
+      badge: "OUR SERVICES",
+      title: "Pellets and Compounds",
+      desc: "Production of recycled plastic pellets and custom compounds tailored to performance, quality, and sustainability requirements.",
+      img: "/service-2.png",
+      icon: "/leaf-2.png",
+      bg: "bg-[#EAF8D5]",
+      href: "/services/pellet-and-compounds"
+    },
+    {
+      badge: "OUR SERVICES",
+      title: "Toll Processing",
+      desc: "Flexible toll processing services including granulating, pelletising, compounding, and material testing using state-of-the-art facilities.",
+      img: "/service-3.png",
+      icon: "/leaf-3.png",
+      bg: "bg-[#EAF8D5]",
+      href: "/services/toll-processing"
+    }
+  ]
+}: {
+  heading?: React.ReactNode
+  services?: {
+    badge: string
+    title: string
+    desc: string
+    img: string
+    icon: string
+    bg: string
+    href: string
+  }[]
+}) {
   const containerRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -103,6 +150,7 @@ export default function ServicesHighlight() {
                   opacity: 0,
                   zIndex: 0,
                   duration: 1,
+                  // delay: 0.1
                 }),
               })
             }
@@ -118,43 +166,22 @@ export default function ServicesHighlight() {
     <section ref={containerRef} className="relative">
       <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
         <h2 className="text-center heading-2 mb-100">
-          Recycling <span className="accent">Services suited</span> <br />
-          <span className="accent">for every</span> industry across UK
+          {heading}
         </h2>
         <div className="mt-12 pinned_gallery">
-          <div className="pinned_image">
-            <ServiceCard
-              badge="OUR SERVICES"
-              title="Plastic Recycling"
-              desc="We specialise in processing post-industrial and post-consumer plastic waste, including HDPE, LDPE, HIPS, PS and ABS. Our state-of-the-art facility ensures precision at every stage, from sorting and cleaning to shredding and extrusion."
-              img="/service-1.png"
-              icon="/green-leaf.png"
-              bg="bg-[#EAF8D5]"
-              href="/services/plastic-recycling"
-            />
-          </div>
-          <div className="pinned_image">
-            <ServiceCard
-              badge="OUR SERVICES"
-              title="Pellet and Compounds"
-              desc="We offer recycled pellets in various grades, colours, and melt flows to meet your production needs. Our custom compounding services allow us to tailor properties with additives, colourants, and stabilisers to your exact specifications."
-              img="/service-2.png"
-              icon="/leaf-2.png"
-              bg="bg-[#EAF8D5]"
-              href="/services/pellet-and-compounds"
-            />
-          </div>
-          <div className="pinned_image z_100 last-pin-block">
-            <ServiceCard
-              badge="OUR SERVICES"
-              title="Toll Processing"
-              desc="For businesses lacking in-house capacity, we provide flexible toll processing services including granulating, regrinding, and compounding. Whether a one-off project or ongoing partnership, we adapt quickly to your requirements."
-              img="/service-3.png"
-              icon="/leaf-3.png"
-              bg="bg-[#EAF8D5]"
-              href="/services/toll-processing"
-            />
-          </div>
+          {services.map((service, index) => (
+            <div key={index} className={`pinned_image ${index === services.length - 1 ? 'z_100 last-pin-block' : ''}`}>
+              <ServiceCard
+                badge={service.badge}
+                title={service.title}
+                desc={service.desc}
+                img={service.img}
+                icon={service.icon}
+                bg={service.bg}
+                href={service.href}
+              />
+            </div>
+          ))}
         </div>
       </div>
 

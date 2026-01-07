@@ -76,17 +76,17 @@ export default function EmbeddedPartner() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <h2 className="heading-embed text-[#013138]">An Embedded Partner for your recycling <span className="accent">journey towards a greener future</span></h2>
-            <p className="mt-7 max-w-2xl leading-relaxed text-[#013138]">We believe you can’t promote a place without living it. Your ambassador visits regularly, meets your teams, listens to guests, and captures key moments—new spaces, seasonal rituals, meaningful details that define your experience.</p>
+            <h2 className="heading-embed text-[#013138]">An embedded partner for your recycling <span className="accent">journey towards a greener future</span></h2>
+            <p className="mt-7 max-w-2xl leading-relaxed text-[#013138]">We work alongside businesses to reduce plastic waste, meet sustainability objectives, and integrate recycled materials into their operations with confidence.</p>
             <div className="mt-11 divide-y divide-gray-200">
-              {["Packaging Manufacturers", "Retail & FMCG Brands", "Wholesalers & Distributors", "Govt. and Semi Government entities"].map((item) => (
-                <div key={item} className="py-9">
+              {["Clear reporting and material traceability", "Full handling transparency", "Dedicated collection planning", "Responsible reprocessing", "Circular reintegration opportunities"].map((item) => (
+                <div key={item} className="py-5">
                   <div className="text-[#013138]">{item}</div>
                 </div>
               ))}
             </div>
             <div className="mt-11">
-              <Cta href="#" label="DISCOVER MORE" tone="dark" />
+              <Cta href="#" label="Work With Us" tone="dark" />
             </div>
           </div>
         </div>

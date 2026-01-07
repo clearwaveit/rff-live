@@ -7,7 +7,22 @@ import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-export default function BenefitsSection({ title, img }: { title: string; img: string }) {
+export default function BenefitsSection({ 
+  title, 
+  img, 
+  intro = "Plastic recycling offers numerous benefits that positively impact the environment, the economy, and society.",
+  bullets = [
+    { label: "Affordable Resources", color: "#CFE9C6" },
+    { label: "Lowered Ecological Footprint", color: "#2A7E6E" },
+    { label: "Improved Brand Reputation", color: "#6FBEC1" },
+    { label: "Adherence to Regulations", color: "#EAEFEA" }
+  ]
+}: { 
+  title: string
+  img: string 
+  intro?: string
+  bullets?: { label: string; color: string }[]
+}) {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {

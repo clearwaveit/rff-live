@@ -5,14 +5,45 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import Logo from "@/components/Logo"
 import FullScreenMenu from "./FullScreenMenu"
+import { usePathname } from "next/navigation"
 
 export default function Header() {
   const navRef = useRef<HTMLDivElement | null>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const lastScrollY = useRef(0)
+  const pathname = usePathname()
+  const isContactPage = pathname === "/contact"
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Determine if scrolled (for background color)
+      if (currentScrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+
+      // Determine visibility (hide on scroll down, show on scroll up)
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+
+      lastScrollY.current = currentScrollY
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -23,7 +54,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50">
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${isScrolled || isContactPage ? 'bg-[#579C9C]' : ''} ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="mx-auto max-w-[1600px] px-[2%] flex items-center justify-between">
           <div className="header-inner">
             <Link href="/contact" className="stylish-btn">
@@ -60,7 +91,7 @@ export default function Header() {
             <Link href="/about" className="px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-100">About Us</Link>
             <Link href="/services" className="px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-100">Services</Link>
             <Link href="/sustainability" className="px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-100">Sustainability</Link>
-            <Link href="/newsroom" className="px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-100">Newsroom</Link>
+            {/* <Link href="/newsroom" className="px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-100">Newsroom</Link> */}
             <Link href="/contact" className="ml-1 px-4 py-2 rounded-md text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800">Contact Us</Link>
           </div>
           

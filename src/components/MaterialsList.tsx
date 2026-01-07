@@ -32,16 +32,51 @@ export default function MaterialsList() {
     {
       code: "HDPE",
       name: "High-Density Polyethylene",
-      desc: "Found in items like milk jugs, detergent bottles, and plastic lumber.",
+      desc: "Commonly used in milk bottles, detergent containers, and rigid packaging for strong, durable applications.",
       tint: "#9ED5BF"
     },
-    { code: "LDPE", name: "Low-Density Polyethylene", tint: "#CFE9C6" },
-    { code: "PP", name: "Polypropylene", tint: "#DDE9C2" },
-    { code: "PET", name: "Polyethylene Terephthalate", tint: "#CBE3D0" },
-    { code: "PS", name: "Polystyrene", tint: "#D9E2C2" },
-    { code: "HIPS", name: "High Impact Polystyrene", tint: "#CBE9DB" },
-    { code: "PVC", name: "Polyvinyl Chloride", tint: "#CBE3D0" },
-    { code: "ABS", name: "Acrylonitrile Butadiene Styrene", tint: "#D9E2C2" }
+    { 
+      code: "LDPE", 
+      name: "Low-Density Polyethylene", 
+      desc: "Typically found in films, carrier bags, and flexible packaging where moisture resistance is essential.",
+      tint: "#CFE9C6" 
+    },
+    { 
+      code: "PP", 
+      name: "Polypropylene", 
+      desc: "Widely used in caps, closures, automotive components, and reusable containers due to its heat resistance.",
+      tint: "#DDE9C2" 
+    },
+    { 
+      code: "PET", 
+      name: "Polyethylene Terephthalate", 
+      desc: "Often used for drinks bottles and food packaging, valued for clarity, strength, and lightweight performance.",
+      tint: "#CBE3D0" 
+    },
+    { 
+      code: "PS", 
+      name: "Polystyrene", 
+      desc: "Common in protective packaging and food-service items, lightweight and suited to rigid moulded formats.",
+      tint: "#D9E2C2" 
+    },
+    { 
+      code: "HIPS", 
+      name: "High Impact Polystyrene", 
+      desc: "A tougher form of polystyrene used in fridge liners, food packaging, and consumer product housings.",
+      tint: "#CBE9DB" 
+    },
+    { 
+      code: "PVC", 
+      name: "Polyvinyl Chloride", 
+      desc: "Used in construction and industrial products such as pipes, profiles, and cable insulation for durability.",
+      tint: "#CBE3D0" 
+    },
+    { 
+      code: "ABS", 
+      name: "Acrylonitrile Butadiene Styrene", 
+      desc: "Found in appliances, electronics, and automotive parts where impact strength and stability are required.",
+      tint: "#D9E2C2" 
+    }
   ]
 
   return (

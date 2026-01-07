@@ -51,6 +51,9 @@ export default function Certifications() {
     <section ref={sectionRef} className="relative">
       <div className="mx-auto max-w-[1600px] px-[2%] py-20">
         <h2 className="heading-about heading-cer"><span className="accent">Certifications</span> & Accreditations</h2>
+        <p className="mt-6 text-center text-[#696969] text-lg max-w-3xl mx-auto">
+          Our operations follow strict quality, environmental, and compliance standards, ensuring confidence, transparency, and reliability across all recycling processes.
+        </p>
       </div>
       <div className="logos-wrap">
       {logos.map((src, i) => (

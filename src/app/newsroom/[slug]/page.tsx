@@ -2,6 +2,28 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getArticleBySlug, articles } from "@/data/news"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const article = getArticleBySlug(params.slug)
+  if (!article) return {}
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    keywords: [article.category, "News", "Recycle for Future"],
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      type: "article",
+      images: [
+        {
+          url: article.image,
+        },
+      ],
+    },
+  }
+}
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
   const article = getArticleBySlug(params.slug)
@@ -19,7 +41,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 {article.category} · {article.date}
               </span>
             </div>
-            <h1 className="text-white text-3xl sm:text-5xl font-light tracking-tight">{article.title}</h1>
+            <h1 className="text-white text-4xl sm:text-6xl font-light tracking-tight">{article.title}</h1>
           </div>
         </div>
       </section>
