@@ -9,67 +9,6 @@ export default function CollageZoom() {
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const midRef = useRef<HTMLDivElement | null>(null)
 
-  // useEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger)
-  //   const mid = midRef.current
-  //   const wrap = sectionRef.current
-  //   if (!mid || !wrap) return
-
-  //   const calc = () => {
-  //     if (!mid) return { scale: 1, tx: 0, ty: 0 }
-
-  //     const r = mid.getBoundingClientRect()
-  //     const scaleX = window.innerWidth / r.width
-  //     const scaleY = window.innerHeight / r.height
-  //     const scale = Math.max(scaleX, scaleY) * 1.05 // slightly larger to ensure coverage
-
-  //     return { scale }
-  //   }
-
-  //   const ctx = gsap.context(() => {
-  //     const initialCalc = calc()
-
-  //     const tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: wrap,
-  //         start: "top center", // Start animation when the top of the image reaches the center of the viewport
-  //         end: "+=150%", // Slightly reduced scroll distance for quicker effect
-  //         scrub: 0.5, // Adjust the scrub speed for smooth zoom
-  //         invalidateOnRefresh: true,
-  //         anticipatePin: 1
-  //       }
-  //     })
-
-  //     // Phase 1: Hide and scale down other tiles
-  //     tl.to(wrap.querySelectorAll(".tile:not(.mid)"), {
-  //       opacity: 0,
-  //       scale: 0.9,
-  //       duration: 0.8,
-  //       ease: "power2.inOut"
-  //     }, 0)
-
-  //     // Phase 2: Animate the middle tile to zoom in smoothly
-  //     tl.to(mid, {
-  //       scale: initialCalc.scale,
-  //       borderRadius: 0,
-  //       zIndex: 50,
-  //       duration: 1.5, // Smooth zoom duration
-  //       ease: "power2.inOut",
-  //       transformOrigin: "center center", // Keeps the zoom centered
-  //     }, 0)
-
-  //     // Ensure it stays at the end state
-  //     tl.set(mid, {
-  //       scale: initialCalc.scale,
-  //     })
-
-  //   }, wrap)
-
-  //   return () => {
-  //     ctx.revert()
-  //   }
-  // }, [])
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     const mid = midRef.current

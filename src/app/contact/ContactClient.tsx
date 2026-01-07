@@ -68,21 +68,9 @@ export default function ContactPage() {
       } else {
         setStatus('error')
         const errorData = await response.json()
-
-        // // Set the error message from API response
-        // if (errorData.error) {
-        //   setErrors((e) => ({ ...e, apiError: errorData.error }))
-        // } else {
-        //   setErrors((e) => ({ ...e, apiError: "An unexpected error occurred. Please try again." }))
-        // }
-        // setTimeout(() => {
-        //   setErrors((e) => ({ ...e, apiError: "" }))
-        // }, 5000)
-        // Show the error in a toast notification
         const errorMessage = errorData.error || "An unexpected error occurred. Please try again."
-        toast.error(errorMessage, { autoClose: 3000 })  // Hide after 3 seconds
+        toast.error(errorMessage, { autoClose: 3000 })
 
-        // Set the error message in state
         setErrors((e) => ({ ...e, apiError: errorMessage }))
       }
     } catch (error) {
