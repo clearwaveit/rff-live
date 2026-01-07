@@ -57,13 +57,6 @@ export default function BenefitsSection({
     return () => ctx.revert()
   }, [])
 
-  const bullets = [
-    { label: "Affordable Resources", color: "#CFE9C6" },
-    { label: "Lowered Ecological Footprint", color: "#2A7E6E" },
-    { label: "Improved Brand Reputation", color: "#6FBEC1" },
-    { label: "Adherence to Regulations", color: "#EAEFEA" }
-  ]
-
   return (
     <section className="relative">
       <div ref={containerRef} className="mx-auto max-w-[1600px] px-[2%] py-16">
@@ -73,7 +66,7 @@ export default function BenefitsSection({
           </div>
           <div className="benefits-content">
             <h3 className="text-[#00333E] text-3xl sm:text-4xl font-[300] leading-tight">{title}</h3>
-            <p className="mt-3 text-[#5D7E83]">Plastic recycling offers numerous benefits that positively impact the environment, the economy, and society.</p>
+            <p className="mt-3 text-[#5D7E83]">{intro}</p>
             <ul className="mt-6 space-y-3">
               {bullets.map((b) => (
                 <li key={b.label} className="benefit-item flex items-center gap-4">
