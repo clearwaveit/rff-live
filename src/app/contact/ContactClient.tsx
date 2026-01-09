@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ firstName: "", email: "", phone: "", message: "" })
+  const [form, setForm] = useState({ fullName: "", email: "", phone: "", message: "" })
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -22,7 +22,7 @@ export default function ContactPage() {
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {}
 
-    if (!form.firstName) newErrors.firstName = "First name is required"
+    if (!form.fullName) newErrors.fullName = "First name is required"
     if (!form.email) {
       newErrors.email = "Email is required"
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
@@ -60,7 +60,7 @@ export default function ContactPage() {
 
       if (response.ok) {
         setStatus('success')
-        setForm({ firstName: "", email: "", phone: "", message: "" })
+        setForm({ fullName: "", email: "", phone: "", message: "" })
         setErrors({})
         toast.success('Your message has been sent successfully!', {
           autoClose: 3000,
@@ -68,10 +68,19 @@ export default function ContactPage() {
       } else {
         setStatus('error')
         const errorData = await response.json()
+
         const errorMessage = errorData.error || "An unexpected error occurred. Please try again."
         toast.error(errorMessage, { autoClose: 3000 })
 
-        setErrors((e) => ({ ...e, apiError: errorMessage }))
+        // setErrors((e) => ({ ...e, apiError: errorMessage }))
+        if (errorData.error) {
+          setErrors((e) => ({ ...e, apiError: errorData.error }))
+        } else {
+          setErrors((e) => ({ ...e, apiError: "An unexpected error occurred. Please try again." }))
+        }
+        setTimeout(() => {
+          setErrors((e) => ({ ...e, apiError: "" }))
+        }, 5000)
       }
     } catch (error) {
       setStatus('error')
@@ -136,14 +145,19 @@ export default function ContactPage() {
               </div>
 
               <form onSubmit={submit} className="contact-form space-y-6">
+                {errors.apiError && (
+                  <div className="bg-red-100 border border-red-400 rounded-[12px] p-4">
+                    <span className="text-red-400">{errors.apiError}</span>
+                  </div>
+                )}
                 <div className="contact-field-anim">
                   <input
-                    value={form.firstName}
-                    onChange={(e) => update("firstName", e.target.value)}
+                    value={form.fullName}
+                    onChange={(e) => update("fullName", e.target.value)}
                     placeholder="Full Name"
                     className="w-full max-w-[597px] min-h-[55.16px] rounded-[67px] bg-[#F5F5F5] border border-[#E1E5E4] focus:border-[#D4F2A1] focus:bg-[#BFD8931F] px-[19.93px] py-[17.08px] outline-none text-[#00272F] placeholder:text-[#696969] transition-all"
                   />
-                  <span className="pl-4">{errors.firstName && <span className="text-red-500 text-sm">{errors.firstName}</span>}</span>
+                  <span className="pl-4">{errors.fullName && <span className="text-red-500 text-sm">{errors.fullName}</span>}</span>
                 </div>
 
                 <div className="contact-field-anim">
