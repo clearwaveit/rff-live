@@ -1,50 +1,65 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { adminContactTemplate } from '@/app/emails/adminContact';
 
 export async function POST(req: Request) {
   try {
-    const { firstName, email, phone, message } = await req.json();
+    // const { firstName, email, phone, message } = await req.json();
+    const payload = await req.json();
+    const { fullName, email, phone = '', message } = payload ?? {};
 
-    if (!firstName || !email || !message) {
+    if (
+      typeof fullName !== 'string' ||
+      typeof email !== 'string' ||
+      typeof message !== 'string' ||
+      !fullName.trim() ||
+      !email.trim() ||
+      !message.trim()
+    ) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Invalid or missing fields' },
         { status: 400 }
       );
     }
 
     // Create a transporter using SMTP credentials from environment variables
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      service: 'gmail',
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    // Verify transporter only in non-production (avoid latency in prod)
+    if (process.env.NODE_ENV !== 'production') {
+      await transporter.verify();
+    }
+
+    const html = adminContactTemplate({
+      fullName,
+      email,
+      phone,
+      message,
     });
 
     // Email content
     const mailOptions = {
       from: process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER, // Sender address
-      to: 'info@recycleforfuture.com', // Receiver address
-      subject: `New Contact Form Submission from ${firstName}`,
+      to: process.env.TO_EMAIL, // Receiver address
+      subject: `New Contact Form Submission – Recycle For Future`,
       text: `
-        Name: ${firstName}
+        Name: ${fullName}
         Email: ${email}
         Phone: ${phone || 'Not provided'}
         
         Message:
         ${message}
       `,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${firstName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <br/>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `,
+      html,
     };
 
     // Send email
