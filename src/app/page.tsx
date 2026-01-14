@@ -27,12 +27,13 @@ export default function Page() {
 With over 20 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
         ctaLabel="Learn More About Us"
       />
-      <ServicesHighlight 
-        heading={
-          <>
-            Recycling services suited for every industry across the UK
-          </>
-        }
+      <ServicesHighlight
+        layout="pinned"
+        // heading={
+        //   <>
+        //     Recycling services suited for every industry across the UK
+        //   </>
+        // }
         services={[
           {
             badge: "OUR SERVICES",

@@ -68,10 +68,10 @@ export default function PlasticRecyclingPage() {
             Our process of <span className="text-[#579C9C] font-light">Transforming Plastic</span> <br />
             <span className="text-[#579C9C] font-light">Waste</span> into Valuable Resources
           </h2>
-          <div className="process-grid mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[472.12px] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-[472.12px] h-[439.39px] opacity-10 bg-[#BFD893]">
+          {/* First row - 3 cards */}
+          <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
               </div>
               <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
@@ -82,8 +82,8 @@ export default function PlasticRecyclingPage() {
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Plastic waste is collected and carefully sorted to ensure only suitable, recyclable materials enter the recycling process.</p>
             </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[472.12px] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-[472.12px] h-[439.39px] opacity-10 bg-[#BFD893]">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
               <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
@@ -94,8 +94,8 @@ export default function PlasticRecyclingPage() {
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Materials are cleaned to remove contaminants, ensuring consistent quality and performance in the recycled output.</p>
             </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[472.12px] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-[472.12px] h-[439.39px] opacity-10 bg-[#BFD893]">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
               </div>
               <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
@@ -105,8 +105,11 @@ export default function PlasticRecyclingPage() {
               <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Shredding and Granulation</h3>
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Clean plastics are reduced into uniform flakes or granules, preparing them for further processing.</p>
             </div>
+          </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+          {/* Second row - 2 cards */}
+          <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
@@ -118,7 +121,7 @@ export default function PlasticRecyclingPage() {
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Granulated material is converted into recycled pellets suitable for manufacturing new plastic products.</p>
             </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
               </div>

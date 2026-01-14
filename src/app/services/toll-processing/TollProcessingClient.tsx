@@ -82,8 +82,9 @@ export default function TollProcessingPage() {
           <h2 className="text-center heading-2 mb-16">
             Toll processing services <span className="text-[#579C9C] font-light">to suit your specific needs</span>
           </h2>
-          <div className="process-grid mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[719px] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+          {/* First row - 2 cards */}
+          <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
@@ -93,7 +94,7 @@ export default function TollProcessingPage() {
               <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Granulating</h3>
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
             </div>
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[719px] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
@@ -103,7 +104,11 @@ export default function TollProcessingPage() {
               <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Pelletising</h3>
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
             </div>
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[719px] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+          </div>
+
+          {/* Second row - 2 cards */}
+          <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
@@ -113,7 +118,7 @@ export default function TollProcessingPage() {
               <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Compounding</h3>
               <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can compound your recycled plastic with additives and other materials to create custom compounds that meet your specific requirements.</p>
             </div>
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[719px] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>

@@ -81,7 +81,7 @@ export default function MaterialsList() {
 
   return (
     <section className="relative">
-      <div ref={ref} className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
+      <div ref={ref} className="mx-auto max-w-6xl px-[2%] py-16 lg:py-24">
         <h2 className="text-3xl sm:text-4xl font-light text-[#00333E] font-rubik">
           <span className="italic font-normal text-[#579C9C]">Materials We Recycle</span> <br className="hidden sm:block"/>
           and Return to Life
@@ -105,9 +105,9 @@ export default function MaterialsList() {
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                       <div className="flex items-center gap-4">
                         <span className={`inline-block h-2 w-2 rounded-sm ${isActive ? "bg-green-400" : "bg-[#00333E]"}`} />
-                        <span className="font-bold uppercase tracking-wide w-16">{it.code}</span>
+                        <span className="font-bold uppercase tracking-wide w-16 text-[16px] md:text-[24px]">{it.code}</span>
                       </div>
-                      <span className={`text-sm sm:text-base ${isActive ? "text-gray-300" : "text-[#5D7E83]"}`}>
+                      <span className={`text-[12px] sm:text-[18px] ${isActive ? "text-gray-300" : "text-[#5D7E83]"}`}>
                         ({it.name})
                       </span>
                     </div>
@@ -115,7 +115,7 @@ export default function MaterialsList() {
                     <div className={`grid transition-all duration-300 ${isActive ? "grid-rows-[1fr] mt-2 opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                       <div className="overflow-hidden">
                         {it.desc ? (
-                          <p className="text-sm leading-relaxed text-gray-300 pl-7 sm:pl-[5.5rem]">
+                          <p className="text-sm leading-relaxed text-gray-300 pl-7 sm:pl-[1.5rem]">
                             {it.desc}
                           </p>
                         ) : (
