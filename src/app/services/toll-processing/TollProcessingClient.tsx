@@ -84,49 +84,49 @@ export default function TollProcessingPage() {
           </h2>
           {/* First row - 2 cards */}
           <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[328px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10">
+              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Granulating</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Granulating</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
             </div>
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[328px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10">
+              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Pelletising</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Pelletising</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
             </div>
           </div>
 
           {/* Second row - 2 cards */}
           <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[328px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10">
+              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Compounding</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can compound your recycled plastic with additives and other materials to create custom compounds that meet your specific requirements.</p>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Compounding</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">We can compound your recycled plastic with additives and other materials to create custom compounds that meet your specific requirements.</p>
             </div>
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-full h-[328px] opacity-10 bg-gray-400">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[328px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10">
+              <div className="absolute bottom-10 right-10 w-40 h-40 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Material Testing</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">We can conduct various tests on your recycled plastic to assess its properties and ensure its quality and suitability for your intended use.</p>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Material Testing</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">We can conduct various tests on your recycled plastic to assess its properties and ensure its quality and suitability for your intended use.</p>
             </div>
           </div>
         </div>

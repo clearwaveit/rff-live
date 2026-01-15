@@ -34,7 +34,7 @@ export default function ServicesPage() {
           {
             badge: "OUR SERVICES",
             title: "Plastic Recycling",
-            desc: "End-to-end recycling solutions that convert post-industrial and post-consumer plastic waste into high-quality recycled materials.",
+            desc: "We specialise in processing post-industrial and post-consumer plastic waste, including HDPE, LDPE, HIPS, PP, PS and ABS. Our state-of-the-art facility ensures precision at every stage, from sorting and cleaning to shredding and extrusion.",
             img: "/service-1.png",
             icon: "/green-leaf.png",
             bg: "bg-[#EAF8D5]",

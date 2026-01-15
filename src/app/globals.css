@@ -15,6 +15,16 @@
 }
 
 @layer components {
+  /* Process card flow image animation */
+  .flow-image-animate {
+    transform: translateX(200%) rotate(180deg);
+    transition: transform 0.6s ease-out;
+  }
+
+  .group:hover .flow-image-animate {
+    transform: translateX(0) rotate(0deg);
+  }
+
   .header-inner {
     width: 100%;
     padding: 25px 0px;

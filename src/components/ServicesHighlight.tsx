@@ -72,21 +72,34 @@ function ServiceCardRow({
   return (
     <Link
       href={href}
-      className="service-card-item block rounded-[1.5rem] ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden bg-white hover:shadow-xl transition-all duration-300"
+      className="service-card-item block rounded-[1.25rem] ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden bg-white hover:shadow-xl transition-all duration-300"
     >
       <div className="service-card-wrap flex flex-col h-full">
-        <div className="service-card-image relative h-[250px] bg-cover bg-center" style={{ backgroundImage: `url("${img}")` }}>
-          <div className="service-card-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url("${icon}")` }}></div>
-        </div>
-        <div className="service-card-content p-6 flex flex-col flex-grow">
-          <div className="mb-3">
-            <span className="badge-wrap">
+        {/* Image Section with Badge Overlay */}
+        <div className="service-card-image relative h-[588.58px] overflow-hidden">
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover"
+          />
+          {/* Icon Overlay - centered */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cover bg-center bg-no-repeat opacity-60"
+            style={{ backgroundImage: `url("${icon}")` }}
+          ></div>
+          {/* Badge positioned at bottom-left of image */}
+          <div className="absolute bottom-4 left-10">
+            <span className="badge-wrap text-[#024D5D]">
               {badge}
             </span>
           </div>
-          <h3 className="text-[30px] font-semibold text-gray-900 mt-2">{title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-[#696969] flex-grow">{desc}</p>
-          <div className="mt-5">
+        </div>
+        {/* Content Section */}
+        <div className="service-card-content px-10 pb-20 pt-5 flex flex-col flex-grow">
+          <h3 className="text-[28px] lg:text-[32px] font-semibold text-gray-900 leading-tight">{title}</h3>
+          <p className="mt-4 text-[15px] leading-[1.7] text-[#696969] flex-grow">{desc}</p>
+          <div className="mt-6">
             <Cta href={href} label="LEARN MORE" tone="light" as="div" />
           </div>
         </div>
