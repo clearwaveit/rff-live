@@ -7,7 +7,8 @@ import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-function ServiceCard({
+/* Old ServiceCard - Pinned Layout (for Home Page) */
+function ServiceCardPinned({
   badge,
   title,
   desc,
@@ -50,13 +51,71 @@ function ServiceCard({
   )
 }
 
+/* New ServiceCard - Row Layout (for Services Pages) */
+function ServiceCardRow({
+  badge,
+  title,
+  desc,
+  img,
+  bg,
+  href,
+  icon
+}: {
+  badge: string
+  title: string
+  desc: string
+  img: string
+  bg: string
+  href: string
+  icon: string
+}) {
+  return (
+    <Link
+      href={href}
+      className="service-card-item block rounded-[1.25rem] ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden bg-white hover:shadow-xl transition-all duration-300"
+    >
+      <div className="service-card-wrap flex flex-col h-full">
+        {/* Image Section with Badge Overlay */}
+        <div className="service-card-image relative h-[588.58px] overflow-hidden">
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover"
+          />
+          {/* Icon Overlay - centered */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cover bg-center bg-no-repeat opacity-60"
+            style={{ backgroundImage: `url("${icon}")` }}
+          ></div>
+          {/* Badge positioned at bottom-left of image */}
+          <div className="absolute bottom-4 left-10">
+            <span className="badge-wrap text-[#024D5D]">
+              {badge}
+            </span>
+          </div>
+        </div>
+        {/* Content Section */}
+        <div className="service-card-content px-10 pb-20 pt-5 flex flex-col flex-grow">
+          <h3 className="text-[28px] lg:text-[32px] font-semibold text-gray-900 leading-tight">{title}</h3>
+          <p className="mt-4 text-[15px] leading-[1.7] text-[#696969] flex-grow">{desc}</p>
+          <div className="mt-6">
+            <Cta href={href} label="LEARN MORE" tone="light" as="div" />
+          </div>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 export default function ServicesHighlight({
   heading = (
     <>
-      Recycling <span className="accent">services suited</span> <br />
-      <span className="accent">for every</span> industry across the UK
+      Recycling <span className="accent">services suited for</span> <br />
+      <span className="accent">every</span> industry across the UK
     </>
   ),
+  layout = "row",
   services = [
     {
       badge: "OUR SERVICES",
@@ -88,6 +147,7 @@ export default function ServicesHighlight({
   ]
 }: {
   heading?: React.ReactNode
+  layout?: "row" | "pinned"
   services?: {
     badge: string
     title: string
@@ -116,51 +176,66 @@ export default function ServicesHighlight({
         }
       })
 
-      const w = document.documentElement.clientWidth || window.innerWidth
-
-      if (w >= 480) {
-        const pinnedGallery = document.querySelector(".pinned_gallery")
-
-        if (pinnedGallery) {
-          const pinnedImages = pinnedGallery.querySelectorAll(".pinned_image")
-
-          pinnedImages.forEach((pImage, i, arr) => {
-            if (i < arr.length - 1) {
-              const durationMultiplier = arr.length - i - 1
-              ScrollTrigger.create({
-                trigger: pImage as HTMLElement,
-                start: function () {
-                  const cardBlock = (pImage as HTMLElement).querySelector(".crd_block") as HTMLElement
-                  if (cardBlock) {
-                    const centerPin =
-                      (window.innerHeight - cardBlock.offsetHeight) / 2
-                    return "top +=" + centerPin
-                  }
-                  return "top top"
-                },
-                end: function () {
-                  const durationHeight = (pImage as HTMLElement).offsetHeight * durationMultiplier
-                  return "+=" + durationHeight
-                },
-                pin: true,
-                pinSpacing: false,
-                scrub: true,
-                animation: gsap.to((pImage as HTMLElement).querySelector(".crd_block"), {
-                  scale: 0.6,
-                  opacity: 0,
-                  zIndex: 0,
-                  duration: 1,
-                  // delay: 0.1
-                }),
-              })
+      if (layout === "row") {
+        // Row Layout Animation - Staggered cards appearing one by one
+        const serviceCards = document.querySelectorAll(".service-card-item")
+        serviceCards.forEach((card, index) => {
+          gsap.from(card, {
+            y: 80,
+            opacity: 0,
+            duration: 0.8,
+            delay: index * 0.3,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".services-row-container",
+              start: "top 80%"
             }
           })
+        })
+      } else {
+        // Pinned gallery animation for home page
+        const w = document.documentElement.clientWidth || window.innerWidth
+        if (w >= 480) {
+          const pinnedGallery = document.querySelector(".pinned_gallery")
+          if (pinnedGallery) {
+            const pinnedImages = pinnedGallery.querySelectorAll(".pinned_image")
+            pinnedImages.forEach((pImage, i, arr) => {
+              if (i < arr.length - 1) {
+                const durationMultiplier = arr.length - i - 1
+                ScrollTrigger.create({
+                  trigger: pImage as HTMLElement,
+                  start: function () {
+                    const cardBlock = (pImage as HTMLElement).querySelector(".crd_block") as HTMLElement
+                    if (cardBlock) {
+                      const centerPin =
+                        (window.innerHeight - cardBlock.offsetHeight) / 2
+                      return "top +=" + centerPin
+                    }
+                    return "top top"
+                  },
+                  end: function () {
+                    const durationHeight = (pImage as HTMLElement).offsetHeight * durationMultiplier
+                    return "+=" + durationHeight
+                  },
+                  pin: true,
+                  pinSpacing: false,
+                  scrub: true,
+                  animation: gsap.to((pImage as HTMLElement).querySelector(".crd_block"), {
+                    scale: 0.6,
+                    opacity: 0,
+                    zIndex: 0,
+                    duration: 1,
+                  }),
+                })
+              }
+            })
+          }
         }
       }
     }, containerRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [layout])
 
   return (
     <section ref={containerRef} className="relative">
@@ -168,10 +243,13 @@ export default function ServicesHighlight({
         <h2 className="text-center heading-2 mb-100">
           {heading}
         </h2>
-        <div className="mt-12 pinned_gallery">
-          {services.map((service, index) => (
-            <div key={index} className={`pinned_image ${index === services.length - 1 ? 'z_100 last-pin-block' : ''}`}>
-              <ServiceCard
+
+        {/* Row Layout - for Services Pages */}
+        {layout === "row" && (
+          <div className="mt-12 services-row-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <ServiceCardRow
+                key={index}
                 badge={service.badge}
                 title={service.title}
                 desc={service.desc}
@@ -180,9 +258,28 @@ export default function ServicesHighlight({
                 bg={service.bg}
                 href={service.href}
               />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+
+        {/* Pinned Gallery Layout - for Home Page */}
+        {layout === "pinned" && (
+          <div className="mt-12 pinned_gallery">
+            {services.map((service, index) => (
+              <div key={index} className={`pinned_image ${index === services.length - 1 ? 'z_100 last-pin-block' : ''}`}>
+                <ServiceCardPinned
+                  badge={service.badge}
+                  title={service.title}
+                  desc={service.desc}
+                  img={service.img}
+                  icon={service.icon}
+                  bg={service.bg}
+                  href={service.href}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
     </section>

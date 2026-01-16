@@ -68,66 +68,69 @@ export default function PlasticRecyclingPage() {
             Our process of <span className="text-[#579C9C] font-light">Transforming Plastic</span> <br />
             <span className="text-[#579C9C] font-light">Waste</span> into Valuable Resources
           </h2>
-          <div className="process-grid mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[472.12px] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-[472.12px] h-[439.39px] opacity-10 bg-[#BFD893]">
+          {/* First row - 3 cards */}
+          <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
+              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="text-[#0D0D0D] text-[24px] md:text-[32px] font-[300] mb-auto">01 <span className="text-[#C2DDDD]">/ 05</span></div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Collection and Sorting</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Plastic waste is collected and carefully sorted to ensure only suitable, recyclable materials enter the recycling process.</p>
+              <div className="text-[#ffffff] text-[24px] md:text-[32px] font-[300] mb-auto">01 <span className="text-[#C2DDDD]">/ 05</span></div>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Collection and Sorting</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">We meticulously collect and sort plastic waste from various sources across the UK, including businesses, organisations, and local authorities.</p>
             </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[472.12px] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-[472.12px] h-[439.39px] opacity-10 bg-[#BFD893]">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
+              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-light-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="text-[#0D0D0D] text-[24px] md:text-[32px] font-[300] mb-auto">02 <span className="text-[#C2DDDD]">/ 05</span></div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Cleaning and Processing</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Materials are cleaned to remove contaminants, ensuring consistent quality and performance in the recycled output.</p>
+              <div className="text-[#ffffff] text-[24px] md:text-[32px] font-[300] mb-auto">02 <span className="text-[#C2DDDD]">/ 05</span></div>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Cleaning and Processing</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">The collected plastic undergoes a thorough cleaning and processing stage, removing any contaminants such as labels, adhesives, and other impurities.</p>
             </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[472.12px] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-[472.12px] h-[439.39px] opacity-10 bg-[#BFD893]">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
+              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="text-[#0D0D0D] text-[24px] md:text-[32px] font-[300] mb-auto">03 <span className="text-[#C2DDDD]">/ 05</span></div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Shredding and Granulation</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Clean plastics are reduced into uniform flakes or granules, preparing them for further processing.</p>
+              <div className="text-[#ffffff] text-[24px] md:text-[32px] font-[300] mb-auto">03 <span className="text-[#C2DDDD]">/ 05</span></div>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Shredding and Granulation</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">The cleaned plastic is then shredded into smaller pieces and granulated into a consistent size. This prepares the material for the pelletising stage, where it is transformed into recycled pellets.</p>
             </div>
+          </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
+          {/* Second row - 2 cards */}
+          <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
+              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-light-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="text-[#0D0D0D] text-[24px] md:text-[32px] font-[300] mb-auto">04 <span className="text-[#C2DDDD]">/ 05</span></div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Pelletising</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Granulated material is converted into recycled pellets suitable for manufacturing new plastic products.</p>
+              <div className="text-[#ffffff] text-[24px] md:text-[32px] font-[300] mb-auto">04 <span className="text-[#C2DDDD]">/ 05</span></div>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Pelletising</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">The granulated plastic is fed into our state-of-the-art pelletising machines, where it is melted and extruded into uniform pellets. These recycled pellets are the building blocks for a wide range of new plastic products.</p>
             </div>
 
-            <div className="process-card relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
-              <div className="absolute bottom-0 left-0 w-full h-[439.39px] opacity-10 bg-[#BFD893]">
+            <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10">
+              <div className="absolute top-20 right-10 w-32 h-32 opacity-80 z-10 flow-image-animate">
                 <Image src="/vector-dark-flow.png" alt="Leaf" fill className="object-contain" />
               </div>
-              <div className="text-[#0D0D0D] text-[24px] md:text-[32px] font-[300] mb-auto">05 <span className="text-[#C2DDDD]">/ 05</span></div>
-              <h3 className="text-[24px] md:text-[32px] text-[#013138] font-[400] mb-3">Quality Control</h3>
-              <p className="text-[#4E4E4E] text-[14px] md:text-[16px] leading-relaxed">Recycled materials are tested to ensure they meet technical, performance, and quality requirements.</p>
+              <div className="text-[#ffffff] text-[24px] md:text-[32px] font-[300] mb-auto">05 <span className="text-[#C2DDDD]">/ 05</span></div>
+              <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Quality Control</h3>
+              <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">Throughout the entire recycling process, we implement rigorous quality control measures to ensure that our recycled plastic products meet the highest industry standards. We conduct various tests to assess the properties of the recycled plastic, such as melt flow, impact resistance, and tensile strength.</p>
             </div>
           </div>
 
@@ -139,9 +142,9 @@ export default function PlasticRecyclingPage() {
 
       <LeafDivider className="my-4" />
 
-      <BenefitsSection 
-        title="Benefits Of Plastic Recycling For Businesses" 
-        img="/Rectangle 7.png" 
+      <BenefitsSection
+        title="Benefits Of Plastic Recycling For Businesses"
+        img="/Rectangle 7.png"
         bullets={[
           { label: "Reduced reliance on virgin plastic materials", color: "#CFE9C6" },
           { label: "Lower environmental impact and landfill diversion", color: "#2A7E6E" },
