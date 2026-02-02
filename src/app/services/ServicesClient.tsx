@@ -35,7 +35,7 @@ export default function ServicesPage() {
             badge: "OUR SERVICES",
             title: "Plastic Recycling",
             desc: "We specialise in processing post-industrial and post-consumer plastic waste, including HDPE, LDPE, HIPS, PP, PS and ABS. Our state-of-the-art facility ensures precision at every stage, from sorting and cleaning to shredding and extrusion.",
-            img: "/service-1.png",
+            img: "/service-1-new.png",
             icon: "/green-leaf.png",
             bg: "bg-[#EAF8D5]",
             href: "/services/plastic-recycling"
@@ -44,7 +44,7 @@ export default function ServicesPage() {
             badge: "OUR SERVICES",
             title: "Pellets and Compounds",
             desc: "Supply of recycled plastic pellets and custom compounds developed to meet specific quality, performance, and sustainability requirements.",
-            img: "/service-2.png",
+            img: "/service-2-new.png",
             icon: "/leaf-2.png",
             bg: "bg-[#EAF8D5]",
             href: "/services/pellet-and-compounds"
@@ -53,7 +53,7 @@ export default function ServicesPage() {
             badge: "OUR SERVICES",
             title: "Toll Processing",
             desc: "Flexible toll processing services for businesses requiring plastic granulation, pelletising, compounding, or material testing without in-house capability.",
-            img: "/service-3.png",
+            img: "/service-3-new.png",
             icon: "/leaf-3.png",
             bg: "bg-[#EAF8D5]",
             href: "/services/toll-processing"

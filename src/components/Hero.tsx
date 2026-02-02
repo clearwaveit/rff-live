@@ -153,7 +153,7 @@ export default function Hero() {
                 width={45}
                 height={43}
               />
-              Recycle For Future Ltd. has 20 years in-house experience in the recycling industry. We are ISO 9001: 2015 and ISO 14001:2015 registered.</p>
+              Recycle For Future Ltd. has 20 years in-house experience in the recycling industry.</p>
             <div className="round-block">
               <Image
                 src="/images/round.png"

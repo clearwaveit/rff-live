@@ -57,9 +57,11 @@ export default function AboutPage() {
 
       <AboutIntro
         badge="ABOUT US"
-        title="Combining synthetic biology, chemistry, and AI into an"
-        accent="engine of discovery."
-        paragraph="Our platform enables precise, dynamic control of biological targets and pathways, generating high-fidelity datasets that, combined with advanced AI, unlock systematic exploration of previously inaccessible chemical space."
+        title="Driving circular plastic solutions through "
+        accent="expertise, technology, and responsibility"
+        paragraph={`Recycle for Future Ltd is a UK-based plastic recycling specialist helping businesses responsibly manage plastic waste. We transform post-industrial and post-consumer plastics into high-quality recycled materials, reducing reliance on virgin plastics and supporting sustainable manufacturing across the UK.
+
+With over 20 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
         ctaHref="/contact"
         ctaLabel="LEARN MORE"
         withWave={true}

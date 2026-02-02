@@ -199,15 +199,15 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="stylish-btn group disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="stylish-btn disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <span className="style-main max-w-[157px] bg-[#274646] text-white group-hover:bg-[#1a3030] transition-colors">
+                    <span className="style-main max-w-[157px]">
                       {status === 'loading' ? 'Sending...' : 'Submit'}
                     </span>
-                    <span className="style-arrow bg-[#D4F2A1] flex items-center justify-center w-[50px] h-[50px] rounded-full transition-all group-hover:bg-[#274646]">
-                      <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:stroke-white">
-                        <path d="M22.2793 12.1669H2.05864" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors" />
-                        <path d="M13.1797 3.06934L22.279 12.1686L13.1797 21.2679" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors" />
+                    <span className="style-arrow">
+                      <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.2793 12.1669H2.05864" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.1797 3.06934L22.279 12.1686L13.1797 21.2679" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
                   </button>
