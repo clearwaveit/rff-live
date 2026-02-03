@@ -247,11 +247,9 @@ export default function ContactPage() {
                     <h3 className="text-[#D4F2A1] text-[14px] md:text-[20px] font-[300] tracking-wide">Address</h3>
                     <address className="not-italic text-white text-[16px] md:text-[20px] leading-8 font-light">
                       Recycle For Future Ltd.<br />
-                      Jhumat House<br />
-                      160 London Road<br />
-                      Barking<br />
-                      Essex<br />
-                      IG11 8BB
+                      183 Fengate,<br />
+                      Peterborough PE1 5BH,<br />
+                      United Kingdom
                     </address>
                   </div>
                 </div>
@@ -299,15 +297,12 @@ export default function ContactPage() {
           <div className="contact-map rounded-[12px] overflow-hidden ring-1 ring-black/5 relative h-[652px] bg-[#E5E3DF]">
             <iframe
               title="Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.554236043423!2d0.08868197668697663!3d51.5397449718208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a63a5628557b%3A0x6b77207604602f3!2sRecycle%20For%20Future%20Ltd!5e0!3m2!1sen!2suk!4v1709825421234!5m2!1sen!2suk"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2424.894649733701!2d-0.21961529999999999!3d52.5715164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877f1caf873fd99%3A0x479a9d476cb6163b!2sRECYCLE%20FOR%20FUTURE%20LTD.!5e0!3m2!1sen!2s!4v1770111344733!5m2!1sen!2s"
               className="w-full h-full border-0"
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-            {/* Overlay to prevent scroll zoom until clicked/interacted with, if needed, though Google Maps embed handles this via Ctrl+Scroll usually. 
-                For stricter control, we can rely on the embed's default behavior or overlay a pointer-events-none div that enables on click. 
-                Standard embed behavior requires Ctrl+Scroll to zoom, which solves the "scroll down" issue. */}
           </div>
         </div>
       </section>
