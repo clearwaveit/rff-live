@@ -39,7 +39,7 @@ With over 20 years of industry experience, we deliver compliant, reliable, and c
             badge: "OUR SERVICES",
             title: "Plastic Recycling",
             desc: "End-to-end recycling solutions for a wide range of plastics, converting waste into high-quality recycled pellets through efficient, compliant processes.",
-            img: "/service-1.png",
+            img: "/service-1-new.png",
             icon: "/green-leaf.png",
             bg: "bg-[#EAF8D5]",
             href: "/services/plastic-recycling"
@@ -48,7 +48,7 @@ With over 20 years of industry experience, we deliver compliant, reliable, and c
             badge: "OUR SERVICES",
             title: "Pellets and Compounds",
             desc: "Production of recycled plastic pellets and custom compounds tailored to performance, quality, and sustainability requirements.",
-            img: "/service-2.png",
+            img: "/service-2-new.png",
             icon: "/leaf-2.png",
             bg: "bg-[#EAF8D5]",
             href: "/services/pellet-and-compounds"
@@ -57,17 +57,17 @@ With over 20 years of industry experience, we deliver compliant, reliable, and c
             badge: "OUR SERVICES",
             title: "Toll Processing",
             desc: "Flexible toll processing services including granulating, pelletising, compounding, and material testing using state-of-the-art facilities.",
-            img: "/service-3.png",
+            img: "/service-3-new.png",
             icon: "/leaf-3.png",
             bg: "bg-[#EAF8D5]",
             href: "/services/toll-processing"
           }
         ]}
       />
-      <Certifications />
+      {/* <Certifications /> */}
       <EmbeddedPartner />
       <Sustainability />
-      <CollageZoom />
+      {/* <CollageZoom /> */}
       {/* <NewsInsights /> */}
     </main>
   )
