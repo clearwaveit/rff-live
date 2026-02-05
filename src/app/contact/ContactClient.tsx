@@ -264,7 +264,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-[#D4F2A1] text-lg font-light tracking-wide">Phone</h3>
                     <p className="text-white text-[16px] md:text-[18px] leading-8 font-light">
-                      020 8214 1353
+                      01733 358807
                     </p>
                   </div>
                 </div>

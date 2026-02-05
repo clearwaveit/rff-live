@@ -13,7 +13,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const pathname = usePathname()
-  const isContactPage = pathname === "/contact"
+  const isContactPage = pathname?.includes("/contact")
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <>
-      <header style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }} className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ${isScrolled || isContactPage ? 'bg-[#579C9C]' : ''}`}>
+      <header style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }} className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ${isScrolled || isContactPage ? 'bg-[#579C9C]' : 'bg-transparent'}`}>
         <div className="mx-auto max-w-[1600px] px-4 md:px-[2%] py-6 flex items-center justify-between">
           {/* Logo - Left Side */}
           <div className="logo-block flex-shrink-0">

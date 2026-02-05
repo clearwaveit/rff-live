@@ -199,33 +199,32 @@ export default function ServicesHighlight({
           const pinnedGallery = document.querySelector(".pinned_gallery")
           if (pinnedGallery) {
             const pinnedImages = pinnedGallery.querySelectorAll(".pinned_image")
+            
             pinnedImages.forEach((pImage, i, arr) => {
+              const cardBlock = (pImage as HTMLElement).querySelector(".crd_block") as HTMLElement
+              if (!cardBlock) return
+
+              // Calculate center position
+              const centerTop = (window.innerHeight - cardBlock.offsetHeight) / 2
+              
+              // Apply Sticky Positioning
+              const pImageEl = pImage as HTMLElement
+              pImageEl.style.position = "sticky"
+              pImageEl.style.top = `${centerTop}px`
+              pImageEl.style.zIndex = `${i + 1}` // Stack order: later cards on top
+
+              // Animate current card fading/scaling out as next card covers it
               if (i < arr.length - 1) {
-                const durationMultiplier = arr.length - i - 1
-                ScrollTrigger.create({
-                  trigger: pImage as HTMLElement,
-                  start: function () {
-                    const cardBlock = (pImage as HTMLElement).querySelector(".crd_block") as HTMLElement
-                    if (cardBlock) {
-                      const centerPin =
-                        (window.innerHeight - cardBlock.offsetHeight) / 2
-                      return "top +=" + centerPin
-                    }
-                    return "top top"
-                  },
-                  end: function () {
-                    const durationHeight = (pImage as HTMLElement).offsetHeight * durationMultiplier
-                    return "+=" + durationHeight
-                  },
-                  pin: true,
-                  pinSpacing: false,
-                  scrub: true,
-                  animation: gsap.to((pImage as HTMLElement).querySelector(".crd_block"), {
-                    scale: 0.6,
-                    opacity: 0,
-                    zIndex: 0,
-                    duration: 1,
-                  }),
+                gsap.to(cardBlock, {
+                  scale: 0.8,
+                  opacity: 0,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: pImageEl,
+                    start: `top ${centerTop}px`, // Starts when card hits the sticky position
+                    end: `+=${cardBlock.offsetHeight}`, // Ends when card is fully covered (approx)
+                    scrub: true,
+                  }
                 })
               }
             })
