@@ -33,7 +33,7 @@ export default function MaterialsList() {
     {
       code: "HDPE",
       name: "High-Density Polyethylene",
-      desc: "Commonly used in milk bottles, detergent containers, and rigid packaging for strong, durable applications.",
+      desc: "Found in items like milk jugs, detergent bottles, and plastic lumbFound in items like milk jugs, detergent bottles, and plastic lumber.er.",
       tint: "#9ED5BF"
     },
     {
@@ -87,26 +87,25 @@ export default function MaterialsList() {
 
   return (
     <section className="relative">
-      <div ref={ref} className="mx-auto max-w-6xl px-[2%] py-16 lg:py-24">
-        <h2 className="text-3xl sm:text-4xl font-light text-[#00333E] font-rubik">
-          <span className="italic font-normal text-[#579C9C]">Materials We Recycle</span> <br className="hidden sm:block" />
-          and Return to Life
+      <div ref={ref} className="mx-auto max-w-7xl px-[2%] pt-16 lg:pt-24">
+        <h2 className="text-center text-3xl sm:text-[60px] font-light text-[#00333E] font-rubik">
+          <span className="font-normal text-[#579C9C]">Materials We Recycle</span> and Return to Life
         </h2>
-        <p className="mt-4 max-w-2xl text-[#696969] text-lg font-light">
+        <p className="text-center mt-4 mb-20 max-w-4xl mx-auto text-[#696969] text-lg font-light">
           We support a wide spectrum of commercial plastics, ensuring secure handling and responsible reprocessing.
         </p>
 
         {/* Tabs - scroll on mobile, equal width from md up */}
-        <div className="mt-10 border-b-2 border-teal-200 overflow-x-auto">
+        <div className="mt-10 overflow-x-auto">
           <div className="flex min-w-0 gap-2 md:flex-wrap md:min-w-full">
             {items.map((it, i) => (
               <button
                 key={i}
                 onClick={() => handleTabClick(i)}
-                className={`material-row flex-shrink-0 md:flex-1 md:min-w-0 px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wide transition-colors rounded-t-lg whitespace-nowrap ${
+                className={`material-row flex-shrink-0 md:flex-1 md:min-w-0 px-3 py-2.5 sm:px-5 sm:py-5 text-xs sm:text-[20px] font-normal uppercase tracking-wide transition-colors rounded-t-[10px] whitespace-nowrap ${
                   activeTab === i
-                    ? "bg-[#222F30] text-white -mb-0.5 border border-teal-200 border-b-2 border-b-white"
-                    : "bg-gray-100 text-[#00333E] hover:bg-gray-200"
+                    ? "bg-[#579C9C] text-white -mb-0.5"
+                    : "bg-[#F4F7F1] text-[#00333E] hover:bg-[#E8EDE4]"
                 }`}
               >
                 {it.code}
@@ -114,29 +113,31 @@ export default function MaterialsList() {
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Accordion list - responsive padding and typography */}
-        <div className="border border-teal-200 border-t-0 rounded-b-[1rem] overflow-hidden bg-white shadow-sm">
+      {/* Accordion - full width, bg #F4F7F1, no border, horizontal lines between items */}
+      <div className="w-full bg-[#F4F7F1] py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-[2%]">
           <ul>
             {items.map((it, i) => {
               const isActive = activeIndex === i
               return (
-                <li key={i} className="material-row">
+                <li key={i} className="material-row border-b border-#D3D3D3">
                   <button
                     onClick={() => {
                       setActiveTab(i)
                       setActiveIndex(isActive ? null : i)
                     }}
-                    className={`w-full text-left px-4 py-4 sm:px-5 sm:py-4 md:px-6 md:py-5 border-t border-teal-200 first:border-t-0 transition-all duration-300
-                      ${isActive ? "bg-[#222F30] text-white" : "hover:bg-gray-50 text-[#00333E]"}
+                    className={`w-full text-left px-4 py-4 sm:px-5 sm:py-4 md:px-6 md:py-5 transition-all duration-300
+                      ${isActive ? "bg-[#3B6060] text-white" : "bg-transparent hover:bg-white/50 text-[#00333E]"}
                     `}
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
                       <div className="flex items-center gap-2 sm:gap-4">
-                        <span className={`inline-block h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-sm flex-shrink-0 ${isActive ? "bg-green-400" : "bg-[#00333E]"}`} />
-                        <span className="font-bold uppercase tracking-wide min-w-[3rem] sm:w-16 text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px]">{it.code}</span>
+                        <span className={`inline-block h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-sm flex-shrink-0 ${isActive ? "bg-[#ffffff]" : "bg-[#D3D3D3]"}`} />
+                        <span className="font-light uppercase tracking-wide min-w-[3rem] sm:w-16 text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px]">{it.code}</span>
                       </div>
-                      <span className={`text-[11px] sm:text-[12px] md:text-[18px] leading-tight sm:leading-normal ${isActive ? "text-gray-300" : "text-[#5D7E83]"}`}>
+                      <span className={`text-[11px] sm:text-[12px] md:text-[18px] leading-tight sm:leading-normal font-light ${isActive ? "text-white" : "text-[#5D7E83]"}`}>
                         ({it.name})
                       </span>
                     </div>
@@ -144,7 +145,7 @@ export default function MaterialsList() {
                     <div className={`grid transition-all duration-300 ${isActive ? "grid-rows-[1fr] mt-2 opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                       <div className="overflow-hidden">
                         {it.desc ? (
-                          <p className="text-xs sm:text-sm leading-relaxed text-gray-300 pl-4 sm:pl-6 md:pl-7 pt-0.5 break-words">
+                          <p className="text-xs sm:text-sm leading-relaxed text-[#D2D2D2] font-light pl-4 sm:pl-6 md:pl-7 pt-0.5 break-words">
                             {it.desc}
                           </p>
                         ) : (

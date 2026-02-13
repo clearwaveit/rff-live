@@ -126,6 +126,7 @@ export default function Hero() {
       </div>
       <div className="video-block">
         <video
+          className="waves-vertical-video"
           autoPlay
           loop
           muted

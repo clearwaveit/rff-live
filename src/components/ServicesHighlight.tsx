@@ -128,7 +128,7 @@ export default function ServicesHighlight({
     },
     {
       badge: "OUR SERVICES",
-      title: "Pellets and Compounding",
+      title: "Compounding",
       desc: "Production of recycled plastic pellets and custom compounds tailored to performance, quality, and sustainability requirements.",
       img: "/service-2.png",
       icon: "/leaf-2.png",
