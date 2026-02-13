@@ -90,12 +90,6 @@ export default function Header() {
             {/* Contact Us Button */}
             <Link href="/contact" className="stylish-btn flex-shrink-0">
               <span className="style-main">Contact us</span>
-              <span className="style-arrow">
-                <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.2793 12.1669H2.05864" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M13.1797 3.06934L22.279 12.1686L13.1797 21.2679" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
             </Link>
           </nav>
 
@@ -134,12 +128,6 @@ export default function Header() {
           {/* Contact Us Button */}
           <Link href="/contact" onClick={closeMobileMenu} className="stylish-btn mt-6">
             <span className="style-main">Contact us</span>
-            <span className="style-arrow">
-              <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.2793 12.1669H2.05864" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13.1797 3.06934L22.279 12.1686L13.1797 21.2679" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </span>
           </Link>
         </nav>
       </div>

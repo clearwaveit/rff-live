@@ -24,7 +24,7 @@ export default function Page() {
         accent="expertise, technology, and responsibility"
         paragraph={`Recycle for Future Ltd is a UK-based plastic recycling specialist helping businesses responsibly manage plastic waste. We transform post-industrial and post-consumer plastics into high-quality recycled materials, reducing reliance on virgin plastics and supporting sustainable manufacturing across the UK.
 
-With over 20 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
+With over 10 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
         ctaLabel="Learn More About Us"
       />
       <ServicesHighlight
@@ -41,16 +41,16 @@ With over 20 years of industry experience, we deliver compliant, reliable, and c
             desc: "End-to-end recycling solutions for a wide range of plastics, converting waste into high-quality recycled pellets through efficient, compliant processes.",
             img: "/service-1-new.png",
             icon: "/green-leaf.png",
-            bg: "bg-[#EAF8D5]",
+            bg: "bg-[#d2ede6]",
             href: "/services/plastic-recycling"
           },
           {
             badge: "OUR SERVICES",
-            title: "Pellets and Compounds",
+            title: "Compounding",
             desc: "Production of recycled plastic pellets and custom compounds tailored to performance, quality, and sustainability requirements.",
             img: "/service-2-new.png",
             icon: "/leaf-2.png",
-            bg: "bg-[#EAF8D5]",
+            bg: "bg-[#d9f1db]",
             href: "/services/pellet-and-compounds"
           },
           {
@@ -59,16 +59,16 @@ With over 20 years of industry experience, we deliver compliant, reliable, and c
             desc: "Flexible toll processing services including granulating, pelletising, compounding, and material testing using state-of-the-art facilities.",
             img: "/service-3-new.png",
             icon: "/leaf-3.png",
-            bg: "bg-[#EAF8D5]",
+            bg: "bg-[#e8eedf]",
             href: "/services/toll-processing"
           }
         ]}
       />
-      {/* <Certifications /> */}
+      <Certifications />
       <EmbeddedPartner />
       <Sustainability />
-      {/* <CollageZoom /> */}
-      {/* <NewsInsights /> */}
+      <CollageZoom />
+      <NewsInsights />
     </main>
   )
 }

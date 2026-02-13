@@ -292,9 +292,9 @@ export default function ContactPage() {
 
       <ToastContainer />
 
-      <section className="relative">
-        <div className="mx-auto max-w-[1600px] px-[2%] py-16">
-          <div className="contact-map rounded-[12px] overflow-hidden ring-1 ring-black/5 relative h-[652px] bg-[#E5E3DF]">
+      <section className="relative w-full">
+        <div className="w-full py-16">
+          <div className="contact-map w-full overflow-hidden relative h-[652px] bg-[#E5E3DF]">
             <iframe
               title="Map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2424.894649733701!2d-0.21961529999999999!3d52.5715164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877f1caf873fd99%3A0x479a9d476cb6163b!2sRECYCLE%20FOR%20FUTURE%20LTD.!5e0!3m2!1sen!2s!4v1770111344733!5m2!1sen!2s"

@@ -42,7 +42,7 @@ export default function PelletAndCompoundsPage() {
   }, [])
 
   return (
-    <main className="min-h-screen" ref={containerRef}>
+    <main className="min-h-screen main-services" ref={containerRef}>
       <section className="relative min-h-[60vh] overflow-hidden">
         <Image src="/banner-pellets.png" alt="Pellet and Compounds" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-[2%] pb-16">

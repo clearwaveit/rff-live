@@ -28,7 +28,7 @@ function ServiceCardPinned({
   return (
     <Link
       href={href}
-      className={`block rounded-[1rem] service-list ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden crd_block bg-white hover:shadow-lg transition-shadow duration-300`}
+      className={`block rounded-[1rem] service-list ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden crd_block ${bg} hover:shadow-lg transition-shadow duration-300`}
     >
       <div className="service-wrap">
         <div className="service-content">
@@ -128,7 +128,7 @@ export default function ServicesHighlight({
     },
     {
       badge: "OUR SERVICES",
-      title: "Pellets and Compounds",
+      title: "Pellets and Compounding",
       desc: "Production of recycled plastic pellets and custom compounds tailored to performance, quality, and sustainability requirements.",
       img: "/service-2.png",
       icon: "/leaf-2.png",

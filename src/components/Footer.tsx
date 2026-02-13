@@ -7,9 +7,8 @@ export default function Footer() {
   const [email, setEmail] = useState("")
 
   return (
-    <footer className="mt-24">
-      <div className="mx-auto max-w-[1600px] px-[2%]">
-        <div className="rounded-[0.8rem] bg-footer text-teal-50">
+    <footer className="mt-[30px] w-full">
+      <div className="rounded-none bg-footer text-teal-50 w-full px-[2%]">
           <div className="footer-logo-wrap">
             <div className="footer-logo-box">
               <Link href="/">
@@ -74,7 +73,6 @@ export default function Footer() {
           </div>
           <hr className="my-8 border-teal-700" />
           <p className="text-center text-sm text-teal-50">© 2025 Recycle For Future Ltd. | All rights reserved</p>
-        </div>
       </div>
     </footer>
   )

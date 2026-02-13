@@ -9,7 +9,7 @@ import AboutIntro from "@/components/AboutIntro"
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen main-services">
       <section className="relative min-h-[60vh] overflow-hidden">
         <Image src="/banner-service.png" alt="Services" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-[2%] pb-16">
@@ -42,7 +42,7 @@ export default function ServicesPage() {
           },
           {
             badge: "OUR SERVICES",
-            title: "Pellets and Compounds",
+            title: "Compounding",
             desc: "Supply of recycled plastic pellets and custom compounds developed to meet specific quality, performance, and sustainability requirements.",
             img: "/service-2-new.png",
             icon: "/leaf-2.png",

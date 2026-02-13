@@ -43,8 +43,8 @@ export default function CustomSection({ title, img, paragraph }: { title: string
   }, [])
 
   return (
-    <section className="relative my-20">
-      <div ref={containerRef} className="mx-auto py-16 bg-[#EEF6F6]">
+    <section className="relative">
+      <div ref={containerRef} className="mx-auto py-16 lg:py-24 bg-[#EEF6F6]">
         <div className="custom-grid grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="custom-content mx-auto max-w-[700px]">
             <h3 className="text-[#00333E] text-3xl sm:text-[60px] font-[300] leading-tight">{title}</h3>

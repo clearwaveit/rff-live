@@ -52,7 +52,7 @@ export default function TrustedPartnership() {
 
   return (
     <section className="relative">
-      <div ref={containerRef} className="mx-auto max-w-[1600px] px-[2%] py-16">
+      <div ref={containerRef} className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
         <div className="tp-grid grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           <div className="tp-image relative h-[480px] rounded-[2rem] overflow-hidden">
             <Image src="/service-3.svg" alt="Trusted partnership" fill className="object-cover" />

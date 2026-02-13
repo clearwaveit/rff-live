@@ -42,7 +42,7 @@ export default function Sustainability() {
   ]
 
   return (
-    <section ref={sectionRef} className="relative w-full">
+    <section ref={sectionRef} className="relative w-full py-16 lg:py-24">
         <h2 className="heading-sustainability text-center">SUSTAINABILITY</h2>
         <div className="mt-5 overflow-hidden w-full">
           <div className="marquee-track">

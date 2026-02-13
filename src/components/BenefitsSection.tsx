@@ -59,7 +59,7 @@ export default function BenefitsSection({
 
   return (
     <section className="relative">
-      <div ref={containerRef} className="mx-auto max-w-[1600px] px-[2%] py-16">
+      <div ref={containerRef} className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
         <div className="benefits-grid grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="benefits-image relative h-[600px] rounded-[12px] overflow-hidden">
             <Image src={img} alt={title} fill className="object-cover" />
