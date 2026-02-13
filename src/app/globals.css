@@ -28,6 +28,11 @@
     padding-bottom: 2.5rem !important;
   }
 
+  /* Home page: small space between last section (Sustainability) and footer */
+  main.main-home > *:last-child {
+    padding-bottom: 3.5rem !important;
+  }
+
   /* Process card flow image animation */
   .flow-image-animate {
     transform: translateX(200%) rotate(180deg);
@@ -292,7 +297,7 @@
   }
 
   .heading-abt-wrap p {
-    max-width: 795px;
+    max-width: 880px;
     margin: 0 auto;
     font-weight: 400;
     color: #696969;

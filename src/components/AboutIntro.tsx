@@ -67,7 +67,12 @@ export default function AboutIntro({
             {title}<span className="accent">{accent}</span>
           </h2>
           <p ref={pRef}>
-            {paragraph}
+            {paragraph.split(/\n/).map((part, i, arr) => (
+              <span key={i}>
+                {part}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </p>
           <div className="mt-8 btn-center">
             <Cta href={ctaHref} label={ctaLabel} tone="dark" />

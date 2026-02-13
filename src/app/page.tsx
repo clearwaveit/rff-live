@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen main-home">
       <Hero />
-      <AboutIntro 
+      <AboutIntro
         badge="ABOUT US"
         title="Driving circular plastic solutions through "
         accent="expertise, technology, and responsibility"
@@ -64,11 +64,11 @@ With over 10 years of industry experience, we deliver compliant, reliable, and c
           }
         ]}
       />
-      <Certifications />
+      {/* <Certifications /> */}
       <EmbeddedPartner />
       <Sustainability />
-      <CollageZoom />
-      <NewsInsights />
+      {/* <CollageZoom /> */}
+      {/* <NewsInsights /> */}
     </main>
   )
 }

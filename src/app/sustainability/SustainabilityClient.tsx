@@ -69,7 +69,7 @@ export default function SustainabilityPage() {
   }, [])
 
   return (
-    <main className="min-h-screen" ref={containerRef}>
+    <main className="min-h-screen main-home" ref={containerRef}>
       <section className="relative min-h-[60vh] overflow-hidden">
         <Image src="/banner-sustainable.png" alt="Sustainability" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-[2%] pb-16">

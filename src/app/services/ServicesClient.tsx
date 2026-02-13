@@ -65,7 +65,7 @@ export default function ServicesPage() {
       
       <MaterialsList />
       
-      <LeafDivider className="my-4" />
+      {/* <LeafDivider className="my-4" /> */}
       
       <AboutIntro 
         badge="WHY US?"
