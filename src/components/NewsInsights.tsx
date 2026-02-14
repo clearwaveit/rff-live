@@ -31,32 +31,32 @@ export default function NewsInsights() {
       date: "AUGUST 14, 2025",
       text: "An engaging deep learning approach to formulate novel antibiotics from the foundation.",
       slug: "novel-antibiotics-design-with-deep-learning",
-      bg: "bg-[#E0EFEF]",
-      bgf: "#E0EFEF"
+      bg: "bg-[#f1f7f2]",
+      bgf: "#f1f7f2"
     },
     {
       badge: "PUBLICATIONS",
       date: "AUGUST 14, 2025",
       text: "An engaging deep learning approach to formulate novel antibiotics from the foundation.",
       slug: "novel-antibiotics-design-with-deep-learning",
-      bg: "bg-[#E0EFEF]",
-      bgf: "#E0EFEF"
+      bg: "bg-[#f1f7f2]",
+      bgf: "#f1f7f2"
     },
     {
       badge: "PUBLICATIONS",
       date: "AUGUST 14, 2025",
       text: "Conversation with Nobel Laureate David MacMillan.",
       slug: "conversation-with-nobel-laureate-david-macmillan",
-      bg: "bg-[#E0EFEF]",
-      bgf: "#E0EFEF"
+      bg: "bg-[#f1f7f2]",
+      bgf: "#f1f7f2"
     },
     {
       badge: "PUBLICATIONS",
       date: "AUGUST 14, 2025",
       text: "Conversation with Nobel Laureate David MacMillan.",
       slug: "conversation-with-nobel-laureate-david-macmillan",
-      bg: "bg-[#E0EFEF]",
-      bgf: "#E0EFEF"
+      bg: "bg-[#f1f7f2]",
+      bgf: "#f1f7f2"
     }
   ]
 

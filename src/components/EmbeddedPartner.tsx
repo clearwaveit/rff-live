@@ -67,10 +67,10 @@ export default function EmbeddedPartner() {
 
   return (
     <section ref={sectionRef} className="relative">
-      <div className="mx-auto py-150">
-        <div className="grid lg:grid-cols-12 gap-15 items-start sec-bg">
-          <div className="lg:col-span-5 p-image-block">
-            <div className="relative round-cornor overflow-hidden h-[900px]">
+      <div className="mx-auto pt-10 pb-16 lg:pt-14 lg:pb-24">
+        <div className="grid lg:grid-cols-12 gap-8 items-start sec-bg">
+          <div className="lg:col-span-5 p-image-block embed-image-col">
+            <div className="embed-image-wrap relative round-cornor overflow-hidden h-[900px]">
               <Image src="/emb-partner-2.png" alt="Partner" fill className="object-cover" />
               {/* <div className="image-dots" style={{ backgroundImage: `url("images/img-dots.png")` }}></div> */}
             </div>

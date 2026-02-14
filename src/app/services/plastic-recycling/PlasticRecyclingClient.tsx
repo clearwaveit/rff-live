@@ -42,7 +42,7 @@ export default function PlasticRecyclingPage() {
   }, [])
 
   return (
-    <main className="min-h-screen" ref={containerRef}>
+    <main className="min-h-screen main-services" ref={containerRef}>
       <section className="relative min-h-[60vh] overflow-hidden">
         <Image src="/banner-plastic.png" alt="Plastic Recycling" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-[2%] pb-16">
@@ -140,7 +140,7 @@ export default function PlasticRecyclingPage() {
 
       <MaterialsList />
 
-      <LeafDivider className="my-4" />
+      {/* <LeafDivider className="my-4" /> */}
 
       <BenefitsSection
         title="Benefits Of Plastic Recycling For Businesses"
@@ -153,7 +153,7 @@ export default function PlasticRecyclingPage() {
         ]}
       />
 
-      <CustomSection title="Tailored Solutions for Reliable Collaborations" img="/Rectangle 8.png" />
+      <CustomSection title="Tailored Solutions for Reliable Collaborations" paragraph="Partnering with us helps businesses reduce plastic waste and embrace sustainable practices. Our custom blends of recycled plastics and additives are crafted in close collaboration with you, ensuring the final product exceeds your expectations. This careful compounding process combines recycled materials with targeted additives to enhance properties like color, strength, flexibility, and UV resistance, providing high-quality solutions tailored to your specific needs." img="/Rectangle 8.png" />
 
       <section className="relative">
         <div className="mx-auto max-w-[1600px] px-[2%] py-12">

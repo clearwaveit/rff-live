@@ -126,12 +126,13 @@ export default function Hero() {
       </div>
       <div className="video-block">
         <video
+          className="waves-vertical-video"
           autoPlay
           loop
           muted
           playsInline
         >
-          <source src="/video/banner-video.mp4" type="video/mp4" />
+          <source src="/video/waves-vertical-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="hm-banner-content">
@@ -153,7 +154,7 @@ export default function Hero() {
                 width={45}
                 height={43}
               />
-              Recycle For Future Ltd. has 20 years in-house experience in the recycling industry.</p>
+              Recycle For Future Ltd. has 10 years in-house experience in the recycling industry.</p>
             <div className="round-block">
               <Image
                 src="/images/round.png"

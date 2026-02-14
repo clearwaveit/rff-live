@@ -7,9 +7,9 @@ export default function Footer() {
   const [email, setEmail] = useState("")
 
   return (
-    <footer className="mt-24">
-      <div className="mx-auto max-w-[1600px] px-[2%]">
-        <div className="rounded-[0.8rem] bg-footer text-teal-50">
+    <footer className="mt-0 w-full">
+      <div className="rounded-none bg-footer text-teal-50 w-full">
+        <div className="mx-auto max-w-[1600px] px-[2%]">
           <div className="footer-logo-wrap">
             <div className="footer-logo-box">
               <Link href="/">

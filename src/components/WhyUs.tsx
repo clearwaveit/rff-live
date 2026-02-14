@@ -4,7 +4,7 @@ import Cta from "@/components/Cta"
 
 export default function WhyUs() {
   return (
-    <section className="relative overflow-hidden py-24 lg:py-32">
+    <section className="relative overflow-hidden py-16 lg:py-24">
       {/* Background Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
         <span className="text-[15vw] font-bold leading-none text-[#00272F] whitespace-nowrap">

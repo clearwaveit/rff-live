@@ -61,22 +61,22 @@ export default function AboutPage() {
         accent="expertise, technology, and responsibility"
         paragraph={`Recycle for Future Ltd is a UK-based plastic recycling specialist helping businesses responsibly manage plastic waste. We transform post-industrial and post-consumer plastics into high-quality recycled materials, reducing reliance on virgin plastics and supporting sustainable manufacturing across the UK.
 
-With over 20 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
+With over 10 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
         ctaHref="/contact"
         ctaLabel="LEARN MORE"
         withWave={true}
       />
 
       <section className="relative bg-white">
-        <div className="mx-auto max-w-[1600px] py-16 md:py-48">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-48 items-start">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-8 lg:px-[2%] py-16 md:py-24 lg:py-32 xl:py-40 2xl:py-48">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-12 lg:gap-24 xl:gap-32 2xl:gap-48 items-start">
             <div className="flex-shrink-0">
-              <span className="inline-flex items-center gap-2 rounded-[7.73px] bg-[#F5F5F5] px-3 py-1.5 text-[14px] font-[400] text-[#024D5D] uppercase tracking-wide">
+              <span className="about-mission-badge inline-flex items-center gap-2 rounded-[7.73px] bg-[#F5F5F5] px-3 py-1.5 text-[12px] sm:text-[13px] md:text-[14px] font-[400] text-[#024D5D] uppercase tracking-wide">
                 Our Mission
               </span>
             </div>
             <div className="flex-1 max-w-full">
-              <p className="text-[28px] md:text-[45.15px] leading-[1.5] font-[300] text-[#00272F] tracking-normal">
+              <p className="about-mission-text font-[300] text-[#00272F] tracking-normal">
                 We work to divert plastic from landfill and the natural environment, reintroducing it into productive use. <span className="font-light">Our goal is to reduce reliance on virgin mat</span><span className="font-light text-[#579C9C]">erials and support businesses in adopting recycled plastics with confidence and clarity.</span>
               </p>
             </div>

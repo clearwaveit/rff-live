@@ -59,7 +59,7 @@ export default function CollageZoom() {
 
   return (
     <section className="relative w-full">
-      <div ref={sectionRef} className="w-full py-16 college-top-space">
+      <div ref={sectionRef} className="w-full py-16 lg:py-24">
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <div className="space-y-6">
