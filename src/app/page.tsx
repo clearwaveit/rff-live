@@ -3,6 +3,7 @@ import AboutIntro from "@/components/AboutIntro"
 import ServicesHighlight from "@/components/ServicesHighlight"
 import Certifications from "@/components/Certifications"
 import EmbeddedPartner from "@/components/EmbeddedPartner"
+import VideoShowcase from "@/components/VideoShowcase"
 import Sustainability from "@/components/Sustainability"
 import CollageZoom from "@/components/CollageZoom"
 import NewsInsights from "@/components/NewsInsights"
@@ -20,11 +21,11 @@ export default function Page() {
       <Hero />
       <AboutIntro
         badge="ABOUT US"
-        title="Driving circular plastic solutions through "
-        accent="expertise, technology, and responsibility"
+        title={<>Driving circular plastic solutions<br />through expertise, technology, and responsibility</>}
+        accent=""
         paragraph={`Recycle for Future Ltd is a UK-based plastic recycling specialist helping businesses responsibly manage plastic waste. We transform post-industrial and post-consumer plastics into high-quality recycled materials, reducing reliance on virgin plastics and supporting sustainable manufacturing across the UK.
 
-With over 10 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
+        With over 10 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
         ctaLabel="Learn More About Us"
       />
       <ServicesHighlight
@@ -38,7 +39,7 @@ With over 10 years of industry experience, we deliver compliant, reliable, and c
           {
             badge: "OUR SERVICES",
             title: "Plastic Recycling",
-            desc: "End-to-end recycling solutions for a wide range of plastics, converting waste into high-quality recycled pellets through efficient, compliant processes.",
+            desc: "We specialise in processing post-industrial and post-consumer plastic waste, including HDPE, LDPE, HIPS, PP, PS and ABS. Our state-of-the-art facility ensures precision at every stage, from sorting and cleaning to shredding and extrusion.",
             img: "/service-1-new.png",
             icon: "/green-leaf.png",
             bg: "bg-[#d2ede6]",
@@ -66,6 +67,7 @@ With over 10 years of industry experience, we deliver compliant, reliable, and c
       />
       {/* <Certifications /> */}
       <EmbeddedPartner />
+      <VideoShowcase />
       <Sustainability />
       {/* <CollageZoom /> */}
       {/* <NewsInsights /> */}

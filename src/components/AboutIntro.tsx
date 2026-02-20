@@ -7,7 +7,7 @@ import Cta from "@/components/Cta"
 import Image from "next/image"
 export default function AboutIntro({
   badge = "",
-  title = "Combining synthetic biology, chemistry, and AI into an ",
+  title = <>Combining synthetic biology, chemistry, and AI into an </>,
   accent = "engine of discovery.",
   paragraph = "Our platform enables precise, dynamic control of biological targets and pathways, generating high-fidelity datasets that, combined with advanced AI, unlock systematic exploration of previously inaccessible chemical space.",
   ctaHref = "#",
@@ -16,7 +16,7 @@ export default function AboutIntro({
   className = ""
 }: {
   badge?: string
-  title?: string
+  title?: React.ReactNode
   accent?: string
   paragraph?: string
   ctaHref?: string
@@ -74,7 +74,7 @@ export default function AboutIntro({
               </span>
             ))}
           </p>
-          <div className="mt-8 btn-center">
+          <div className="mt-20 btn-center">
             <Cta href={ctaHref} label={ctaLabel} tone="dark" />
           </div>
         </div>

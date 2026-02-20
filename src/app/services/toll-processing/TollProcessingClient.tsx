@@ -13,6 +13,7 @@ import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import CustomSection from "@/components/CustomSection"
+import HowItWorks from "@/components/HowItWorks"
 
 export default function TollProcessingPage() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -20,7 +21,7 @@ export default function TollProcessingPage() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const ctx = gsap.context(() => {
+      const ctx = gsap.context(() => {
       gsap.from(".page-hero-title", { y: 24, opacity: 0, duration: 0.8, ease: "power3.out" })
       gsap.from(".page-intro", { y: 16, opacity: 0, duration: 0.7, ease: "power3.out", delay: 0.1 })
 
@@ -32,10 +33,7 @@ export default function TollProcessingPage() {
         duration: 0.6,
         ease: "power3.out",
         stagger: 0.08,
-        scrollTrigger: {
-          trigger: ".process-grid",
-          start: "top 85%",
-        },
+        scrollTrigger: { trigger: ".process-grid", start: "top 85%" },
       })
     }, containerRef)
 
@@ -77,12 +75,12 @@ export default function TollProcessingPage() {
         </div>
       </section>
 
-      <section className="relative">
+      {/* Toll processing services – 2x2 cards (original section) */}
+      {/* <section className="relative">
         <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
           <h2 className="text-center heading-2 mb-16">
             Toll processing services <span className="text-[#579C9C] font-light">to suit your specific needs</span>
           </h2>
-          {/* First row - 2 cards */}
           <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
             <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[328px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
@@ -105,8 +103,6 @@ export default function TollProcessingPage() {
               <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications.</p>
             </div>
           </div>
-
-          {/* Second row - 2 cards */}
           <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
             <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[328px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-start group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[328px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
@@ -130,18 +126,38 @@ export default function TollProcessingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <LeafDivider className="my-4" />
+      <HowItWorks
+        title={
+          <>
+            Toll processing services <span className="text-[#BCDFD8] font-light">to suit your specific needs</span>
+          </>
+        }
+        steps={[
+          { number: "1", title: "Granulating", description: "We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications." },
+          { number: "2", title: "Pelletising", description: "We can granulate your plastic scrap into a consistent size, suitable for further processing or direct use in certain applications." },
+          { number: "3", title: "Compounding", description: "We can compound your recycled plastic with additives and other materials to create custom compounds that meet your specific requirements." },
+          { number: "4", title: "Material Testing", description: "We can conduct various tests on your recycled plastic to assess its properties and ensure its quality and suitability for your intended use." },
+        ]}
+        cardLayout={[
+          { above: false, marginLeft: 0 },
+          { above: true, marginLeft: -100 },
+          { above: false, marginLeft: -100 },
+          { above: true, marginLeft: -100 },
+        ]}
+      />
 
-      <BenefitsSection title="Benefits Of Toll Processing For Businesses" img="/Rectangle 7 (3).png" />
+      {/* <LeafDivider className="my-4" /> */}
 
-      <CustomSection title="Custom Solutions for Dependable Partnerships" img="/Rectangle 10.png" />
+      <BenefitsSection title="Benefits Of Toll Processing For Businesses" img="/Rectangle 7 (3).png" highlightText="Toll Processing" />
+
+      <CustomSection title="Custom Solutions for Dependable Partnerships" img="/Rectangle 10.png" paragraph="We work in partnership with our clients to develop customised recycled pellets and compounds, ensuring materials are tailored to specific applications, performance requirements, and production needs." />
 
       <section className="relative">
-        <div className="mx-auto max-w-[1600px] px-[2%] py-12">
-          <div className="rounded-[12px] md:h-[400px] bg-[#3B6060] text-white px-20 md:px-32 py-10 text-center">
-            <h3 className="text-[32px] md:text-[64px] font-[300]">Join us in ensuring a sustainable <span className="text-[#BFD893]">future with our compliance</span></h3>
+        <div className="mx-auto max-w-[auto]">
+          <div className="flex flex-col items-center justify-center md:h-[400px] bg-[#3B6060] text-white px-20 md:px-32 py-10 text-center">
+            <h3 className="text-[32px] md:text-[64px] font-[300] leading-tight text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
             <div className="mt-6 flex justify-center"><Cta href="/contact" label="LEARN MORE" tone="dark" /></div>
           </div>
         </div>

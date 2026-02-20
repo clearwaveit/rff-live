@@ -33,6 +33,18 @@
     padding-bottom: 3.5rem !important;
   }
 
+  /* Prevent horizontal scroll from full-bleed video section */
+  main.main-home {
+    overflow-x: hidden;
+  }
+
+  /* How it Works: desktop par marginLeft from layout; mobile par no margin */
+  @media (max-width: 1023px) {
+    .how-it-works-card {
+      margin-left: 0 !important;
+    }
+  }
+
   /* Process card flow image animation */
   .flow-image-animate {
     transform: translateX(200%) rotate(180deg);
@@ -268,8 +280,26 @@
     stroke: #fff;
   }
 
+  .service-pinned-cta .style-main {
+    background: #fff;
+    color: #274646;
+  }
+
+  .service-pinned-cta .style-arrow {
+    background: #D4F2A1;
+  }
+
+  .service-pinned-cta .stylish-btn:hover .style-main {
+    background: #cef79e;
+    color: #274646;
+  }
+
+  .service-pinned-cta .stylish-btn:hover .style-arrow {
+    background: #274646;
+  }
+
   .heading-abt-wrap {
-    max-width: 1050px;
+    max-width: auto;
     margin: -35px auto 0px;
     text-align: center;
   }
@@ -297,7 +327,7 @@
   }
 
   .heading-abt-wrap p {
-    max-width: 880px;
+    max-width: 1050px;
     margin: 0 auto;
     font-weight: 400;
     color: #696969;
@@ -324,6 +354,7 @@
   }
 
   .p-image-block {
+    padding-left: 80px;
     padding-right: 40px;
   }
 

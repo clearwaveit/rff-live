@@ -68,14 +68,14 @@ export default function EmbeddedPartner() {
   return (
     <section ref={sectionRef} className="relative">
       <div className="mx-auto pt-10 pb-16 lg:pt-14 lg:pb-24">
-        <div className="grid lg:grid-cols-12 gap-8 items-start sec-bg">
-          <div className="lg:col-span-5 p-image-block embed-image-col">
+        <div className="grid lg:grid-cols-2 items-start sec-bg">
+          <div className="p-image-block embed-image-col">
             <div className="embed-image-wrap relative round-cornor overflow-hidden h-[900px]">
               <Image src="/emb-partner-2.png" alt="Partner" fill className="object-cover" />
               {/* <div className="image-dots" style={{ backgroundImage: `url("images/img-dots.png")` }}></div> */}
             </div>
           </div>
-          <div className="lg:col-span-5">
+          <div className="px-10 lg:pl-16 lg:pr-20">
             <h2 className="heading-embed text-[#013138]">An embedded partner for your recycling <span className="accent">journey towards a greener future</span></h2>
             <p className="mt-7 max-w-2xl leading-relaxed text-[#013138]">We work alongside businesses to reduce plastic waste, meet sustainability objectives, and integrate recycled materials into their operations with confidence.</p>
             <div className="mt-11 divide-y divide-gray-200">

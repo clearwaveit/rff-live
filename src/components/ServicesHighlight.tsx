@@ -3,55 +3,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import Cta from "@/components/Cta"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-/* Old ServiceCard - Pinned Layout (for Home Page) */
-function ServiceCardPinned({
-  badge,
-  title,
-  desc,
-  img,
-  bg,
-  href,
-  icon
-}: {
-  badge: string
-  title: string
-  desc: string
-  img: string
-  bg: string
-  href: string
-  icon: string
-}) {
-  return (
-    <Link
-      href={href}
-      className={`block rounded-[1rem] service-list ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden crd_block ${bg} hover:shadow-lg transition-shadow duration-300`}
-    >
-      <div className="service-wrap">
-        <div className="service-content">
-          <div className="mb-4">
-            <span className="badge-wrap">
-              {badge}
-            </span>
-          </div>
-          <h3 className="heading-service mt-6">{title}</h3>
-          <p className="mt-5 max-w-xl leading-relaxed text-[#696969]">{desc}</p>
-          <div className="mt-6">
-            <Cta href={href} label="LEARN MORE" tone="light" as="div" />
-          </div>
-        </div>
-        <div className="service-image-box" style={{ backgroundImage: `url("${img}")` }}>
-          <div className="icon-box" style={{ backgroundImage: `url("${icon}")` }}></div>
-        </div>
-      </div>
-    </Link>
-  )
-}
-
-/* New ServiceCard - Row Layout (for Services Pages) */
+/* ServiceCard - Row Layout (for Services Pages) */
 function ServiceCardRow({
   badge,
   title,
@@ -111,8 +67,7 @@ function ServiceCardRow({
 export default function ServicesHighlight({
   heading = (
     <>
-      Recycling <span className="accent">services suited for</span> <br />
-      <span className="accent">every</span> industry across the UK
+      <span className="leading-tight">Recycling services suited <br /> for every industry across the UK</span>
     </>
   ),
   layout = "row",
@@ -159,6 +114,9 @@ export default function ServicesHighlight({
   }[]
 }) {
   const containerRef = useRef<HTMLElement | null>(null)
+  const pinnedRef = useRef<HTMLDivElement | null>(null)
+  const [activeService, setActiveService] = useState(0)
+  const activeServiceRef = useRef(0)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -177,7 +135,6 @@ export default function ServicesHighlight({
       })
 
       if (layout === "row") {
-        // Row Layout Animation - Staggered cards appearing one by one
         const serviceCards = document.querySelectorAll(".service-card-item")
         serviceCards.forEach((card, index) => {
           gsap.from(card, {
@@ -192,49 +149,35 @@ export default function ServicesHighlight({
             }
           })
         })
-      } else {
-        // Pinned gallery animation for home page
-        const w = document.documentElement.clientWidth || window.innerWidth
-        if (w >= 480) {
-          const pinnedGallery = document.querySelector(".pinned_gallery")
-          if (pinnedGallery) {
-            const pinnedImages = pinnedGallery.querySelectorAll(".pinned_image")
-            
-            pinnedImages.forEach((pImage, i, arr) => {
-              const cardBlock = (pImage as HTMLElement).querySelector(".crd_block") as HTMLElement
-              if (!cardBlock) return
+      }
 
-              // Calculate center position
-              const centerTop = (window.innerHeight - cardBlock.offsetHeight) / 2
-              
-              // Apply Sticky Positioning
-              const pImageEl = pImage as HTMLElement
-              pImageEl.style.position = "sticky"
-              pImageEl.style.top = `${centerTop}px`
-              pImageEl.style.zIndex = `${i + 1}` // Stack order: later cards on top
-
-              // Animate current card fading/scaling out as next card covers it
-              if (i < arr.length - 1) {
-                gsap.to(cardBlock, {
-                  scale: 0.8,
-                  opacity: 0,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: pImageEl,
-                    start: `top ${centerTop}px`, // Starts when card hits the sticky position
-                    end: `+=${cardBlock.offsetHeight}`, // Ends when card is fully covered (approx)
-                    scrub: true,
-                  }
-                })
-              }
-            })
+      if (layout === "pinned" && pinnedRef.current) {
+        const totalServices = services.length
+        ScrollTrigger.create({
+          trigger: pinnedRef.current,
+          start: "center center",
+          end: `+=${totalServices * 100}%`,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            const index = Math.min(
+              Math.floor(self.progress * totalServices),
+              totalServices - 1
+            )
+            if (index !== activeServiceRef.current) {
+              activeServiceRef.current = index
+              setActiveService(index)
+            }
           }
-        }
+        })
       }
     }, containerRef)
 
     return () => ctx.revert()
-  }, [layout])
+  }, [layout, services.length])
+
+  const active = services[activeService]
 
   return (
     <section ref={containerRef} className="relative">
@@ -261,22 +204,55 @@ export default function ServicesHighlight({
           </div>
         )}
 
-        {/* Pinned Gallery Layout - for Home Page */}
+        {/* Pinned Layout - Two Column Interactive (for Home Page) */}
         {layout === "pinned" && (
-          <div className="mt-12 pinned_gallery">
-            {services.map((service, index) => (
-              <div key={index} className={`pinned_image ${index === services.length - 1 ? 'z_100 last-pin-block' : ''}`}>
-                <ServiceCardPinned
-                  badge={service.badge}
-                  title={service.title}
-                  desc={service.desc}
-                  img={service.img}
-                  icon={service.icon}
-                  bg={service.bg}
-                  href={service.href}
-                />
+          <div ref={pinnedRef} className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 pointer-events-none">
+            {/* Left - Service Names */}
+            <div className={`${active.bg} flex flex-col items-center px-8 py-10 lg:px-10 lg:py-12 rounded-[23px]`}>
+              <div className="self-center mb-8">
+                <span className="badge-wrap">{active.badge}</span>
               </div>
-            ))}
+              <div className="flex flex-col items-center gap-3 my-auto">
+                {services.map((service, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveService(index)}
+                    className={`pointer-events-auto text-left text-xl lg:text-2xl transition-all duration-300 ${
+                      activeService === index
+                        ? "font-normal text-[#00333E]"
+                        : "font-normal text-[#00333E]/40 hover:text-[#00333E]/60"
+                    }`}
+                  >
+                    {service.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right - Image with Content Overlay */}
+            <div className="relative rounded-[23px] overflow-hidden h-full min-h-[600px]">
+              <Image
+                src={active.img}
+                alt={active.title}
+                fill
+                className="object-cover"
+              />
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/50" />
+              {/* Icon Overlay */}
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cover bg-center bg-no-repeat opacity-40"
+                style={{ backgroundImage: `url("${active.icon}")` }}
+              />
+              {/* Content Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
+                <h3 className="text-2xl lg:text-3xl font-normal text-white mb-3">{active.title}</h3>
+                <p className="text-white/80 text-sm lg:text-base leading-relaxed max-w-xl">{active.desc}</p>
+                <div className="mt-5 service-pinned-cta pointer-events-auto">
+                  <Cta href={active.href} label="LEARN MORE" tone="light" as="div" />
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
