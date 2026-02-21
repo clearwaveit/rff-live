@@ -6,10 +6,10 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const DEFAULT_BENEFITS = [
-  { title: "Affordable Resources", description: "Reduced reliance on virgin plastic materials" },
-  { title: "Lowered Ecological Footprint", description: "Lower environmental impact and landfill diversion" },
-  { title: "Improved Brand Reputation", description: "Improved sustainability performance for your business" },
-  { title: "Adherence to Regulations", description: "Consistent, high-quality recycled output" }
+  { title: "Reduced reliance on virgin plastic materials", description: "" },
+  { title: "Lower environmental impact and landfill diversion", description: "" },
+  { title: "Improved sustainability performance for your business", description: "" },
+  { title: "Consistent, high-quality recycled output", description: "" }
 ]
 
 export default function BenefitsSection({

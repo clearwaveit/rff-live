@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "gsap": "latest",
+    "lenis": "^1.3.17",
     "next": "latest",
     "nodemailer": "^7.0.12",
     "pm2": "^6.0.14",

@@ -66,7 +66,7 @@ export default function Page() {
         ]}
       />
       {/* <Certifications /> */}
-      <EmbeddedPartner />
+      <EmbeddedPartner className="mb-0" noBottomPadding />
       <VideoShowcase />
       <Sustainability />
       {/* <CollageZoom /> */}

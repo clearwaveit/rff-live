@@ -442,6 +442,14 @@
     line-height: 15px;
   }
 
+  .badge-wrap--services .badge-wrap__dot {
+    width: 8px;
+    height: 8px;
+    background: #A7E26E;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
   .items-end {
     align-items: flex-end;
   }

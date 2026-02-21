@@ -10,8 +10,8 @@ export default function AboutIntro({
   title = <>Combining synthetic biology, chemistry, and AI into an </>,
   accent = "engine of discovery.",
   paragraph = "Our platform enables precise, dynamic control of biological targets and pathways, generating high-fidelity datasets that, combined with advanced AI, unlock systematic exploration of previously inaccessible chemical space.",
-  ctaHref = "#",
-  ctaLabel = "MORE ABOUT RFF",
+  ctaHref = "/about",
+  ctaLabel = "Learn More About Us",
   withWave = true,
   className = ""
 }: {

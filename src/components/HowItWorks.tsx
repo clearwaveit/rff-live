@@ -26,11 +26,14 @@ type HowItWorksProps = {
   /** Array length = steps.length. above + marginLeft per card; agar nahi diya to default: alternate above/below, overlap -279 */
   cardLayout?: HowItWorksCardLayout[]
   className?: string
+  titleClassName?: string
 }
 
 const DEFAULT_TITLE = "How it Works"
-/** Scroll distance – is pure scroll tak section pinned; cards left move; uske baad hi next section scroll up */
-const SCROLL_VH = 500
+/** Scroll distance – section tab tak pinned; cards horizontally move; last card full display ke baad hi section upar jayega */
+const SCROLL_VH = 700
+/** Last card ke right mein space taake wo clearly full visible ho */
+const END_PADDING_PX = 80
 
 function getTrackWidthPx(steps: HowItWorksStep[], layout?: HowItWorksCardLayout[]): number {
   let w = CARD_WIDTH
@@ -49,7 +52,7 @@ function getCardLayout(steps: HowItWorksStep[], index: number, layout?: HowItWor
   }
 }
 
-export default function HowItWorks({ title = DEFAULT_TITLE, steps, cardLayout, className = "" }: HowItWorksProps) {
+export default function HowItWorks({ title = DEFAULT_TITLE, steps, cardLayout, className = "", titleClassName = "" }: HowItWorksProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const pinRef = useRef<HTMLDivElement>(null)
   const viewportRef = useRef<HTMLDivElement>(null)
@@ -60,28 +63,26 @@ export default function HowItWorks({ title = DEFAULT_TITLE, steps, cardLayout, c
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current
-    const pinEl = pinRef.current
     const viewport = viewportRef.current
     const track = trackRef.current
-    if (!section || !pinEl || !viewport || !track) return
+    if (!section || !viewport || !track) return
 
     const getMaxX = () => {
       if (typeof window === "undefined" || window.innerWidth < 1024) return 0
-      return Math.min(0, viewport.offsetWidth - trackWidthPx)
+      return Math.min(0, viewport.offsetWidth - trackWidthPx - END_PADDING_PX)
     }
 
-    // Cards scroll ke sath left move; jab fully left ho jayein tab hi pin release → next section scroll up
+    // Pura section pin: cards fully left hone tak next section overlap nahi karega, phir section upar jayega
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top top",
         end: `+=${SCROLL_VH}vh`,
-        pin: pinEl,
+        pin: true,
         pinSpacing: true,
         scrub: 1,
         invalidateOnRefresh: true,
         anticipatePin: 1,
-        // Pin tab tak: scroll 0→SCROLL_VH tak = track 0→maxX tak; end par hi next section aayega
       },
     })
 
@@ -112,13 +113,13 @@ export default function HowItWorks({ title = DEFAULT_TITLE, steps, cardLayout, c
   return (
     <section
       ref={sectionRef}
-      className={`relative z-20 overflow-hidden py-16 lg:py-24 ${className}`}
+      className={`relative z-30 overflow-hidden py-16 lg:py-24 ${className}`}
       style={{
         background: "linear-gradient(107.43deg, #284D4D 58.74%, #5DB3B3 138.65%)",
       }}
     >
       <div className="relative z-10 mx-auto max-w-[2400px] px-[2%] lg:px-8 pointer-events-none" ref={pinRef}>
-        <h2 className="text-center text-[28px] md:text-[44px] lg:text-[52px] font-light text-white mb-12 lg:mb-16 pointer-events-auto">
+          <h2 className={`w-auto max-w-[1000px] mx-auto text-center font-light text-white mb-12 lg:mb-16 pointer-events-auto ${titleClassName || "text-[28px] md:text-[44px] lg:text-[90px]"}`}>
           {title}
         </h2>
 
@@ -146,7 +147,7 @@ export default function HowItWorks({ title = DEFAULT_TITLE, steps, cardLayout, c
             {/* Track: min-width zyada so viewport se overflow; scroll par left move */}
             <div
               ref={trackRef}
-              className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:flex-nowrap lg:min-h-[440px] will-change-transform flex-shrink-0 pointer-events-none"
+              className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:flex-nowrap lg:min-h-[500px] will-change-transform flex-shrink-0 pointer-events-none"
               style={{ minWidth: trackWidthPx }}
             >
               {steps.map((step, i) => {

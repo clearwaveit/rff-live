@@ -264,9 +264,9 @@ export default function MaterialsList() {
         </p>
         </div>
 
-        {/* Tabs - screenshot style: teal active, light grey inactive, rounded */}
-        <div className="flex justify-center">
-          <div className="flex min-w-0 gap-4 flex-wrap">
+        {/* Tabs - below 1024: horizontal scroll, no wrap; 1024+: centered wrap */}
+        <div className="flex justify-center max-lg:overflow-x-auto max-lg:overflow-y-hidden max-lg:justify-start">
+          <div className="flex min-w-0 gap-4 flex-wrap lg:flex-wrap max-lg:flex-nowrap max-lg:w-max">
             {TABS_DATA.map((tab, i) => (
               <button
                 key={tab.code}

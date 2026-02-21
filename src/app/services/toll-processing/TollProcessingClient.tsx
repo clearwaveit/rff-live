@@ -21,7 +21,7 @@ export default function TollProcessingPage() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-      const ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.from(".page-hero-title", { y: 24, opacity: 0, duration: 0.8, ease: "power3.out" })
       gsap.from(".page-intro", { y: 16, opacity: 0, duration: 0.7, ease: "power3.out", delay: 0.1 })
 
@@ -146,11 +146,22 @@ export default function TollProcessingPage() {
           { above: false, marginLeft: -100 },
           { above: true, marginLeft: -100 },
         ]}
+        titleClassName="text-[60px] leading-[1.2]"
       />
 
       {/* <LeafDivider className="my-4" /> */}
 
-      <BenefitsSection title="Benefits Of Toll Processing For Businesses" img="/Rectangle 7 (3).png" highlightText="Toll Processing" />
+      <BenefitsSection
+        title="Benefits Of Toll Processing For Businesses"
+        img="/Rectangle 7 (3).png"
+        highlightText="Toll Processing"
+        benefits={[
+          { title: "Reduced reliance on virgin plastic materials", description: "" },
+          { title: "Lower environmental impact and landfill diversion", description: "" },
+          { title: "Improved sustainability performance for your business", description: "" },
+          { title: "Consistent, high-quality recycled output", description: "" }
+        ]}
+      />
 
       <CustomSection title="Custom Solutions for Dependable Partnerships" img="/Rectangle 10.png" paragraph="We work in partnership with our clients to develop customised recycled pellets and compounds, ensuring materials are tailored to specific applications, performance requirements, and production needs." />
 

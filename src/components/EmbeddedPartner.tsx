@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
 import Cta from "@/components/Cta"
 
-export default function EmbeddedPartner() {
+export default function EmbeddedPartner({ className = "", noBottomPadding = false }: { className?: string; noBottomPadding?: boolean }) {
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -66,11 +66,11 @@ export default function EmbeddedPartner() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative">
-      <div className="mx-auto pt-10 pb-16 lg:pt-14 lg:pb-24">
-        <div className="grid lg:grid-cols-2 items-start sec-bg">
+    <section ref={sectionRef}>
+      <div className={`mx-auto pt-10 lg:pt-14 ${noBottomPadding ? "pb-0" : "pb-16 lg:pb-24"} ${className}`}>
+        <div className="grid lg:grid-cols-2 items-center sec-bg gap-6 lg:gap-8">
           <div className="p-image-block embed-image-col">
-            <div className="embed-image-wrap relative round-cornor overflow-hidden h-[900px]">
+            <div className="embed-image-wrap relative round-cornor overflow-hidden h-[420px] sm:h-[500px] lg:h-[660px] w-full">
               <Image src="/emb-partner-2.png" alt="Partner" fill className="object-cover" />
               {/* <div className="image-dots" style={{ backgroundImage: `url("images/img-dots.png")` }}></div> */}
             </div>
@@ -85,9 +85,9 @@ export default function EmbeddedPartner() {
                 </div>
               ))}
             </div>
-            <div className="mt-11">
+            {/* <div className="mt-11">
               <Cta href="#" label="Work With Us" tone="dark" />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

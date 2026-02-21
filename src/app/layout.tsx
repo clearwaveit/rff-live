@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import SmoothScroll from "@/components/SmoothScroll"
 import { Rubik } from "next/font/google"
 
 const rubik = Rubik({
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${rubik.className} antialiased`} suppressHydrationWarning>
+        <SmoothScroll />
         <Header />
         {children}
         <Footer />
