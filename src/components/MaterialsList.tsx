@@ -252,13 +252,13 @@ export default function MaterialsList() {
 
   return (
     <section className="relative bg-[#ffffff]">
-      <div ref={ref} className="mx-auto max-w-7xl px-[2%] pt-16 lg:pt-24">
-        <div className="py-16">
+      <div ref={ref} className="mx-auto max-w-7xl px-4 sm:px-6 md:px-[2%] pt-12 sm:pt-16 lg:pt-24">
+        <div className="py-10 sm:py-16">
 
-        <h2 className="text-center text-3xl sm:text-[60px] font-light text-[#00333E] font-rubik">
+        <h2 className="text-center text-2xl sm:text-4xl md:text-[60px] font-light text-[#00333E] font-rubik">
           <span className="font-light">Our Recycled Polymer Grades</span>
         </h2>
-        <p className="text-center mt-4 mb-10 max-w-5xl mx-auto text-[#696969] text-lg font-light">
+        <p className="text-center mt-3 sm:mt-4 mb-6 sm:mb-10 max-w-5xl mx-auto text-[#696969] text-base sm:text-lg font-light">
           Recycle For Future supplies high-performance recycled polymers engineered for demanding industrial applications. Our materials deliver commercial efficiency, technical reliability, and measurable carbon reduction — without compromising processing performance.
 
         </p>
@@ -284,24 +284,24 @@ export default function MaterialsList() {
       </div>
 
       {/* Tab content + Accordion - full width, light bg */}
-      <div className="w-full bg-[#F6F4EE] -mt-px pt-8 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-[2%]">
+      <div className="w-full bg-[#F6F4EE] -mt-px pt-6 sm:pt-8 py-10 sm:py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-[2%]">
           {/* Main content for active tab */}
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#518383] mb-4">{currentTab.title}</h3>
-          <div className="material-row bg-[#ffffff] p-12 mb-10 text-[#00333E] rounded-[8px]">
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-[#518383] mb-3 sm:mb-4">{currentTab.title}</h3>
+          <div className="material-row bg-[#ffffff] p-4 sm:p-6 md:p-8 lg:p-12 mb-6 sm:mb-10 text-[#00333E] rounded-[8px]">
             <div className="space-y-4 text-[#4a4a4a] font-normal leading-relaxed max-w-6xl">
               {currentTab.description.map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
             </div>
 
-            <div className="mt-8">
-              <h4 className="text-xl sm:text-2xl font-normal text-[#3B6060] mb-2">{currentTab.carbonPerformance.heading}</h4>
+            <div className="mt-6 sm:mt-8">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-normal text-[#3B6060] mb-2">{currentTab.carbonPerformance.heading}</h4>
               <p className="text-[#4a4a4a] leading-relaxed max-w-6xl">{currentTab.carbonPerformance.text}</p>
             </div>
 
           </div>
-          <h4 className="text-xl sm:text-2xl font-normal text-[#3B6060] mt-10 mb-4">{currentTab.technicalSpecsTitle}</h4>
+          <h4 className="text-lg sm:text-xl md:text-2xl font-normal text-[#3B6060] mt-8 sm:mt-10 mb-3 sm:mb-4">{currentTab.technicalSpecsTitle}</h4>
 
           {/* Accordion list - screenshot style */}
           <ul className="border border-[#E0E5E2] rounded-[8px] overflow-hidden">
@@ -338,7 +338,7 @@ export default function MaterialsList() {
                       <div className={`overflow-hidden ${isOpen ? "pb-6 px-6" : ""}`}>
                         <div className={`${isOpen ? "bg-[#FFFFFF17] rounded-[8px]" : ""} text-white px-5 py-4 sm:px-6 sm:py-5`}>
                           <p className="font-normal text-[#ffffff] text-sm sm:text-base text mb-2">Performance:</p>
-                          <ul className="grid grid-cols-2 gap-x-6 gap-y-1 list-disc list-inside text-sm sm:text-base font-light text-white/95">
+                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 list-disc list-inside text-sm sm:text-base font-light text-white/95">
                             {item.performance.map((point, j) => (
                               <li key={j}>{point}</li>
                             ))}

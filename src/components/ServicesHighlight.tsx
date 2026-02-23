@@ -32,7 +32,7 @@ function ServiceCardRow({
     >
       <div className="service-card-wrap flex flex-col h-full">
         {/* Image Section with Badge Overlay */}
-        <div className="service-card-image relative h-[588.58px] overflow-hidden">
+        <div className="service-card-image relative h-[260px] sm:h-[360px] lg:h-[588.58px] overflow-hidden">
           <Image
             src={img}
             alt={title}
@@ -41,18 +41,18 @@ function ServiceCardRow({
           />
           {/* Icon Overlay - centered */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cover bg-center bg-no-repeat opacity-60"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] bg-cover bg-center bg-no-repeat opacity-60"
             style={{ backgroundImage: `url("${icon}")` }}
           ></div>
           {/* Badge positioned at bottom-left of image */}
-          <div className="absolute bottom-4 left-10">
+          <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-10">
             <span className="badge-wrap text-[#024D5D]">
               {badge}
             </span>
           </div>
         </div>
         {/* Content Section */}
-        <div className="service-card-content px-10 pb-20 pt-5 flex flex-col flex-grow">
+        <div className="service-card-content px-5 sm:px-8 lg:px-10 pb-12 lg:pb-20 pt-5 flex flex-col flex-grow">
           <h3 className="text-[28px] lg:text-[32px] font-semibold text-gray-900 leading-tight">{title}</h3>
           <p className="mt-4 text-[15px] leading-[1.7] text-[#696969] flex-grow">{desc}</p>
           <div className="mt-6">
@@ -181,7 +181,7 @@ export default function ServicesHighlight({
 
   return (
     <section ref={containerRef} className="relative">
-      <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
         <h2 className="text-center heading-2 mb-100">
           {heading}
         </h2>
@@ -206,21 +206,21 @@ export default function ServicesHighlight({
 
         {/* Pinned Layout - Two Column Interactive (for Home Page) */}
         {layout === "pinned" && (
-          <div ref={pinnedRef} className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 pointer-events-none">
+          <div ref={pinnedRef} className="mt-8 sm:mt-12 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 pointer-events-none">
             {/* Left - Service Names */}
-            <div className={`${active.bg} flex flex-col items-center px-8 py-10 lg:px-10 lg:py-12 rounded-[23px]`}>
-              <div className="self-center mb-8">
+            <div className={`${active.bg} flex flex-col items-center px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-12 rounded-2xl lg:rounded-[23px]`}>
+              <div className="self-center mb-6 lg:mb-8">
                 <span className="badge-wrap badge-wrap--services">
                   <span className="badge-wrap__dot" aria-hidden />
                   {active.badge}
                 </span>
               </div>
-              <div className="flex flex-col items-center gap-3 my-auto">
+              <div className="flex flex-col items-center gap-2 sm:gap-3 my-auto">
                 {services.map((service, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveService(index)}
-                    className={`pointer-events-auto text-left text-xl lg:text-2xl transition-all duration-300 ${
+                    className={`pointer-events-auto text-left text-base sm:text-lg lg:text-2xl transition-all duration-300 ${
                       activeService === index
                         ? "font-normal text-[#00333E]"
                         : "font-normal text-[#00333E]/40 hover:text-[#00333E]/60"
@@ -233,7 +233,7 @@ export default function ServicesHighlight({
             </div>
 
             {/* Right - Image with Content Overlay */}
-            <div className="relative rounded-[23px] overflow-hidden h-full min-h-[600px]">
+            <div className="relative rounded-2xl lg:rounded-[23px] overflow-hidden h-full min-h-[320px] sm:min-h-[420px] lg:min-h-[600px]">
               <Image
                 src={active.img}
                 alt={active.title}
@@ -244,14 +244,14 @@ export default function ServicesHighlight({
               <div className="absolute inset-0 bg-black/50" />
               {/* Icon Overlay */}
               <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cover bg-center bg-no-repeat opacity-40"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] lg:w-[350px] lg:h-[350px] bg-cover bg-center bg-no-repeat opacity-40"
                 style={{ backgroundImage: `url("${active.icon}")` }}
               />
               {/* Content Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
-                <h3 className="text-2xl lg:text-3xl font-normal text-white mb-3">{active.title}</h3>
-                <p className="text-white/80 text-sm lg:text-base leading-relaxed max-w-xl">{active.desc}</p>
-                <div className="mt-5 service-pinned-cta pointer-events-auto">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-10">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-normal text-white mb-2 sm:mb-3">{active.title}</h3>
+                <p className="text-white/80 text-xs sm:text-sm lg:text-base leading-relaxed max-w-xl">{active.desc}</p>
+                <div className="mt-3 sm:mt-5 service-pinned-cta pointer-events-auto">
                   <Cta href={active.href} label="LEARN MORE" tone="light" />
                 </div>
               </div>

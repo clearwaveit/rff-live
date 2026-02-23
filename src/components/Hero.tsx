@@ -89,7 +89,7 @@ export default function Hero() {
 
   return (
 
-    <section ref={rootRef} data-hero className="relative min-h-[100vh] overflow-hidden">
+    <section ref={rootRef} data-hero className="relative min-h-[70vh] sm:min-h-[100vh] overflow-hidden">
       {/* Solid background layer replaces video */}
       <div className="absolute inset-0 -z-10 bg-green-700 hide" />
       {/* Loading overlay that slides up to reveal banner */}
@@ -99,7 +99,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1600px] px-[2%] pt-24 pb-20 hide">
+      <div className="relative mx-auto max-w-[1600px] px-4 sm:px-[2%] pt-20 sm:pt-24 pb-16 sm:pb-20 hide">
         <h1 ref={titleRef} data-headline className="heading-hero max-w-5xl">
           Leading Plastic Recycling Specialists in the UK
         </h1>
@@ -136,7 +136,7 @@ export default function Hero() {
           Your browser does not support the video tag.
         </video>
         <div className="hm-banner-content">
-          <div className="mx-auto max-w-[1600px] hm-banner-content-wrap px-[2%]">
+          <div className="mx-auto max-w-[1600px] hm-banner-content-wrap px-4 sm:px-6 md:px-[2%]">
             <h1>Leading Plastic <span>Recycling Specialists</span> in the UK</h1>
               <a href="/services" className="stylish-btn">
               <span className="style-main">Discover Our Services</span>
@@ -148,13 +148,16 @@ export default function Hero() {
               </span>
             </a>
             <p>
-              <Image
-                src="/images/leaf.svg"
-                alt="icon"
-                width={45}
-                height={43}
-              />
-              Recycle For Future Ltd. has 10 years in-house experience in the recycling industry.</p>
+              <span className="hm-banner-p-inner">
+                <Image
+                  src="/images/leaf.svg"
+                  alt="icon"
+                  width={45}
+                  height={43}
+                />
+                Recycle For Future Ltd. has 10 years in-house experience in the recycling industry.
+              </span>
+            </p>
             <div className="round-block">
               <Image
                 src="/images/round.png"

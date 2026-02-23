@@ -38,13 +38,6 @@
     overflow-x: hidden;
   }
 
-  /* How it Works: desktop par marginLeft from layout; mobile par no margin */
-  @media (max-width: 1023px) {
-    .how-it-works-card {
-      margin-left: 0 !important;
-    }
-  }
-
   /* Process card flow image animation */
   .flow-image-animate {
     transform: translateX(200%) rotate(180deg);
@@ -97,9 +90,15 @@
     overflow: hidden;
   }
 
+  @media (max-width: 767px) {
+    .video-block {
+      height: 70vh;
+    }
+  }
+
   .video-block video {
-    min-width: 1600px;
     width: 100%;
+    min-width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
@@ -147,6 +146,12 @@
     margin-bottom: 80px;
   }
 
+  @media (max-width: 768px) {
+    .hm-banner-content .stylish-btn {
+      margin-bottom: 40px;
+    }
+  }
+
   .hm-banner-content p {
     display: flex;
     align-items: center;
@@ -171,6 +176,15 @@
     background: rgba(255, 255, 255, 12%);
     left: 10px;
     border-bottom-left-radius: 30px;
+    z-index: 0;
+  }
+
+  .hm-banner-content p .hm-banner-p-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
 
   .round-block {
@@ -358,6 +372,19 @@
     padding-right: 40px;
   }
 
+  @media (max-width: 1024px) {
+    .p-image-block {
+      padding-left: 40px;
+      padding-right: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .p-image-block {
+      padding-left: 16px;
+    }
+  }
+
   .heading-sustainability {
     font-family: 'Rubik', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
     font-weight: 800;
@@ -383,8 +410,34 @@
     letter-spacing: -1.52px;
   }
 
+  @media (max-width: 1024px) {
+    .heading-2 {
+      font-size: 48px;
+      line-height: 1.15;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .heading-2 {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+  }
+
   .mb-100 {
     margin-bottom: 5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .mb-100 {
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mb-100 {
+      margin-bottom: 2.5rem; /* ~40px */
+    }
   }
 
   .heading-2 .accent {
@@ -700,9 +753,9 @@ body {
     font-size: 52px;
     line-height: 1.08;
   }
-  .embed-image-wrap {
+  /* .embed-image-wrap {
     height: 720px !important;
-  }
+  } */
   .about-mission-text {
     font-size: 40px;
     line-height: 1.4;
@@ -714,9 +767,9 @@ body {
     font-size: 48px;
     line-height: 1.08;
   }
-  .embed-image-wrap {
+  /* .embed-image-wrap {
     height: 640px !important;
-  }
+  } */
   .embed-image-col {
     padding-right: 24px;
   }
@@ -731,9 +784,9 @@ body {
     font-size: 44px;
     line-height: 1.1;
   }
-  .embed-image-wrap {
+  /* .embed-image-wrap {
     height: 560px !important;
-  }
+  } */
   .embed-image-col {
     padding-right: 16px;
   }
@@ -764,13 +817,16 @@ body {
 }
 
 @media (max-width: 1024px) {
+  .sec-bg {
+    padding: 75px 24px;
+  }
   .heading-embed {
     font-size: 40px;
     line-height: 1.1;
   }
-  .embed-image-wrap {
+  /* .embed-image-wrap {
     height: 480px !important;
-  }
+  } */
   .embed-image-col {
     padding-right: 0;
   }
@@ -810,15 +866,11 @@ body {
 
   /* General Spacing */
   .sec-bg {
-    padding: 50px 0;
+    padding: 50px 16px;
   }
 
   .py-150 {
     padding: 50px 0;
-  }
-
-  .mb-100 {
-    margin-bottom: 50px;
   }
 
   /* Header */
@@ -848,11 +900,19 @@ body {
 
   .hm-banner-content p {
     font-size: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .hm-banner-content p .hm-banner-p-inner {
     flex-direction: column;
     align-items: flex-start;
   }
 
   .hm-banner-content p::before {
+    left: 0;
     width: 100%;
   }
 
@@ -918,6 +978,18 @@ body {
     font-size: 60px;
     line-height: 1;
     letter-spacing: -1px;
+  }
+
+  .marquee-content {
+    font-size: 24px;
+    line-height: 1.3;
+    gap: 24px;
+    padding-inline: 16px;
+  }
+
+  .marquee-content .sep {
+    margin-left: 12px;
+    font-size: 18px;
   }
 
   .bottom-border {

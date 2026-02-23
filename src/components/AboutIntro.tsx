@@ -58,7 +58,7 @@ export default function AboutIntro({
 
   return (
     <section className={`relative ${className}`}>
-      <div ref={wrapRef} className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
+      <div ref={wrapRef} className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
         <div className="abt-text">
           <span>{badge}</span>
         </div>
@@ -74,15 +74,15 @@ export default function AboutIntro({
               </span>
             ))}
           </p>
-          <div className="mt-20 btn-center">
+          <div className="mt-12 sm:mt-16 lg:mt-20 btn-center">
             <Cta href={ctaHref} label={ctaLabel} tone="dark" />
           </div>
         </div>
       </div>
-      {withWave && (
+      {/* {withWave && (
         <div className="bottom-border" style={{ backgroundImage: `url("border.png")` }}>
         </div>
-      )}
+      )} */}
     </section>
   )
 }
