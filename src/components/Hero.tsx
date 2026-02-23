@@ -104,8 +104,8 @@ export default function Hero() {
           Leading Plastic Recycling Specialists in the UK
         </h1>
         <div ref={ctaRef} data-cta className="mt-8 flex items-center gap-3">
-          <a href="#" className="stylish-btn">
-            <span className="style-main">Discover Our Platform</span>
+          <a href="/services" className="stylish-btn">
+            <span className="style-main">Discover Our Services</span>
             <span className="style-arrow">
               <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.2793 12.1669H2.05864" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round" />
@@ -138,8 +138,8 @@ export default function Hero() {
         <div className="hm-banner-content">
           <div className="mx-auto max-w-[1600px] hm-banner-content-wrap px-[2%]">
             <h1>Leading Plastic <span>Recycling Specialists</span> in the UK</h1>
-            <a href="#" className="stylish-btn">
-              <span className="style-main">Discover Our Platform</span>
+              <a href="/services" className="stylish-btn">
+              <span className="style-main">Discover Our Services</span>
               <span className="style-arrow">
                 <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.2793 12.1669H2.05864" stroke="#0D0D0D" strokeWidth="1.34121" strokeLinecap="round" strokeLinejoin="round" />

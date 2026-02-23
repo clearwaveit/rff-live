@@ -72,10 +72,10 @@ export default function PelletAndCompoundsPage() {
         intro="Plastic recycling delivers measurable benefits for businesses by supporting sustainability objectives while maintaining performance and reliability."
         highlightText="Pellet And Compounds"
         benefits={[
-          { title: "Affordable Resources", description: "Affordable access to recycled materials" },
-          { title: "Lowered Ecological Footprint", description: "Lower environmental and carbon footprint" },
-          { title: "Improved Brand Reputation", description: "Improved brand and sustainability performance" },
-          { title: "Adherence to Regulations", description: "Compliance with regulatory and industry standards" }
+          { title: "Reduced reliance on virgin plastic materials", description: "" },
+          { title: "Lower environmental impact and landfill diversion", description: "" },
+          { title: "Improved sustainability performance for your business", description: "" },
+          { title: "Consistent, high-quality recycled output", description: "" }
         ]}
       />
 

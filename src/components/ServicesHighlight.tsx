@@ -67,7 +67,7 @@ function ServiceCardRow({
 export default function ServicesHighlight({
   heading = (
     <>
-      <span className="leading-tight">Recycling services suited <br /> for every industry across the UK</span>
+      <span className="leading-tight text-[30px] sm:text-[40px] md:text-[60px] font-light">Recycling services suited <br /> for every industry across the UK</span>
     </>
   ),
   layout = "row",
@@ -210,7 +210,10 @@ export default function ServicesHighlight({
             {/* Left - Service Names */}
             <div className={`${active.bg} flex flex-col items-center px-8 py-10 lg:px-10 lg:py-12 rounded-[23px]`}>
               <div className="self-center mb-8">
-                <span className="badge-wrap">{active.badge}</span>
+                <span className="badge-wrap badge-wrap--services">
+                  <span className="badge-wrap__dot" aria-hidden />
+                  {active.badge}
+                </span>
               </div>
               <div className="flex flex-col items-center gap-3 my-auto">
                 {services.map((service, index) => (
@@ -249,7 +252,7 @@ export default function ServicesHighlight({
                 <h3 className="text-2xl lg:text-3xl font-normal text-white mb-3">{active.title}</h3>
                 <p className="text-white/80 text-sm lg:text-base leading-relaxed max-w-xl">{active.desc}</p>
                 <div className="mt-5 service-pinned-cta pointer-events-auto">
-                  <Cta href={active.href} label="LEARN MORE" tone="light" as="div" />
+                  <Cta href={active.href} label="LEARN MORE" tone="light" />
                 </div>
               </div>
             </div>
