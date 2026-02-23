@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero"
 import AboutIntro from "@/components/AboutIntro"
+import LeafDivider from "@/components/LeafDivider"
 import ServicesHighlight from "@/components/ServicesHighlight"
 import Certifications from "@/components/Certifications"
 import EmbeddedPartner from "@/components/EmbeddedPartner"
@@ -28,6 +29,7 @@ export default function Page() {
         With over 10 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
         ctaLabel="Learn More About Us"
       />
+      <LeafDivider className="my-4" />
       <ServicesHighlight
         layout="pinned"
         // heading={

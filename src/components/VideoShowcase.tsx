@@ -43,19 +43,19 @@ const ITEMS: { src: string; content: SlideContent }[] = [
   },
 ]
 
-// Total scroll bara = second video ka delay (scroll amount) zyada ho
 const SCROLL_VH_PER_PHASE = 420
 const TOTAL_SCROLL_VH = ITEMS.length * SCROLL_VH_PER_PHASE
 
-// Second video ke baad third aane se pehle zyada delay; third bhi smoothly slide (CROSS_2_3 bada)
-const HOLD_1 = 0.08       // 8% = first video + content
-const CROSS_1_2 = 0.10    // 10% = smooth 1→2 slide
-const HOLD_2 = 0.56       // 56% = second video + content
-const CROSS_2_3 = 0.16    // 16% = third video smoothly slide from bottom (instant nahi)
-const HOLD_3 = 0.10       // 10% = third video + content
+// Balanced phases so 2→3 transition has same scroll range and smoothness as 1→2
+const HOLD_1 = 0.10       // 10% = first video + content
+const CROSS_1_2 = 0.15    // 15% = smooth 1→2 slide (video 2 slides up from bottom)
+const HOLD_2 = 0.25       // 25% = second video + content
+const CROSS_2_3 = 0.15    // 15% = same as 1→2 so video 3 slides up smoothly like video 2
+const HOLD_3 = 0.35       // 35% = third video + content
 
 export default function VideoShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const viewportRef = useRef<HTMLDivElement>(null)
   const videoLayersRef = useRef<(HTMLDivElement | null)[]>([])
   const contentSlidesRef = useRef<(HTMLDivElement | null)[]>([])
@@ -64,10 +64,11 @@ export default function VideoShowcase() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current
+    const wrapper = wrapperRef.current
     const viewport = viewportRef.current
     const videoLayers = videoLayersRef.current.filter(Boolean) as HTMLDivElement[]
     const contentSlides = contentSlidesRef.current.filter(Boolean) as HTMLDivElement[]
-    if (!section || !viewport || videoLayers.length !== ITEMS.length || contentSlides.length !== ITEMS.length) return
+    if (!section || !wrapper || !viewport || videoLayers.length !== ITEMS.length || contentSlides.length !== ITEMS.length) return
 
     // First video visible; second/third start below viewport (slide up later)
     gsap.set(videoLayers[0], { opacity: 1, yPercent: 0 })
@@ -82,7 +83,7 @@ export default function VideoShowcase() {
       trigger: section,
       start: "top top",
       end: `+=${TOTAL_SCROLL_VH}vh`,
-      pin: viewport,
+      pin: wrapper,
       pinSpacing: true,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
@@ -148,10 +149,15 @@ export default function VideoShowcase() {
       ref={sectionRef}
       className="relative w-full overflow-x-hidden [width:100vw] [margin-left:calc(50%-50vw)] [max-width:100vw]"
     >
+      {/* Wrapper: full viewport on mobile so 70vh viewport can sit vertically centered */}
       <div
-        ref={viewportRef}
-        className="relative w-full h-screen overflow-hidden bg-black"
+        ref={wrapperRef}
+        className="min-h-screen flex items-center justify-center w-full"
       >
+        <div
+          ref={viewportRef}
+          className="relative w-full h-[60vh] sm:h-screen overflow-hidden bg-black"
+        >
         {/* Video layers */}
         {ITEMS.map((item, i) => (
           <div
@@ -210,6 +216,7 @@ export default function VideoShowcase() {
               )
             })}
           </div>
+        </div>
         </div>
       </div>
     </section>

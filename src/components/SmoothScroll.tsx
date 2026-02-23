@@ -6,6 +6,12 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import "lenis/dist/lenis.css"
 
+declare global {
+  interface Window {
+    __lenis?: Lenis
+  }
+}
+
 export default function SmoothScroll() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -16,6 +22,7 @@ export default function SmoothScroll() {
       smoothWheel: true,
       touchMultiplier: 2,
     })
+    window.__lenis = lenis
 
     lenis.on("scroll", ScrollTrigger.update)
 
@@ -25,6 +32,7 @@ export default function SmoothScroll() {
 
     return () => {
       gsap.ticker.remove(raf)
+      delete window.__lenis
       lenis.destroy()
     }
   }, [])
