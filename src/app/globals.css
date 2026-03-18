@@ -29,9 +29,9 @@
   }
 
   /* Home page: small space between last section (Sustainability) and footer */
-  main.main-home > *:last-child {
+  /* main.main-home > *:last-child {
     padding-bottom: 3.5rem !important;
-  }
+  } */
 
   /* Prevent horizontal scroll from full-bleed video section */
   main.main-home {
