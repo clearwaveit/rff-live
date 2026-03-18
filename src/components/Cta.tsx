@@ -4,12 +4,18 @@ export default function Cta({
   href,
   label,
   tone = "dark",
-  as = "link"
+  as = "link",
+  btnRadius,
+  arrowBg,
+  btnBg
 }: {
   href: string
   label: string
   tone?: "dark" | "light"
   as?: "link" | "div"
+  btnRadius?: string
+  arrowBg?: string
+  btnBg?: string
 }) {
   const isDark = tone === "dark"
   const mainBg = isDark ? "bg-[#222F30] text-white" : "bg-white text-[#0D0D0D] ring-1 ring-black/10"
@@ -17,8 +23,11 @@ export default function Cta({
 
   const Content = () => (
     <>
-        <span className="style-main">{label}</span>
-        <span className="style-arrow">
+        <span className="style-main" style={{
+          ...(btnRadius ? { borderRadius: btnRadius } : {}),
+          ...(btnBg ? { background: btnBg } : {})
+        }}>{label}</span>
+        <span className="style-arrow" style={arrowBg ? { background: `url("${arrowBg}") no-repeat center / cover`, borderRadius: 0 } : undefined}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="" aria-hidden="true">
           <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
