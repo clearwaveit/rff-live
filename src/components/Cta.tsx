@@ -7,7 +7,8 @@ export default function Cta({
   as = "link",
   btnRadius,
   arrowBg,
-  btnBg
+  btnBg,
+  rightImage
 }: {
   href: string
   label: string
@@ -16,6 +17,7 @@ export default function Cta({
   btnRadius?: string
   arrowBg?: string
   btnBg?: string
+  rightImage?: string
 }) {
   const isDark = tone === "dark"
   const mainBg = isDark ? "bg-[#222F30] text-white" : "bg-white text-[#0D0D0D] ring-1 ring-black/10"
@@ -27,6 +29,12 @@ export default function Cta({
           ...(btnRadius ? { borderRadius: btnRadius } : {}),
           ...(btnBg ? { background: btnBg } : {})
         }}>{label}</span>
+        {rightImage && (
+          <span className="cta-btn-right">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={rightImage} alt="" className="cta-btn-right-img" />
+          </span>
+        )}
         <span className="style-arrow" style={arrowBg ? { background: `url("${arrowBg}") no-repeat center / cover`, borderRadius: 0 } : undefined}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="" aria-hidden="true">
           <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
