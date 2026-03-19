@@ -44,7 +44,11 @@ export default function Page() {
         services={[
           {
             badge: "OUR SERVICES",
-            title: "Plastic Recycling",
+            title: (
+              <>
+                Plastic<br />Recycling
+              </>
+            ),
             desc: "We specialise in processing post-industrial and post-consumer plastic waste, including HDPE, LDPE, HIPS, PP, PS and ABS. Our state-of-the-art facility ensures precision at every stage, from sorting and cleaning to shredding and extrusion.",
             img: "/service-1-new2.png",
             icon: "/green-leaf.png",
@@ -76,7 +80,7 @@ export default function Page() {
       {/* <Certifications /> */}
       {/* <EmbeddedPartner className="mb-0" noBottomPadding /> */}
       <AboutIntro
-        className="pt-16 sm:pt-24 lg:pt-32"
+        className=""
         badge="ENVIRONMENT"
         badgeSize="160px"
         titleSize="26px"

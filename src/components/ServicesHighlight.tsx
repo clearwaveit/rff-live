@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import Cta from "@/components/Cta"
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -18,7 +18,7 @@ function ServiceCardRow({
   icon
 }: {
   badge: string
-  title: string
+  title: React.ReactNode
   desc: string
   img: string
   bg: string
@@ -35,7 +35,7 @@ function ServiceCardRow({
         <div className="service-card-image relative h-[260px] sm:h-[360px] lg:h-[588.58px] overflow-hidden">
           <Image
             src={img}
-            alt={title}
+            alt={typeof title === "string" ? title : ""}
             fill
             className="object-cover"
           />
@@ -117,7 +117,7 @@ export default function ServicesHighlight({
   features?: { title: string; desc: string }[]
   services?: {
     badge: string
-    title: string
+    title: React.ReactNode
     desc: string
     img: string
     icon: string
@@ -132,6 +132,27 @@ export default function ServicesHighlight({
   const pinnedRef = useRef<HTMLDivElement | null>(null)
   const [activeService, setActiveService] = useState(0)
   const activeServiceRef = useRef(0)
+
+  // Helper to extract plain text from a React node (strings, numbers,
+  // fragments, elements). Used so tab labels remain plain single-line text
+  // even when slide titles use JSX (e.g. with <br/>).
+  const titleToPlainString = (node: React.ReactNode): string => {
+    if (node == null) return ""
+    if (typeof node === "string" || typeof node === "number") return String(node)
+    // Handle explicit <br/> elements and other React elements by returning a single space
+    if (React.isValidElement(node)) {
+      const type = (node as any).type
+      if (type === "br" || type === "br") return " "
+      const child = (node as any).props?.children
+      return titleToPlainString(child)
+    }
+    if (Array.isArray(node)) {
+      // join children with single spaces, trimming to avoid accidental concatenation
+      const parts = node.map((n) => titleToPlainString(n)).map((s) => s.trim()).filter(Boolean)
+      return parts.join(" ").replace(/\s+/g, " ")
+    }
+    return ""
+  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -264,7 +285,7 @@ export default function ServicesHighlight({
             </div>
 
             {/* Features row */}
-            <div className="sp-features md:pt-[250px] md:pb-[130px]">
+            <div className="sp-features md:pt-[250px] md:pb-[100px]">
               {features.map((f, i) => (
                 <div key={i} className="sp-feature">
                   <h4>{f.title}</h4>
@@ -275,22 +296,29 @@ export default function ServicesHighlight({
           </div>
 
           {/* Pinned area — tabs stick to top, slides in center */}
-          <div ref={pinnedRef} className="sp-pinned-area relative overflow-hidden">
+          <div ref={pinnedRef} className="sp-pinned-area relative overflow-visible">
             {/* Leaves pattern behind slides */}
             <div
               className="absolute left-0 w-full h-[102px] pointer-events-none z-0 bg-repeat-x bg-center bg-contain"
-              style={{ backgroundImage: 'url("/border.png")', bottom: "80px" }}
+              style={{ backgroundImage: 'url("/border_new.png")', bottom: "150px" }}
             />
-            <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] relative z-[1]">
+            <div className="mx-auto w-full md:max-w-[1024px] lg:max-w-[1240px] xl:max-w-[1440px] 2xl:max-w-[1440px] px-4 sm:px-6 md:px-[2%]">
               {/* Tabs */}
-              <div className="sp-tabs">
+              {/*
+                Use a responsive flex row that prevents wrapping on medium+ viewports
+                so long titles stay on a single line. On small screens allow
+                horizontal scroll (overflow-x-auto) so tabs remain accessible.
+              */}
+              <div className="sp-tabs flex flex-row flex-wrap md:flex-nowrap gap-4 overflow-x-auto md:overflow-visible">
                 {services.map((s, i) => (
                   <button
                     key={i}
-                    className={`sp-tab ${i === 0 ? "sp-tab--active" : ""}`}
+                    type="button"
+                    className={`sp-tab ${i === 0 ? "sp-tab--active" : ""} whitespace-nowrap`}
+                    title={titleToPlainString(s.title)}
                   >
                     <span className="sp-tab-dot" />
-                    {s.title}
+                    {titleToPlainString(s.title)}
                   </button>
                 ))}
               </div>
@@ -311,9 +339,11 @@ export default function ServicesHighlight({
                     <div className="sp-slide-right">
                       <Image
                         src={s.img}
-                        alt={s.title}
-                        fill
-                        className="object-cover"
+                        alt={typeof s.title === "string" ? s.title : ""}
+                        width={1200}
+                        height={800}
+                        className="w-full h-auto object-cover"
+                        priority={i === 0}
                       />
                     </div>
                   </div>

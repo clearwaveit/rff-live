@@ -36,8 +36,27 @@ export default function CircleFeatures({
   className?: string
 }) {
   const sectionRef = useRef<HTMLDivElement | null>(null)
+  const circleRef = useRef<HTMLDivElement | null>(null)
+  const arrowsWrapperRef = useRef<HTMLDivElement | null>(null)
   const [active, setActive] = useState(0)
   const activeRef = useRef(0)
+
+  // Arrows: brief pause at each content transition (0°, 90°, 180°, 270°); circle rotates smoothly.
+  const getArrowRotation = (progress: number, totalItems: number) => {
+    const segment = 1 / totalItems
+    const pauseFrac = 0.06 // ~6% of scroll at each transition = minor stop for arrows
+    const pause = segment * pauseFrac
+    const step = segment - pause
+    const degPerSegment = 360 / totalItems
+    const i = Math.min(Math.floor(progress / segment), totalItems - 1)
+    const local = (progress - i * segment) / segment
+    const stepRatio = step / segment
+    if (local < stepRatio) {
+      const t = local / stepRatio
+      return i * degPerSegment + t * degPerSegment
+    }
+    return (i + 1) * degPerSegment
+  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -53,6 +72,11 @@ export default function CircleFeatures({
         pinSpacing: true,
         scrub: 0.3,
         onUpdate: (self) => {
+          const progress = self.progress
+          // Circle: smooth rotation with scroll
+          if (circleRef.current) gsap.set(circleRef.current, { rotation: progress * 360 })
+          // Arrows: same rotation but with minor pause at each content transition
+          if (arrowsWrapperRef.current) gsap.set(arrowsWrapperRef.current, { rotation: getArrowRotation(progress, totalItems) })
           const index = Math.min(
             Math.floor(self.progress * totalItems),
             totalItems - 1
@@ -101,25 +125,27 @@ export default function CircleFeatures({
     <section ref={sectionRef} className={`relative bg-[#FAF8F6] ${className}`}>
       <div className="flex items-center justify-center min-h-screen">
         <div className="relative">
-          {/* Dotted circle */}
-          <div className="cf-circle cf-circle-outer" />
+          {/* Dotted circle - rotates with scroll */}
+          <div ref={circleRef} className="cf-circle cf-circle-outer" />
 
-          {/* 4 Arrow indicators */}
-          {arrowPositions.map((pos, i) => (
-            <div
-              key={i}
-              className={`cf-arrow ${i === active ? "cf-arrow--active" : ""}`}
-              style={pos as React.CSSProperties}
-            >
-              <Image
-                src="/images/polygon.png"
-                alt=""
-                width={i === active ? 16 : 14}
-                height={i === active ? 16 : 14}
-                className="transition-all duration-300"
-              />
-            </div>
-          ))}
+          {/* 4 Arrow indicators - rotate with scroll */}
+          <div ref={arrowsWrapperRef} className="absolute inset-0">
+            {arrowPositions.map((pos, i) => (
+              <div
+                key={i}
+                className={`cf-arrow ${i === active ? "cf-arrow--active" : ""}`}
+                style={pos as React.CSSProperties}
+              >
+                <Image
+                  src="/images/polygon.png"
+                  alt=""
+                  width={i === active ? 16 : 14}
+                  height={i === active ? 16 : 14}
+                  className="transition-all duration-300"
+                />
+              </div>
+            ))}
+          </div>
 
           {/* Center content - stacked, fade in/out */}
           <div className="cf-center">

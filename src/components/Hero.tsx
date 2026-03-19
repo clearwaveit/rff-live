@@ -91,12 +91,26 @@ export default function Hero() {
         const videoEl = vb.querySelector("video") as HTMLElement
         const overlay = vb.querySelector(".video-block-overlay") as HTMLElement
 
+        // pin the video section while the shrink animation runs so the
+        // hero stays fixed until the video reaches its smaller size.
+        // On desktop we pin; on smaller viewports we don't pin to avoid
+        // awkward overlap/UX on small screens.
+        const triggerEl = vb.closest(".video-scroll-track") || document.querySelector(".video-scroll-track")
+        const shouldPin = typeof window !== "undefined" && window.innerWidth >= 1024
+
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: ".video-scroll-track",
+            trigger: triggerEl || ".video-scroll-track",
             start: "top top",
-            end: "bottom bottom",
+            // end is computed as a fraction of viewport height so the
+            // pinned period matches the duration of the shrink animation.
+            end: () => {
+              // ~80% of viewport height gives a smooth shrink then release
+              return "+=" + Math.round((typeof window !== "undefined" ? window.innerHeight : 800) * 0.8)
+            },
             scrub: true,
+            pin: shouldPin ? triggerEl : false,
+            pinSpacing: true,
           },
         })
 
