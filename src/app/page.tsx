@@ -33,7 +33,8 @@ export default function Page() {
       <LeafDivider variant="leaves" />
       <ServicesHighlight
         layout="pinned"
-        ctaBtnRadius="10px 12px 40px 12px"
+        ctaBtnRadius="10px 0 0 12px"
+        rightImage="/images/btn-right.png"
         ctaArrowBg="/images/arrow_bg_new.png"
         ctaBtnBg="#222F30"
         // heading={

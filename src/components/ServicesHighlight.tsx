@@ -80,6 +80,7 @@ export default function ServicesHighlight({
   ctaBtnRadius,
   ctaArrowBg,
   ctaBtnBg,
+  rightImage,
   services = [
     {
       badge: "OUR SERVICES",
@@ -127,6 +128,7 @@ export default function ServicesHighlight({
   ctaBtnRadius?: string
   ctaArrowBg?: string
   ctaBtnBg?: string
+  rightImage?: string
 }) {
   const containerRef = useRef<HTMLElement | null>(null)
   const pinnedRef = useRef<HTMLDivElement | null>(null)
@@ -334,7 +336,7 @@ export default function ServicesHighlight({
                     <div className="sp-slide-left">
                       <h3 className="sp-slide-title">{s.title}</h3>
                       <p className="sp-slide-desc">{s.desc}</p>
-                      <Cta href={s.href} label="DETAILS HERE" tone="light" btnRadius={ctaBtnRadius} arrowBg={ctaArrowBg} btnBg={ctaBtnBg} />
+                      <Cta href={s.href} label="DETAILS HERE" tone="light" btnRadius={ctaBtnRadius} arrowBg={ctaArrowBg} btnBg={ctaBtnBg} rightImage={rightImage} />
                     </div>
                     <div className="sp-slide-right">
                       <Image
