@@ -52,7 +52,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${rubik.className} antialiased`} suppressHydrationWarning>
         <SmoothScroll />
         <Header />
-        {children}
+        <div className="site-content">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

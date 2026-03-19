@@ -46,6 +46,8 @@ const ITEMS: { src: string; content: SlideContent }[] = [
 const SCROLL_VH_PER_PHASE = 420
 const TOTAL_SCROLL_VH = ITEMS.length * SCROLL_VH_PER_PHASE
 
+// Intro: on section enter, first video shrinks with white padding before slides
+const INTRO_PHASE = 0.08  // 8% of scroll = intro (video shrink + white bg)
 // Balanced phases so 2→3 transition has same scroll range and smoothness as 1→2
 const HOLD_1 = 0.10       // 10% = first video + content
 const CROSS_1_2 = 0.15    // 15% = smooth 1→2 slide (video 2 slides up from bottom)
@@ -57,6 +59,8 @@ export default function VideoShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const viewportRef = useRef<HTMLDivElement>(null)
+  const whiteBgRef = useRef<HTMLDivElement>(null)
+  const videoContainerRef = useRef<HTMLDivElement>(null)
   const videoLayersRef = useRef<(HTMLDivElement | null)[]>([])
   const contentSlidesRef = useRef<(HTMLDivElement | null)[]>([])
   const thirdOverlayRef = useRef<HTMLDivElement>(null)
@@ -68,9 +72,13 @@ export default function VideoShowcase() {
     const viewport = viewportRef.current
     const videoLayers = videoLayersRef.current.filter(Boolean) as HTMLDivElement[]
     const contentSlides = contentSlidesRef.current.filter(Boolean) as HTMLDivElement[]
-    if (!section || !wrapper || !viewport || videoLayers.length !== ITEMS.length || contentSlides.length !== ITEMS.length) return
+    const whiteBg = whiteBgRef.current
+    const videoContainer = videoContainerRef.current
+    if (!section || !wrapper || !viewport || !whiteBg || !videoContainer || videoLayers.length !== ITEMS.length || contentSlides.length !== ITEMS.length) return
 
-    // First video visible; second/third start below viewport (slide up later)
+    // Intro: white bg hidden, video full size; first video visible
+    gsap.set(whiteBg, { opacity: 0 })
+    gsap.set(videoContainer, { scale: 1 })
     gsap.set(videoLayers[0], { opacity: 1, yPercent: 0 })
     gsap.set(videoLayers[1], { opacity: 0, yPercent: 100 })
     gsap.set(videoLayers[2], { opacity: 0, yPercent: 100 })
@@ -89,15 +97,36 @@ export default function VideoShowcase() {
       onUpdate: (self) => {
         const p = self.progress
 
+        // Intro phase: first video shrinks, white bg appears (like 10px padding), then slides continue
+        if (p <= INTRO_PHASE) {
+          const t = p / INTRO_PHASE
+          const easeT = t * t * (3 - 2 * t)
+          gsap.set(whiteBg, { opacity: easeT })
+          gsap.set(videoContainer, { scale: 1 - 0.04 * easeT }) // ~4% shrink = padding-like gap
+          gsap.set(videoLayers[0], { opacity: 1, yPercent: 0 })
+          gsap.set(videoLayers[1], { opacity: 0, yPercent: 100 })
+          gsap.set(videoLayers[2], { opacity: 0, yPercent: 100 })
+          contentSlides.forEach((slide, i) => {
+            gsap.set(slide, { opacity: i === 0 ? 1 : 0, yPercent: i === 0 ? 0 : 100 })
+          })
+          if (thirdOverlayRef.current) gsap.set(thirdOverlayRef.current, { opacity: 0 })
+          return
+        }
+        gsap.set(whiteBg, { opacity: 1 })
+        gsap.set(videoContainer, { scale: 0.96 })
+
+        // Remap progress so slide logic runs in remaining scroll (after intro)
+        const pMapped = (p - INTRO_PHASE) / (1 - INTRO_PHASE)
+
         let q: number
-        if (p <= HOLD_1) {
+        if (pMapped <= HOLD_1) {
           q = 0
-        } else if (p <= HOLD_1 + CROSS_1_2) {
-          q = (1 / 3) * (p - HOLD_1) / CROSS_1_2
-        } else if (p <= HOLD_1 + CROSS_1_2 + HOLD_2) {
-          q = 1 / 3 + (1 / 3) * (p - HOLD_1 - CROSS_1_2) / HOLD_2
-        } else if (p <= HOLD_1 + CROSS_1_2 + HOLD_2 + CROSS_2_3) {
-          q = 2 / 3 + (1 / 3) * (p - HOLD_1 - CROSS_1_2 - HOLD_2) / CROSS_2_3
+        } else if (pMapped <= HOLD_1 + CROSS_1_2) {
+          q = (1 / 3) * (pMapped - HOLD_1) / CROSS_1_2
+        } else if (pMapped <= HOLD_1 + CROSS_1_2 + HOLD_2) {
+          q = 1 / 3 + (1 / 3) * (pMapped - HOLD_1 - CROSS_1_2) / HOLD_2
+        } else if (pMapped <= HOLD_1 + CROSS_1_2 + HOLD_2 + CROSS_2_3) {
+          q = 2 / 3 + (1 / 3) * (pMapped - HOLD_1 - CROSS_1_2 - HOLD_2) / CROSS_2_3
         } else {
           q = 1
         }
@@ -152,13 +181,25 @@ export default function VideoShowcase() {
       {/* Wrapper: full viewport on mobile so 70vh viewport can sit vertically centered */}
       <div
         ref={wrapperRef}
-        className="min-h-screen flex items-center justify-center w-full"
+        className="md:min-h-screen flex items-center justify-center w-full"
       >
         <div
           ref={viewportRef}
-          className="relative w-full h-[60vh] sm:h-screen overflow-hidden bg-black"
+          className="relative w-full h-screen sm:h-screen overflow-hidden bg-black"
         >
-        {/* Video layers */}
+        {/* White bg: fades in during intro for "padding" look */}
+        <div
+          ref={whiteBgRef}
+          className="absolute inset-0 bg-white pointer-events-none"
+          style={{ zIndex: 0 }}
+          aria-hidden
+        />
+        {/* Video container: scales down during intro so white shows like padding; 10px rounded corners */}
+        <div
+          ref={videoContainerRef}
+          className="absolute inset-0 w-full h-full origin-center overflow-hidden rounded-[10px]"
+          style={{ zIndex: 1 }}
+        >
         {ITEMS.map((item, i) => (
           <div
             key={item.src}
@@ -178,14 +219,14 @@ export default function VideoShowcase() {
             />
           </div>
         ))}
-
-        {/* Overlay sirf third video par – content prominent ke liye */}
+        {/* Overlay on third video – same size as video (inside container), dark for content contrast */}
         <div
           ref={thirdOverlayRef}
-          className="absolute inset-0 bg-black/50 pointer-events-none z-[5]"
-          style={{ opacity: 0 }}
+          className="absolute inset-0 bg-black/50 pointer-events-none"
+          style={{ opacity: 0, zIndex: 5 }}
           aria-hidden
         />
+        </div>
 
         {/* Content overlay: one slide per video, slides up with its video */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-4 sm:px-6 overflow-hidden w-full">

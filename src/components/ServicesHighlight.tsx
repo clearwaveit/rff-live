@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import Cta from "@/components/Cta"
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -18,7 +18,7 @@ function ServiceCardRow({
   icon
 }: {
   badge: string
-  title: string
+  title: React.ReactNode
   desc: string
   img: string
   bg: string
@@ -35,7 +35,7 @@ function ServiceCardRow({
         <div className="service-card-image relative h-[260px] sm:h-[360px] lg:h-[588.58px] overflow-hidden">
           <Image
             src={img}
-            alt={title}
+            alt={typeof title === "string" ? title : ""}
             fill
             className="object-cover"
           />
@@ -71,6 +71,15 @@ export default function ServicesHighlight({
     </>
   ),
   layout = "row",
+  pinnedHeading = "We believe that making plastic recycling valuable will reshape its global economic impact.",
+  pinnedSubheading = "Expert polymer processes delivering dependable raw materials for modern industrial applications.",
+  features = [
+    { title: "Polymer Expertise", desc: "Recycling services suited for various industry across the UK" },
+    { title: "Precision at Every Stage", desc: "Technical workflows ensure optimal handling of different polymer characteristics" },
+  ],
+  ctaBtnRadius,
+  ctaArrowBg,
+  ctaBtnBg,
   services = [
     {
       badge: "OUR SERVICES",
@@ -103,38 +112,65 @@ export default function ServicesHighlight({
 }: {
   heading?: React.ReactNode
   layout?: "row" | "pinned"
+  pinnedHeading?: string
+  pinnedSubheading?: string
+  features?: { title: string; desc: string }[]
   services?: {
     badge: string
-    title: string
+    title: React.ReactNode
     desc: string
     img: string
     icon: string
     bg: string
     href: string
   }[]
+  ctaBtnRadius?: string
+  ctaArrowBg?: string
+  ctaBtnBg?: string
 }) {
   const containerRef = useRef<HTMLElement | null>(null)
   const pinnedRef = useRef<HTMLDivElement | null>(null)
   const [activeService, setActiveService] = useState(0)
   const activeServiceRef = useRef(0)
 
+  // Helper to extract plain text from a React node (strings, numbers,
+  // fragments, elements). Used so tab labels remain plain single-line text
+  // even when slide titles use JSX (e.g. with <br/>).
+  const titleToPlainString = (node: React.ReactNode): string => {
+    if (node == null) return ""
+    if (typeof node === "string" || typeof node === "number") return String(node)
+    // Handle explicit <br/> elements and other React elements by returning a single space
+    if (React.isValidElement(node)) {
+      const type = (node as any).type
+      if (type === "br" || type === "br") return " "
+      const child = (node as any).props?.children
+      return titleToPlainString(child)
+    }
+    if (Array.isArray(node)) {
+      // join children with single spaces, trimming to avoid accidental concatenation
+      const parts = node.map((n) => titleToPlainString(n)).map((s) => s.trim()).filter(Boolean)
+      return parts.join(" ").replace(/\s+/g, " ")
+    }
+    return ""
+  }
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     const ctx = gsap.context(() => {
-      // Heading Animation
-      gsap.from(".heading-2", {
-        y: 50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".heading-2",
-          start: "top 85%"
-        }
-      })
-
       if (layout === "row") {
+        // Heading Animation
+        gsap.from(".heading-2", {
+          y: 50,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".heading-2",
+            start: "top 85%"
+          }
+        })
+
         const serviceCards = document.querySelectorAll(".service-card-item")
         serviceCards.forEach((card, index) => {
           gsap.from(card, {
@@ -153,23 +189,53 @@ export default function ServicesHighlight({
 
       if (layout === "pinned" && pinnedRef.current) {
         const totalServices = services.length
-        ScrollTrigger.create({
-          trigger: pinnedRef.current,
-          start: "center center",
-          end: `+=${totalServices * 100}%`,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            const index = Math.min(
-              Math.floor(self.progress * totalServices),
-              totalServices - 1
-            )
-            if (index !== activeServiceRef.current) {
-              activeServiceRef.current = index
-              setActiveService(index)
+        const slides = gsap.utils.toArray<HTMLElement>(".sp-slide")
+        const tabs = gsap.utils.toArray<HTMLElement>(".sp-tab")
+
+        // Position slides far apart (off-screen right)
+        const gap = 120 // px gap between slides
+        slides.forEach((slide, i) => {
+          if (i === 0) {
+            gsap.set(slide, { x: 0, position: "relative" })
+          } else {
+            const offset = i * (pinnedRef.current!.offsetWidth + gap)
+            gsap.set(slide, { x: offset, position: "absolute", top: 0, left: 0, width: "100%" })
+          }
+        })
+
+        // Total horizontal distance to travel
+        const totalDistance = (totalServices - 1) * (pinnedRef.current.offsetWidth + gap)
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: pinnedRef.current,
+            start: "top top",
+            end: `+=${totalServices * 120}%`,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            scrub: 0.5,
+            onUpdate: (self) => {
+              const index = Math.min(
+                Math.floor(self.progress * totalServices),
+                totalServices - 1
+              )
+              if (index !== activeServiceRef.current) {
+                activeServiceRef.current = index
+                setActiveService(index)
+              }
+              tabs.forEach((tab, i) => {
+                tab.classList.toggle("sp-tab--active", i === index)
+              })
             }
           }
+        })
+
+        // Smooth continuous slide — all slides move left together
+        tl.to(slides, {
+          x: `-=${totalDistance}`,
+          duration: 1,
+          ease: "none",
         })
       }
     }, containerRef)
@@ -177,17 +243,14 @@ export default function ServicesHighlight({
     return () => ctx.revert()
   }, [layout, services.length])
 
-  const active = services[activeService]
-
   return (
     <section ref={containerRef} className="relative">
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
-        <h2 className="text-center heading-2 mb-100">
-          {heading}
-        </h2>
-
-        {/* Row Layout - for Services Pages */}
-        {layout === "row" && (
+      {/* Row Layout - for Services Pages */}
+      {layout === "row" && (
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
+          <h2 className="text-center heading-2 mb-100">
+            {heading}
+          </h2>
           <div className="mt-12 services-row-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <ServiceCardRow
@@ -202,64 +265,94 @@ export default function ServicesHighlight({
               />
             ))}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Pinned Layout - Two Column Interactive (for Home Page) */}
-        {layout === "pinned" && (
-          <div ref={pinnedRef} className="mt-8 sm:mt-12 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 pointer-events-none">
-            {/* Left - Service Names */}
-            <div className={`${active.bg} flex flex-col items-center px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-12 rounded-2xl lg:rounded-[23px]`}>
-              <div className="self-center mb-6 lg:mb-8">
-                <span className="badge-wrap badge-wrap--services">
-                  <span className="badge-wrap__dot" aria-hidden />
-                  {active.badge}
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-2 sm:gap-3 my-auto">
-                {services.map((service, index) => (
+      {/* Pinned Layout - Scroll-driven (for Home Page) */}
+      {layout === "pinned" && (
+        <div className="sp-section">
+          {/* Top area — scrolls away normally */}
+          <div className="mx-auto w-auto md:max-w-[1024px] lg:max-w-[1240px] xl:max-w-[1440px] 2xl:max-w-[1440px] px-4 sm:px-6 md:px-[2%]">
+            {/* Background text */}
+            <div className="sp-bg-text">
+              <span>SERVICES</span>
+            </div>
+
+            {/* Main heading */}
+            <div className="sp-heading">
+              <h2>{pinnedHeading}</h2>
+              <p>{pinnedSubheading}</p>
+            </div>
+
+            {/* Features row */}
+            <div className="sp-features md:pt-[250px] md:pb-[100px]">
+              {features.map((f, i) => (
+                <div key={i} className="sp-feature">
+                  <h4>{f.title}</h4>
+                  <p>{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pinned area — tabs stick to top, slides in center */}
+          <div ref={pinnedRef} className="sp-pinned-area relative overflow-visible">
+            {/* Leaves pattern behind slides */}
+            <div
+              className="absolute left-0 w-full h-[102px] pointer-events-none z-0 bg-repeat-x bg-center bg-contain"
+              style={{ backgroundImage: 'url("/border_new.png")', bottom: "150px" }}
+            />
+            <div className="mx-auto w-full md:max-w-[1024px] lg:max-w-[1240px] xl:max-w-[1440px] 2xl:max-w-[1440px] px-4 sm:px-6 md:px-[2%]">
+              {/* Tabs */}
+              {/*
+                Use a responsive flex row that prevents wrapping on medium+ viewports
+                so long titles stay on a single line. On small screens allow
+                horizontal scroll (overflow-x-auto) so tabs remain accessible.
+              */}
+              <div className="sp-tabs flex flex-row flex-wrap md:flex-nowrap gap-4 overflow-x-auto md:overflow-visible">
+                {services.map((s, i) => (
                   <button
-                    key={index}
-                    onClick={() => setActiveService(index)}
-                    className={`pointer-events-auto text-left text-base sm:text-lg lg:text-2xl transition-all duration-300 ${
-                      activeService === index
-                        ? "font-normal text-[#00333E]"
-                        : "font-normal text-[#00333E]/40 hover:text-[#00333E]/60"
-                    }`}
+                    key={i}
+                    type="button"
+                    className={`sp-tab ${i === 0 ? "sp-tab--active" : ""} whitespace-nowrap`}
+                    title={titleToPlainString(s.title)}
                   >
-                    {service.title}
+                    <span className="sp-tab-dot" />
+                    {titleToPlainString(s.title)}
                   </button>
                 ))}
               </div>
-            </div>
 
-            {/* Right - Image with Content Overlay */}
-            <div className="relative rounded-2xl lg:rounded-[23px] overflow-hidden h-full min-h-[320px] sm:min-h-[420px] lg:min-h-[600px]">
-              <Image
-                src={active.img}
-                alt={active.title}
-                fill
-                className="object-cover"
-              />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-black/50" />
-              {/* Icon Overlay */}
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] lg:w-[350px] lg:h-[350px] bg-cover bg-center bg-no-repeat opacity-40"
-                style={{ backgroundImage: `url("${active.icon}")` }}
-              />
-              {/* Content Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-10">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-normal text-white mb-2 sm:mb-3">{active.title}</h3>
-                <p className="text-white/80 text-xs sm:text-sm lg:text-base leading-relaxed max-w-xl">{active.desc}</p>
-                <div className="mt-3 sm:mt-5 service-pinned-cta pointer-events-auto">
-                  <Cta href={active.href} label="LEARN MORE" tone="light" />
-                </div>
+              {/* Slides */}
+              <div className="sp-slides">
+                {services.map((s, i) => (
+                  <div
+                    key={i}
+                    className="sp-slide"
+                    style={{ position: i === 0 ? "relative" : "absolute", top: 0, left: 0, width: "100%" }}
+                  >
+                    <div className="sp-slide-left">
+                      <h3 className="sp-slide-title">{s.title}</h3>
+                      <p className="sp-slide-desc">{s.desc}</p>
+                      <Cta href={s.href} label="DETAILS HERE" tone="light" btnRadius={ctaBtnRadius} arrowBg={ctaArrowBg} btnBg={ctaBtnBg} />
+                    </div>
+                    <div className="sp-slide-right">
+                      <Image
+                        src={s.img}
+                        alt={typeof s.title === "string" ? s.title : ""}
+                        width={1200}
+                        height={800}
+                        className="w-full h-auto object-cover"
+                        priority={i === 0}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        )}
-      </div>
-
+        </div>
+      )}
     </section>
   )
 }
