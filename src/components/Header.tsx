@@ -25,26 +25,29 @@ export default function Header() {
 
 
   useEffect(() => {
-    // Body is the scroll container (not window) due to CSS setup
-    let lastScrollY = document.body.scrollTop
+    // Lenis + normal scroll dono ke liye: window ya documentElement se scroll lo
+    const getScrollY = () => typeof window !== "undefined" ? window.scrollY ?? document.documentElement.scrollTop : 0
+    let lastScrollY = getScrollY()
     let rafId: number
 
     const checkScroll = () => {
-      const currentScrollY = document.body.scrollTop
+      const currentScrollY = getScrollY()
 
       if (currentScrollY !== lastScrollY) {
-        // Scroll UP (going towards top) - Show header
+        // Scroll UP (neeche se upar) - header dikhao
         if (currentScrollY < lastScrollY) {
           setIsVisible(true)
         }
-        // Scroll DOWN (going towards bottom) - Hide header (only after 50px)
+        // Scroll DOWN (upar se neeche) - header chupao (50px ke baad)
         else if (currentScrollY > lastScrollY && currentScrollY > 50) {
           setIsVisible(false)
         }
 
-        setIsScrolled(currentScrollY > 50)
         lastScrollY = currentScrollY
       }
+
+      // 50px se zyada scroll = sticky background (#00A256) jab header visible ho
+      setIsScrolled(currentScrollY > 50)
 
       rafId = requestAnimationFrame(checkScroll)
     }
@@ -65,7 +68,7 @@ export default function Header() {
 
   return (
     <>
-      <header style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }} className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ${isScrolled || isContactPage ? 'bg-[#579C9C]' : 'bg-transparent'}`}>
+      <header style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }} className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ${(isScrolled && isVisible) || isContactPage ? 'bg-[#00A256]' : 'bg-transparent'}`}>
         <div className="mx-auto max-w-[1600px] px-4 md:px-[2%] py-6 flex items-center justify-between">
           {/* Logo - Left Side */}
           <div className="logo-block flex-shrink-0">
@@ -107,7 +110,7 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu - Full Screen */}
-      <div className={`fixed inset-0 w-full h-full bg-[#579C9C] z-50 xl:hidden transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed inset-0 w-full h-full bg-[#00A256] z-50 xl:hidden transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-end p-4">
           <button
             onClick={closeMobileMenu}

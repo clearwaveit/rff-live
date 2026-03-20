@@ -6,23 +6,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Cta from "@/components/Cta"
 import Image from "next/image"
 export default function AboutIntro({
-  badge = "",
-  title = "Combining synthetic biology, chemistry, and AI into an ",
-  accent = "engine of discovery.",
-  paragraph = "Our platform enables precise, dynamic control of biological targets and pathways, generating high-fidelity datasets that, combined with advanced AI, unlock systematic exploration of previously inaccessible chemical space.",
-  ctaHref = "#",
-  ctaLabel = "MORE ABOUT RFF",
-  withWave = true,
-  className = ""
+  badge,
+  title,
+  accent,
+  paragraph,
+  ctaHref,
+  ctaLabel,
+  withWave,
+  className = "",
+  badgeSize,
+  titleSize
 }: {
   badge?: string
-  title?: string
+  title?: React.ReactNode
   accent?: string
   paragraph?: string
   ctaHref?: string
   ctaLabel?: string
   withWave?: boolean
   className?: string
+  badgeSize?: string
+  titleSize?: string
 }) {
   const wrapRef = useRef<HTMLDivElement | null>(null)
   const hRef = useRef<HTMLHeadingElement | null>(null)
@@ -58,31 +62,39 @@ export default function AboutIntro({
 
   return (
     <section className={`relative ${className}`}>
-      <div ref={wrapRef} className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
-        <div className="abt-text">
-          <span>{badge}</span>
-        </div>
-        <div className="heading-abt-wrap">
-          <h2 ref={hRef} className="heading-about">
-            {title}<span className="accent">{accent}</span>
-          </h2>
-          <p ref={pRef}>
-            {paragraph.split(/\n/).map((part, i, arr) => (
-              <span key={i}>
-                {part}
-                {i < arr.length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-          <div className="mt-8 btn-center">
-            <Cta href={ctaHref} label={ctaLabel} tone="dark" />
+      <div ref={wrapRef} className="mx-auto max-w-[1600px] px-6 sm:px-10 md:px-[4%] lg:px-[2%] py-12 sm:py-16 lg:py-24">
+        {badge && (
+          <div className="abt-text">
+            <span style={badgeSize ? { fontSize: badgeSize } : undefined}>{badge}</span>
           </div>
+        )}
+        <div className="heading-abt-wrap">
+          {(title || accent) && (
+            <h2 ref={hRef} className="heading-about text-[20px] sm:text-[26px] md:text-[36px] lg:text-[42px] xl:text-[48px]" style={titleSize ? { fontSize: titleSize, lineHeight: 1.6 } : undefined}>
+              {title}{accent && <span className="accent">{accent}</span>}
+            </h2>
+          )}
+          {paragraph && (
+            <p ref={pRef}>
+              {paragraph.split(/\n/).map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          )}
+          {ctaHref && ctaLabel && (
+            <div className="mt-12 sm:mt-16 lg:mt-20 btn-center">
+              <Cta href={ctaHref} label={ctaLabel} tone="dark" />
+            </div>
+          )}
         </div>
       </div>
-      {withWave && (
+      {/* {withWave && (
         <div className="bottom-border" style={{ backgroundImage: `url("border.png")` }}>
         </div>
-      )}
+      )} */}
     </section>
   )
 }

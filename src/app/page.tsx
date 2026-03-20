@@ -1,11 +1,16 @@
 import Hero from "@/components/Hero"
 import AboutIntro from "@/components/AboutIntro"
+import LeafDivider from "@/components/LeafDivider"
 import ServicesHighlight from "@/components/ServicesHighlight"
 import Certifications from "@/components/Certifications"
 import EmbeddedPartner from "@/components/EmbeddedPartner"
+import VideoShowcase from "@/components/VideoShowcase"
 import Sustainability from "@/components/Sustainability"
 import CollageZoom from "@/components/CollageZoom"
 import NewsInsights from "@/components/NewsInsights"
+import ConsultationBanner from "@/components/ConsultationBanner"
+import QualitySection from "@/components/QualitySection"
+import CircleFeatures from "@/components/CircleFeatures"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -19,16 +24,19 @@ export default function Page() {
     <main className="min-h-screen main-home">
       <Hero />
       <AboutIntro
-        badge="ABOUT US"
-        title="Driving circular plastic solutions through "
-        accent="expertise, technology, and responsibility"
-        paragraph={`Recycle for Future Ltd is a UK-based plastic recycling specialist helping businesses responsibly manage plastic waste. We transform post-industrial and post-consumer plastics into high-quality recycled materials, reducing reliance on virgin plastics and supporting sustainable manufacturing across the UK.
-
-With over 10 years of industry experience, we deliver compliant, reliable, and commercially viable recycling solutions for organisations of all sizes.`}
-        ctaLabel="Learn More About Us"
+        badge="ABOUT"
+        title={<>Driving circular plastic solutions through <br/> expertise, technology, and responsibility</>}
+        accent=""
+        paragraph={`We transform post-industrial and post-consumer plastics into\nhigh-quality recycled materials, reducing reliance on virgin\nplastics and supporting sustainable manufacturing across the UK.`}
+        // ctaLabel="Learn More About Us"
       />
+      <LeafDivider variant="leaves" />
       <ServicesHighlight
         layout="pinned"
+        ctaBtnRadius="10px 0 0 12px"
+        rightImage="/images/btn-right.png"
+        ctaArrowBg="/images/arrow_bg_new.png"
+        ctaBtnBg="#222F30"
         // heading={
         //   <>
         //     Recycling services suited for every industry across the UK
@@ -37,9 +45,13 @@ With over 10 years of industry experience, we deliver compliant, reliable, and c
         services={[
           {
             badge: "OUR SERVICES",
-            title: "Plastic Recycling",
-            desc: "End-to-end recycling solutions for a wide range of plastics, converting waste into high-quality recycled pellets through efficient, compliant processes.",
-            img: "/service-1-new.png",
+            title: (
+              <>
+                Plastic<br />Recycling
+              </>
+            ),
+            desc: "We specialise in processing post-industrial and post-consumer plastic waste, including HDPE, LDPE, HIPS, PP, PS and ABS. Our state-of-the-art facility ensures precision at every stage, from sorting and cleaning to shredding and extrusion.",
+            img: "/service-1-new2.png",
             icon: "/green-leaf.png",
             bg: "bg-[#d2ede6]",
             href: "/services/plastic-recycling"
@@ -64,9 +76,20 @@ With over 10 years of industry experience, we deliver compliant, reliable, and c
           }
         ]}
       />
+      <ConsultationBanner className="py-8 sm:py-[150px]" />
+      <QualitySection />
       {/* <Certifications /> */}
-      <EmbeddedPartner />
-      <Sustainability />
+      {/* <EmbeddedPartner className="mb-0" noBottomPadding /> */}
+      <AboutIntro
+        className=""
+        badge="ENVIRONMENT"
+        badgeSize="160px"
+        titleSize="26px"
+        title={<>At Recycle for Future , environmental responsibility shapes every stage of <br/> the recycling process. A strict zero-landfill approach ensures plastics are <br/> retained within recovery pathways, preserving valuable resources and <br/> preventing unnecessary environmental impact. Through circular processing <br/> systems and responsible sourcing practices, waste materials are <br/> transformed into long-term industrial value while supporting the transition <br/> towards more sustainable manufacturing.</>}
+      />
+      <CircleFeatures />
+      <VideoShowcase />
+      {/* <Sustainability /> */}
       {/* <CollageZoom /> */}
       {/* <NewsInsights /> */}
     </main>

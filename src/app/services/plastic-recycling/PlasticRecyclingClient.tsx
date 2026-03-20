@@ -12,9 +12,27 @@ import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import CustomSection from "@/components/CustomSection"
+import HowItWorks from "@/components/HowItWorks"
 
 export default function PlasticRecyclingPage() {
   const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const prevRestoration = window.history.scrollRestoration
+    window.history.scrollRestoration = "manual"
+    const scrollToTop = () => {
+      window.scrollTo(0, 0)
+      if (typeof window !== "undefined" && window.__lenis) {
+        window.__lenis.scrollTo(0, { immediate: true })
+      }
+    }
+    scrollToTop()
+    const t = setTimeout(scrollToTop, 50)
+    return () => {
+      clearTimeout(t)
+      window.history.scrollRestoration = prevRestoration
+    }
+  }, [])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -43,18 +61,18 @@ export default function PlasticRecyclingPage() {
 
   return (
     <main className="min-h-screen main-services" ref={containerRef}>
-      <section className="relative min-h-[60vh] overflow-hidden">
+      <section className="relative min-h-[50vh] sm:min-h-[60vh] overflow-hidden">
         <Image src="/banner-plastic.png" alt="Plastic Recycling" fill priority className="object-cover" />
-        <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-[2%] pb-16">
-          <h1 className="page-hero-title text-white text-4xl sm:text-6xl font-light tracking-tight">Plastic Recycling</h1>
+        <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-4 sm:px-[2%] pb-10 sm:pb-16">
+          <h1 className="page-hero-title text-white text-3xl sm:text-5xl md:text-6xl font-light tracking-tight">Plastic Recycling</h1>
         </div>
       </section>
 
       <section className="relative">
-        <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
-          <div className="max-w-[900px] mx-auto text-center">
-            <p className="page-intro text-[#00272F] font-[300] text-[29px] sm:text-[38px] md:text-[45px] leading-[1.2] tracking-tight">
-              Our end-to-end plastic recycling services are designed to reduce environmental impact, improve operational efficiency, and support a truly circular economy. <span className="text-[#BCDFD8]">We process a wide range of commercial plastics into high-quality recycled materials suitable for reuse in manufacturing.</span>
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
+          <div className="max-w-[1150px] mx-auto text-center">
+            <p className="page-intro text-[#00272F] font-[300] text-[22px] sm:text-[32px] md:text-[38px] lg:text-[45px] leading-[1.2] tracking-tight">
+            Our end-to-end plastic recycling services are designed to reduce environmental impact, improve operational efficiency, and support a truly circular economy. We process a wide range of commercial plastics into high-quality recycled materials suitable for reuse in manufacturing.
             </p>
           </div>
         </div>
@@ -62,14 +80,51 @@ export default function PlasticRecyclingPage() {
 
       <LeafDivider className="my-4" />
 
-      <section className="relative">
+      <HowItWorks
+        title="How it Works"
+        steps={[
+          {
+            number: "01",
+            title: "Collection and Sorting",
+            description: "We meticulously collect and sort plastic waste from various sources across the UK, including businesses, organisations, and local authorities.",
+          },
+          {
+            number: "02",
+            title: "Cleaning and Processing",
+            description: "The collected plastic undergoes a thorough cleaning and processing stage, removing any contaminants such as labels, adhesives, and other impurities.",
+          },
+          {
+            number: "03",
+            title: "Shredding and Granulation",
+            description: "The cleaned plastic is then shredded into smaller pieces and granulated into a consistent size. This prepares the material for the pelletising stage, where it is transformed into recycled pellets.",
+          },
+          {
+            number: "04",
+            title: "Pelletising",
+            description: "The granulated plastic is fed into our state-of-the-art pelletising machines, where it is melted and extruded into uniform pellets. These recycled pellets are the building blocks for a wide range of new plastic products.",
+          },
+          {
+            number: "05",
+            title: "Quality Control",
+            description: "Throughout the entire recycling process, we implement rigorous quality control measures to ensure that our recycled plastic products meet the highest industry standards. We conduct various tests to assess the properties of the recycled plastic, such as melt flow, impact resistance, and tensile strength.",
+          },
+        ]}
+        cardLayout={[
+          { above: false, marginLeft: 0 },
+          { above: true, marginLeft: -100 },
+          { above: false, marginLeft: -100 },
+          { above: true, marginLeft: -100 },
+        ]}
+      />
+
+      {/* <section className="relative">
         <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
           <h2 className="text-center text-[30px] md:text-[60px] font-light mb-16">
             Our process of <span className="text-[#579C9C] font-light">Transforming Plastic</span> <br />
             <span className="text-[#579C9C] font-light">Waste</span> into Valuable Resources
-          </h2>
+          </h2> */}
           {/* First row - 3 cards */}
-          <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
+          {/* <div className="process-grid mt-12 flex flex-col md:flex-row justify-between gap-6">
             <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-8.png" alt="Leaf" fill className="object-contain" />
@@ -105,10 +160,10 @@ export default function PlasticRecyclingPage() {
               <h3 className="text-[24px] md:text-[32px] text-[#ffffff] font-[400] mb-3">Shredding and Granulation</h3>
               <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">The cleaned plastic is then shredded into smaller pieces and granulated into a consistent size. This prepares the material for the pelletising stage, where it is transformed into recycled pellets.</p>
             </div>
-          </div>
+          </div> */}
 
           {/* Second row - 2 cards */}
-          <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
+          {/* <div className="process-grid mt-6 flex flex-col md:flex-row justify-between gap-6">
             <div className="process-card bg-[#3B6060] relative overflow-hidden rounded-[12px] p-8 md:h-[439.39px] h-[300px] w-full md:w-[calc(50%-12px)] flex flex-col justify-end group hover:shadow-lg transition-shadow duration-300">
               <div className="absolute bottom-0 left-0 w-full h-[439.39px] bg-[#3B6060] opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-out">
                 <Image src="/vector-9.png" alt="Leaf" fill className="object-contain" />
@@ -133,10 +188,8 @@ export default function PlasticRecyclingPage() {
               <p className="text-[#ffffff] text-[14px] md:text-[16px] leading-relaxed">Throughout the entire recycling process, we implement rigorous quality control measures to ensure that our recycled plastic products meet the highest industry standards. We conduct various tests to assess the properties of the recycled plastic, such as melt flow, impact resistance, and tensile strength.</p>
             </div>
           </div>
-
-
         </div>
-      </section>
+      </section> */}
 
       <MaterialsList />
 
@@ -145,21 +198,22 @@ export default function PlasticRecyclingPage() {
       <BenefitsSection
         title="Benefits Of Plastic Recycling For Businesses"
         img="/Rectangle 7.png"
-        bullets={[
-          { label: "Reduced reliance on virgin plastic materials", color: "#CFE9C6" },
-          { label: "Lower environmental impact and landfill diversion", color: "#2A7E6E" },
-          { label: "Improved sustainability performance for your business", color: "#6FBEC1" },
-          { label: "Consistent, high-quality recycled output", color: "#EAEFEA" }
+        highlightText="Plastic Recycling"
+        benefits={[
+          { title: "Reduced reliance on virgin plastic materials", description: "" },
+          { title: "Lower environmental impact and landfill diversion", description: "" },
+          { title: "Improved sustainability performance for your business", description: "" },
+          { title: "Consistent, high-quality recycled output", description: "" }
         ]}
       />
 
       <CustomSection title="Tailored Solutions for Reliable Collaborations" paragraph="Partnering with us helps businesses reduce plastic waste and embrace sustainable practices. Our custom blends of recycled plastics and additives are crafted in close collaboration with you, ensuring the final product exceeds your expectations. This careful compounding process combines recycled materials with targeted additives to enhance properties like color, strength, flexibility, and UV resistance, providing high-quality solutions tailored to your specific needs." img="/Rectangle 8.png" />
 
       <section className="relative">
-        <div className="mx-auto max-w-[1600px] px-[2%] py-12">
-          <div className="rounded-[12px] md:h-[400px] bg-[#3B6060] text-white px-20 md:px-32 py-10 text-center">
-            <h3 className="text-[32px] md:text-[64px] font-[300]">Join us in ensuring a sustainable <span className="text-[#BFD893]">future with our compliance</span></h3>
-            <div className="mt-6 flex justify-center"><Cta href="/contact" label="LEARN MORE" tone="dark" /></div>
+        <div className="mx-auto max-w-[auto]">
+          <div className="flex flex-col items-center justify-center min-h-[280px] sm:min-h-[320px] md:h-[400px] bg-[#3B6060] text-white px-4 sm:px-8 md:px-20 lg:px-32 py-8 sm:py-10 text-center">
+            <h3 className="text-[24px] sm:text-[32px] md:text-[48px] lg:text-[64px] font-[300] leading-tight text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
+            <div className="mt-4 sm:mt-6 flex justify-center"><Cta href="/contact" label="LEARN MORE" tone="dark" /></div>
           </div>
         </div>
       </section>

@@ -3,55 +3,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import Cta from "@/components/Cta"
-import { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-/* Old ServiceCard - Pinned Layout (for Home Page) */
-function ServiceCardPinned({
-  badge,
-  title,
-  desc,
-  img,
-  bg,
-  href,
-  icon
-}: {
-  badge: string
-  title: string
-  desc: string
-  img: string
-  bg: string
-  href: string
-  icon: string
-}) {
-  return (
-    <Link
-      href={href}
-      className={`block rounded-[1rem] service-list ring-1 ring-black/5 shadow-[0px_0px_34.6px_0px_rgba(200,200,200,0.25)] overflow-hidden crd_block ${bg} hover:shadow-lg transition-shadow duration-300`}
-    >
-      <div className="service-wrap">
-        <div className="service-content">
-          <div className="mb-4">
-            <span className="badge-wrap">
-              {badge}
-            </span>
-          </div>
-          <h3 className="heading-service mt-6">{title}</h3>
-          <p className="mt-5 max-w-xl leading-relaxed text-[#696969]">{desc}</p>
-          <div className="mt-6">
-            <Cta href={href} label="LEARN MORE" tone="light" as="div" />
-          </div>
-        </div>
-        <div className="service-image-box" style={{ backgroundImage: `url("${img}")` }}>
-          <div className="icon-box" style={{ backgroundImage: `url("${icon}")` }}></div>
-        </div>
-      </div>
-    </Link>
-  )
-}
-
-/* New ServiceCard - Row Layout (for Services Pages) */
+/* ServiceCard - Row Layout (for Services Pages) */
 function ServiceCardRow({
   badge,
   title,
@@ -62,7 +18,7 @@ function ServiceCardRow({
   icon
 }: {
   badge: string
-  title: string
+  title: React.ReactNode
   desc: string
   img: string
   bg: string
@@ -76,27 +32,27 @@ function ServiceCardRow({
     >
       <div className="service-card-wrap flex flex-col h-full">
         {/* Image Section with Badge Overlay */}
-        <div className="service-card-image relative h-[588.58px] overflow-hidden">
+        <div className="service-card-image relative h-[260px] sm:h-[360px] lg:h-[588.58px] overflow-hidden">
           <Image
             src={img}
-            alt={title}
+            alt={typeof title === "string" ? title : ""}
             fill
             className="object-cover"
           />
           {/* Icon Overlay - centered */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cover bg-center bg-no-repeat opacity-60"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] bg-cover bg-center bg-no-repeat opacity-60"
             style={{ backgroundImage: `url("${icon}")` }}
           ></div>
           {/* Badge positioned at bottom-left of image */}
-          <div className="absolute bottom-4 left-10">
+          <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-10">
             <span className="badge-wrap text-[#024D5D]">
               {badge}
             </span>
           </div>
         </div>
         {/* Content Section */}
-        <div className="service-card-content px-10 pb-20 pt-5 flex flex-col flex-grow">
+        <div className="service-card-content px-5 sm:px-8 lg:px-10 pb-12 lg:pb-20 pt-5 flex flex-col flex-grow">
           <h3 className="text-[28px] lg:text-[32px] font-semibold text-gray-900 leading-tight">{title}</h3>
           <p className="mt-4 text-[15px] leading-[1.7] text-[#696969] flex-grow">{desc}</p>
           <div className="mt-6">
@@ -111,11 +67,20 @@ function ServiceCardRow({
 export default function ServicesHighlight({
   heading = (
     <>
-      Recycling <span className="accent">services suited for</span> <br />
-      <span className="accent">every</span> industry across the UK
+      <span className="leading-tight text-[30px] sm:text-[40px] md:text-[60px] font-light">Recycling services suited <br /> for every industry across the UK</span>
     </>
   ),
   layout = "row",
+  pinnedHeading = "We believe that making plastic recycling valuable will reshape its global economic impact.",
+  pinnedSubheading = "Expert polymer processes delivering dependable raw materials for modern industrial applications.",
+  features = [
+    { title: "Polymer Expertise", desc: "Recycling services suited for various industry across the UK" },
+    { title: "Precision at Every Stage", desc: "Technical workflows ensure optimal handling of different polymer characteristics" },
+  ],
+  ctaBtnRadius,
+  ctaArrowBg,
+  ctaBtnBg,
+  rightImage,
   services = [
     {
       badge: "OUR SERVICES",
@@ -148,36 +113,66 @@ export default function ServicesHighlight({
 }: {
   heading?: React.ReactNode
   layout?: "row" | "pinned"
+  pinnedHeading?: string
+  pinnedSubheading?: string
+  features?: { title: string; desc: string }[]
   services?: {
     badge: string
-    title: string
+    title: React.ReactNode
     desc: string
     img: string
     icon: string
     bg: string
     href: string
   }[]
+  ctaBtnRadius?: string
+  ctaArrowBg?: string
+  ctaBtnBg?: string
+  rightImage?: string
 }) {
   const containerRef = useRef<HTMLElement | null>(null)
+  const pinnedRef = useRef<HTMLDivElement | null>(null)
+  const [activeService, setActiveService] = useState(0)
+  const activeServiceRef = useRef(0)
+
+  // Helper to extract plain text from a React node (strings, numbers,
+  // fragments, elements). Used so tab labels remain plain single-line text
+  // even when slide titles use JSX (e.g. with <br/>).
+  const titleToPlainString = (node: React.ReactNode): string => {
+    if (node == null) return ""
+    if (typeof node === "string" || typeof node === "number") return String(node)
+    // Handle explicit <br/> elements and other React elements by returning a single space
+    if (React.isValidElement(node)) {
+      const type = (node as any).type
+      if (type === "br" || type === "br") return " "
+      const child = (node as any).props?.children
+      return titleToPlainString(child)
+    }
+    if (Array.isArray(node)) {
+      // join children with single spaces, trimming to avoid accidental concatenation
+      const parts = node.map((n) => titleToPlainString(n)).map((s) => s.trim()).filter(Boolean)
+      return parts.join(" ").replace(/\s+/g, " ")
+    }
+    return ""
+  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     const ctx = gsap.context(() => {
-      // Heading Animation
-      gsap.from(".heading-2", {
-        y: 50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".heading-2",
-          start: "top 85%"
-        }
-      })
-
       if (layout === "row") {
-        // Row Layout Animation - Staggered cards appearing one by one
+        // Heading Animation
+        gsap.from(".heading-2", {
+          y: 50,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".heading-2",
+            start: "top 85%"
+          }
+        })
+
         const serviceCards = document.querySelectorAll(".service-card-item")
         serviceCards.forEach((card, index) => {
           gsap.from(card, {
@@ -192,59 +187,72 @@ export default function ServicesHighlight({
             }
           })
         })
-      } else {
-        // Pinned gallery animation for home page
-        const w = document.documentElement.clientWidth || window.innerWidth
-        if (w >= 480) {
-          const pinnedGallery = document.querySelector(".pinned_gallery")
-          if (pinnedGallery) {
-            const pinnedImages = pinnedGallery.querySelectorAll(".pinned_image")
-            
-            pinnedImages.forEach((pImage, i, arr) => {
-              const cardBlock = (pImage as HTMLElement).querySelector(".crd_block") as HTMLElement
-              if (!cardBlock) return
+      }
 
-              // Calculate center position
-              const centerTop = (window.innerHeight - cardBlock.offsetHeight) / 2
-              
-              // Apply Sticky Positioning
-              const pImageEl = pImage as HTMLElement
-              pImageEl.style.position = "sticky"
-              pImageEl.style.top = `${centerTop}px`
-              pImageEl.style.zIndex = `${i + 1}` // Stack order: later cards on top
+      if (layout === "pinned" && pinnedRef.current) {
+        const totalServices = services.length
+        const slides = gsap.utils.toArray<HTMLElement>(".sp-slide")
+        const tabs = gsap.utils.toArray<HTMLElement>(".sp-tab")
 
-              // Animate current card fading/scaling out as next card covers it
-              if (i < arr.length - 1) {
-                gsap.to(cardBlock, {
-                  scale: 0.8,
-                  opacity: 0,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: pImageEl,
-                    start: `top ${centerTop}px`, // Starts when card hits the sticky position
-                    end: `+=${cardBlock.offsetHeight}`, // Ends when card is fully covered (approx)
-                    scrub: true,
-                  }
-                })
-              }
-            })
+        // Position slides far apart (off-screen right)
+        const gap = 120 // px gap between slides
+        slides.forEach((slide, i) => {
+          if (i === 0) {
+            gsap.set(slide, { x: 0, position: "relative" })
+          } else {
+            const offset = i * (pinnedRef.current!.offsetWidth + gap)
+            gsap.set(slide, { x: offset, position: "absolute", top: 0, left: 0, width: "100%" })
           }
-        }
+        })
+
+        // Total horizontal distance to travel
+        const totalDistance = (totalServices - 1) * (pinnedRef.current.offsetWidth + gap)
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: pinnedRef.current,
+            start: "top top",
+            end: `+=${totalServices * 120}%`,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            scrub: 0.5,
+            onUpdate: (self) => {
+              const index = Math.min(
+                Math.floor(self.progress * totalServices),
+                totalServices - 1
+              )
+              if (index !== activeServiceRef.current) {
+                activeServiceRef.current = index
+                setActiveService(index)
+              }
+              tabs.forEach((tab, i) => {
+                tab.classList.toggle("sp-tab--active", i === index)
+              })
+            }
+          }
+        })
+
+        // Smooth continuous slide — all slides move left together
+        tl.to(slides, {
+          x: `-=${totalDistance}`,
+          duration: 1,
+          ease: "none",
+        })
       }
     }, containerRef)
 
     return () => ctx.revert()
-  }, [layout])
+  }, [layout, services.length])
 
   return (
     <section ref={containerRef} className="relative">
-      <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
-        <h2 className="text-center heading-2 mb-100">
-          {heading}
-        </h2>
-
-        {/* Row Layout - for Services Pages */}
-        {layout === "row" && (
+      {/* Row Layout - for Services Pages */}
+      {layout === "row" && (
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
+          <h2 className="text-center heading-2 mb-100">
+            {heading}
+          </h2>
           <div className="mt-12 services-row-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <ServiceCardRow
@@ -259,28 +267,94 @@ export default function ServicesHighlight({
               />
             ))}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Pinned Gallery Layout - for Home Page */}
-        {layout === "pinned" && (
-          <div className="mt-12 pinned_gallery">
-            {services.map((service, index) => (
-              <div key={index} className={`pinned_image ${index === services.length - 1 ? 'z_100 last-pin-block' : ''}`}>
-                <ServiceCardPinned
-                  badge={service.badge}
-                  title={service.title}
-                  desc={service.desc}
-                  img={service.img}
-                  icon={service.icon}
-                  bg={service.bg}
-                  href={service.href}
-                />
-              </div>
-            ))}
+      {/* Pinned Layout - Scroll-driven (for Home Page) */}
+      {layout === "pinned" && (
+        <div className="sp-section">
+          {/* Top area — scrolls away normally */}
+          <div className="mx-auto w-auto md:max-w-[1024px] lg:max-w-[1240px] xl:max-w-[1440px] 2xl:max-w-[1440px] px-4 sm:px-6 md:px-[2%]">
+            {/* Background text */}
+            <div className="sp-bg-text">
+              <span>SERVICES</span>
+            </div>
+
+            {/* Main heading */}
+            <div className="sp-heading">
+              <h2>{pinnedHeading}</h2>
+              <p>{pinnedSubheading}</p>
+            </div>
+
+            {/* Features row */}
+            <div className="sp-features md:pt-[250px] md:pb-[100px]">
+              {features.map((f, i) => (
+                <div key={i} className="sp-feature">
+                  <h4>{f.title}</h4>
+                  <p>{f.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        )}
-      </div>
 
+          {/* Pinned area — tabs stick to top, slides in center */}
+          <div ref={pinnedRef} className="sp-pinned-area relative overflow-visible">
+            {/* Leaves pattern behind slides */}
+            <div
+              className="absolute left-0 w-full h-[102px] pointer-events-none z-0 bg-repeat-x bg-center bg-contain"
+              style={{ backgroundImage: 'url("/border_new.png")', bottom: "150px" }}
+            />
+            <div className="mx-auto w-full md:max-w-[1024px] lg:max-w-[1240px] xl:max-w-[1440px] 2xl:max-w-[1440px] px-4 sm:px-6 md:px-[2%]">
+              {/* Tabs */}
+              {/*
+                Use a responsive flex row that prevents wrapping on medium+ viewports
+                so long titles stay on a single line. On small screens allow
+                horizontal scroll (overflow-x-auto) so tabs remain accessible.
+              */}
+              <div className="sp-tabs flex flex-row flex-wrap md:flex-nowrap gap-4 overflow-x-auto md:overflow-visible">
+                {services.map((s, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`sp-tab ${i === 0 ? "sp-tab--active" : ""} whitespace-nowrap`}
+                    title={titleToPlainString(s.title)}
+                  >
+                    <span className="sp-tab-dot" />
+                    {titleToPlainString(s.title)}
+                  </button>
+                ))}
+              </div>
+
+              {/* Slides */}
+              <div className="sp-slides">
+                {services.map((s, i) => (
+                  <div
+                    key={i}
+                    className="sp-slide"
+                    style={{ position: i === 0 ? "relative" : "absolute", top: 0, left: 0, width: "100%" }}
+                  >
+                    <div className="sp-slide-left">
+                      <h3 className="sp-slide-title">{s.title}</h3>
+                      <p className="sp-slide-desc">{s.desc}</p>
+                      <Cta href={s.href} label="DETAILS HERE" tone="light" btnRadius={ctaBtnRadius} arrowBg={ctaArrowBg} btnBg={ctaBtnBg} rightImage={rightImage} />
+                    </div>
+                    <div className="sp-slide-right">
+                      <Image
+                        src={s.img}
+                        alt={typeof s.title === "string" ? s.title : ""}
+                        width={1200}
+                        height={800}
+                        className="w-full h-auto object-cover"
+                        priority={i === 0}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

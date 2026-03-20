@@ -66,28 +66,29 @@ export default function PelletAndCompoundsPage() {
 
       {/* <LeafDivider className="my-4" /> */}
 
-      <BenefitsSection 
-        title="Benefits Of Pellet And Compounds For Businesses" 
-        img="/Rectangle 7 (1).png" 
+      <BenefitsSection
+        title="Benefits Of Pellet And Compounds For Businesses"
+        img="/Rectangle 7 (1).png"
         intro="Plastic recycling delivers measurable benefits for businesses by supporting sustainability objectives while maintaining performance and reliability."
-        bullets={[
-          { label: "Affordable access to recycled materials", color: "#CFE9C6" },
-          { label: "Lower environmental and carbon footprint", color: "#2A7E6E" },
-          { label: "Improved brand and sustainability performance", color: "#6FBEC1" },
-          { label: "Compliance with regulatory and industry standards", color: "#EAEFEA" }
+        highlightText="Pellet And Compounds"
+        benefits={[
+          { title: "Reduced reliance on virgin plastic materials", description: "" },
+          { title: "Lower environmental impact and landfill diversion", description: "" },
+          { title: "Improved sustainability performance for your business", description: "" },
+          { title: "Consistent, high-quality recycled output", description: "" }
         ]}
       />
 
-      <CustomSection 
-        title="Custom Blends for Trusted Partnerships" 
-        img="/Rectangle 9.png" 
+      <CustomSection
+        title="Custom Blends for Trusted Partnerships"
+        img="/Rectangle 9.png"
         paragraph="We work in partnership with our clients to develop customised recycled pellets and compounds, ensuring materials are tailored to specific applications, performance requirements, and production needs."
       />
 
       <section className="relative">
-        <div className="mx-auto max-w-[1600px] px-[2%] py-12">
-          <div className="rounded-[12px] md:h-[400px] bg-[#3B6060] text-white px-20 md:px-32 py-10 text-center">
-            <h3 className="text-[32px] md:text-[64px] font-[300]">Join us in ensuring a sustainable <span className="text-[#BFD893]">future with our compliance</span></h3>
+        <div className="mx-auto max-w-[auto]">
+          <div className="flex flex-col items-center justify-center md:h-[400px] bg-[#3B6060] text-white px-20 md:px-32 py-10 text-center">
+            <h3 className="text-[32px] md:text-[64px] font-[300] leading-tight text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
             <div className="mt-6 flex justify-center"><Cta href="/contact" label="LEARN MORE" tone="dark" /></div>
           </div>
         </div>
