@@ -4,12 +4,12 @@ import Link from "next/link"
 export default function ConsultationBanner({ className = "" }: { className?: string }) {
   return (
     <section className={`mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] ${className}`}>
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 bg-[#D4F2A1] rounded-2xl px-6 sm:px-10 py-5 sm:py-6">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 bg-[#D4F2A1] rounded-[9px] px-24 py-5 sm:py-6">
         <div className="flex items-center gap-4">
           <Image src="/images/value-1.png" alt="icon" width={45} height={43} />
           <div>
-            <h3 className="text-[#0D0D0D] text-lg sm:text-xl font-semibold">Avail experts consultation</h3>
-            <p className="text-[#0D0D0D] text-sm sm:text-[15px] mt-1">Unlock the potential of plastic waste through expert recycling solutions.</p>
+            <h3 className="text-[#31312F] text-lg sm:text-[29px] font-bold">Avail experts consultation</h3>
+            <p className="text-[#31312F] text-sm sm:text-[15px] font-[400] mt-1">Unlock the potential of plastic waste through expert recycling solutions.</p>
           </div>
         </div>
         <Link

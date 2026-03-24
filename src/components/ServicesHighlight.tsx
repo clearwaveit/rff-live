@@ -301,7 +301,7 @@ export default function ServicesHighlight({
           <div ref={pinnedRef} className="sp-pinned-area relative overflow-visible">
             {/* Leaves pattern behind slides */}
             <div
-              className="absolute left-0 w-full h-[102px] pointer-events-none z-0 bg-repeat-x bg-center bg-contain"
+              className="absolute left-0 w-full h-[72px] pointer-events-none z-0 bg-repeat-x bg-center bg-contain"
               style={{ backgroundImage: 'url("/border_new.png")', bottom: "150px" }}
             />
             <div className="mx-auto w-full md:max-w-[1024px] lg:max-w-[1240px] xl:max-w-[1440px] 2xl:max-w-[1440px] px-4 sm:px-6 md:px-[2%]">
@@ -338,7 +338,7 @@ export default function ServicesHighlight({
                       <p className="sp-slide-desc">{s.desc}</p>
                       <Cta href={s.href} label="DETAILS HERE" tone="light" btnRadius={ctaBtnRadius} arrowBg={ctaArrowBg} btnBg={ctaBtnBg} rightImage={rightImage} />
                     </div>
-                    <div className="sp-slide-right">
+                    <div className="sp-slide-right" style={i === 1 ? { maxWidth: "470px" } : undefined}>
                       <Image
                         src={s.img}
                         alt={typeof s.title === "string" ? s.title : ""}
