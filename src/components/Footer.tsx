@@ -8,15 +8,15 @@ export default function Footer() {
 
   return (
     <footer className="mt-0 w-full">
-      <div className="footer-outer px-28">
+      <div className="footer-outer">
         <div className="footer-inner">
           {/* Top Section: Heading + Newsletter */}
           <div className="footer-top">
             <div className="footer-top-left">
               <h2 className="footer-heading">Embrace Efficiency</h2>
               <p className="footer-subtext">
-                Less hassle, more sustainability. Our focus<br />
-                is on delivering seamless, sustainable<br />
+                Less hassle, more sustainability. Our focus<br className="hidden sm:block" />
+                is on delivering seamless, sustainable<br className="hidden sm:block" />
                 solutions for your business.
               </p>
             </div>
@@ -79,21 +79,39 @@ export default function Footer() {
               <ul className="footer-contact-list">
                 <li>
                   <span className="footer-contact-icon" aria-hidden>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/></svg>
+                    <Image
+                      src="/images/location-icon.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="footer-contact-icon-image"
+                    />
                   </span>
-                  <span>Recycle For Future Ltd. Jhumat 160 London</span>
+                  <span className="footer-contact-text">Recycle For Future Ltd. Jhumat 160 London</span>
                 </li>
                 <li>
                   <span className="footer-contact-icon" aria-hidden>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/></svg>
+                    <Image
+                      src="/images/phone-icon.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="footer-contact-icon-image"
+                    />
                   </span>
-                  <span>020 8214 1353</span>
+                  <span className="footer-contact-text">020 8214 1353</span>
                 </li>
                 <li>
                   <span className="footer-contact-icon" aria-hidden>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                    <Image
+                      src="/images/mail-icon.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="footer-contact-icon-image"
+                    />
                   </span>
-                  <span>info@recycleforfuture.com</span>
+                  <span className="footer-contact-text">info@recycleforfuture.com</span>
                 </li>
               </ul>
             </div>

@@ -61,24 +61,50 @@ export default function QualitySection({
     const cardEls = Array.from(grid.querySelectorAll<HTMLElement>(".quality-card"))
     if (!cardEls.length) return
 
-    gsap.set(cardEls, { opacity: 0 })
+  // initial state for all cards: start lower and smaller so they rise and scale up
+  gsap.set(cardEls, { opacity: 0, scale: 0.9, y: 36, transformOrigin: "center center" })
 
-    const tl = gsap.timeline({ paused: true })
-    const total = cardEls.length
-    cardEls.forEach((el, i) => {
-      tl.to(el, { opacity: 1, duration: 0.01 }, i)
-    })
-    tl.duration(total)
+    // determine how many rows there are based on classes like .quality-row-1
+    const rowNums = cardEls
+      .map((el) => {
+        const m = el.className.match(/quality-row-(\d+)/)
+        return m ? Number(m[1]) : null
+      })
+      .filter((n): n is number => n !== null)
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top 85%",
-      end: "bottom 100%",
-      scrub: true,
-      animation: tl,
-    })
+    const maxRow = rowNums.length ? Math.max(...rowNums) : 0
+    const createdTriggers: ScrollTrigger[] = []
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill())
+    for (let r = 1; r <= maxRow; r++) {
+      const rowEls = Array.from(grid.querySelectorAll<HTMLElement>(`.quality-row-${r}`))
+      if (!rowEls.length) continue
+
+      const anim = gsap.to(rowEls, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.7,
+        // animate all cards in the same row together
+        stagger: 0,
+        ease: "power3.out",
+        paused: true,
+      })
+
+      const st = ScrollTrigger.create({
+        trigger: rowEls[0],
+        start: "top 85%",
+        animation: anim,
+        // play when entering, reverse when leaving (so reverse behaves like forward)
+        toggleActions: "play reverse play reverse",
+      })
+
+      createdTriggers.push(st)
+    }
+
+    return () => {
+      createdTriggers.forEach((t) => t.kill())
+      ScrollTrigger.getAll().forEach((t) => t.kill())
+    }
   }, [cards.length])
 
   return (
@@ -90,7 +116,7 @@ export default function QualitySection({
         </div>
 
         {/* Heading */}
-        <h2 className="text-center text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-bold text-[#00272F] max-w-[1024px] mx-auto leading-tight mb-8 sm:mb-12 lg:mb-16">
+        <h2 className="text-center text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-[700] text-[#00272F] max-w-[1024px] mx-auto leading-[58px] mb-8 sm:mb-12 lg:mb-16">
           {heading}
         </h2>
 
