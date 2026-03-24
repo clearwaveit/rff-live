@@ -7,7 +7,7 @@ export default function ConsultationBanner({ className = "" }: { className?: str
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 bg-[#D4F2A1] rounded-[9px] px-24 py-5 sm:py-6">
         <div className="flex items-center gap-4">
           <Image src="/images/value-1.png" alt="icon" width={45} height={43} />
-          <div>
+          <div className="flex flex-col gap-2">
             <h3 className="text-[#31312F] text-lg sm:text-[29px] font-bold">Avail experts consultation</h3>
             <p className="text-[#31312F] text-sm sm:text-[15px] font-[400] mt-1">Unlock the potential of plastic waste through expert recycling solutions.</p>
           </div>

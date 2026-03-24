@@ -59,24 +59,24 @@ export default function BenefitsSection({
     return () => ctx.revert()
   }, [])
 
-  const titleParts = highlightText
-    ? (() => {
-      const i = title.indexOf(highlightText)
-      if (i === -1) return { before: title, highlight: "", after: "" }
-      return {
-        before: title.slice(0, i).trimEnd(),
-        highlight: highlightText,
-        after: title.slice(i + highlightText.length).trimStart()
-      }
-    })()
-    : (() => {
-      const forMatch = title.match(/\s+[Ff]or\s+/)
-      if (!forMatch) return { before: title, highlight: "", after: "" }
-      const idx = title.search(/\s+[Ff]or\s+/)
-      const before = title.slice(0, idx).trimEnd()
-      const rest = title.slice(idx).trimStart()
-      return { before: "", highlight: before, after: rest }
-    })()
+  // const titleParts = highlightText
+  //   ? (() => {
+  //     const i = title.indexOf(highlightText)
+  //     if (i === -1) return { before: title, highlight: "", after: "" }
+  //     return {
+  //       before: title.slice(0, i).trimEnd(),
+  //       highlight: highlightText,
+  //       after: title.slice(i + highlightText.length).trimStart()
+  //     }
+  //   })()
+  //   : (() => {
+  //     const forMatch = title.match(/\s+[Ff]or\s+/)
+  //     if (!forMatch) return { before: title, highlight: "", after: "" }
+  //     const idx = title.search(/\s+[Ff]or\s+/)
+  //     const before = title.slice(0, idx).trimEnd()
+  //     const rest = title.slice(idx).trimStart()
+  //     return { before: "", highlight: before, after: rest }
+  //   })()
 
   // ——— NEW design: two-column layout, title + intro + CTA left, 2x2 benefit cards right ———
   return (
@@ -84,20 +84,21 @@ export default function BenefitsSection({
       <div ref={containerRef} className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           <div className="max-w-xl">
-            <h3 className="benefits-new-title text-[26px] sm:text-[34px] md:text-[40px] lg:text-[48px] font-[300] leading-tight text-[#2C3E50]">
-              {titleParts.before && <span>{titleParts.before} </span>}
+            <h3 className="benefits-new-title text-[26px] sm:text-[34px] md:text-[40px] lg:text-[48px] font-[700] leading-[58px] text-[#2C3E50]">
+              {/* {titleParts.before && <span>{titleParts.before} </span>}
               {titleParts.highlight && (
                 <span className="text-[#60B6A8]">{titleParts.highlight}</span>
               )}
-              {titleParts.after && <span> {titleParts.after}</span>}
+              {titleParts.after && <span> {titleParts.after}</span>} */}
+              {title}
             </h3>
-            <p className="benefits-new-intro mt-4 sm:mt-6 text-[#5D7E83] text-sm sm:text-base md:text-lg">
+            <p className="benefits-new-intro mt-4 sm:mt-6 text-[#00272F] text-sm md:text-[26px] font-[400] leading-[36px]">
               {intro}
             </p>
             <div className="mt-6 sm:mt-10 flex items-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-[50px] bg-[#345B53] text-white font-medium uppercase tracking-wide px-6 py-3.5 text-sm hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#345B53] text-white font-[400] uppercase tracking-wide px-6 py-3.5 text-sm hover:opacity-90 transition-opacity"
               >
                 CONTACT US
               </Link>
@@ -128,7 +129,7 @@ export default function BenefitsSection({
                   key={b.title}
                   className={`benefit-card-new flex flex-col justify-between ${roundClass} bg-[#BCDFD8] p-3 sm:p-4 md:p-5 lg:p-6 min-h-[100px] sm:min-h-[130px] md:min-h-[155px] lg:h-[188px] min-w-0 aspect-[1.4] sm:aspect-[1.5] lg:aspect-auto`}
                 >
-                  <h4 className="text-[#2C3E50] font-normal text-[13px] sm:text-[15px] md:text-[18px] lg:text-[22px] leading-tight">
+                  <h4 className="text-[#2C3E50] font-[400] text-[14px] md:text-[18px] leading-[25px]">
                     {b.title}
                   </h4>
                   <p className="mt-1 sm:mt-2 text-[#2C3E50] text-[11px] sm:text-xs md:text-sm opacity-90">

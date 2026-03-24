@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import LeafDivider from "@/components/LeafDivider"
+import CircleFeatures from "@/components/CircleFeatures"
 
 export default function SustainabilityPage() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -73,15 +74,15 @@ export default function SustainabilityPage() {
       <section className="relative min-h-[60vh] overflow-hidden">
         <Image src="/banner-sustainable.png" alt="Sustainability" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-[2%] pb-16">
-          <h1 className="page-hero-title text-white text-4xl sm:text-6xl font-light tracking-tight">Sustainability</h1>
+          <h1 className="page-hero-title text-white text-4xl sm:text-6xl font-[700] tracking-tight">Sustainability</h1>
         </div>
       </section>
 
       <section className="relative">
         <div className="mx-auto max-w-[1600px] px-[2%] py-16 lg:py-24">
-          <div className="max-w-[900px] mx-auto text-center">
-            <p className="page-intro text-[#00272F] font-[300] text-[29px] sm:text-[38px] md:text-[40px] leading-[1.4] tracking-tight">
-              We maintain a Zero Landfill Policy, ensuring plastics are retained within reco<span className="text-[#BCDFD8]">very pathways rather than disposed of, protecting natural environments and preventing loss of valuable material.</span>
+          <div className="max-w-[850px] mx-auto text-center">
+            <p className="page-intro text-[#00272F] font-[400] text-[22px] md:text-[26px] leading-[36px] tracking-tight">
+              We maintain a Zero Landfill Policy, ensuring plastics are retained within recovery pathways rather than disposed of, protecting natural environments and preventing loss of valuable material.
             </p>
           </div>
         </div>
@@ -93,7 +94,7 @@ export default function SustainabilityPage() {
         <div className="mx-auto max-w-[1600px] px-[2%] py-16">
           <div className="sust-grid grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="sust-content">
-              <h3 className="text-[#00333E] text-3xl sm:text-4xl font-[300]">Enhanced Sustainability Impact Through Circular Plastic Recovery</h3>
+              <h3 className="text-[#00333E] text-[28px] sm:text-[32px] md:text-[48px] lg:text-[48px] font-[700] leading-[58px]">Enhanced Sustainability Impact Through Circular Plastic Recovery</h3>
               <ul className="mt-6 space-y-3">
                 {[
                   "Least to Landfill",
@@ -113,26 +114,27 @@ export default function SustainabilityPage() {
         </div>
       </section>
 
-      <SustainabilityMarquee />
+      {/* <SustainabilityMarquee /> */}
+      <CircleFeatures />
 
-      <section className="relative">
+      <section className="relative my-28">
         <div className="mx-auto max-w-[1600px] px-[2%] py-8">
           <div className="rounded-[12px] bg-[#EEF6F6] overflow-hidden relative">
             <div className="about-values grid grid-cols-1 md:grid-cols-2 items-start py-12 md:py-16 px-8 md:px-16">
               <div className="flex flex-col gap-6 w-full">
                 <span className="inline-flex w-fit items-center gap-2 rounded-[8px] bg-white px-3 py-1.5 text-[12px] font-medium text-[#024D5D] uppercase tracking-wide">
-                  Our Story
+                Sustainability Initiatives
                 </span>
                 <div className="space-y-4">
                   <ul className="flex flex-col gap-8">
-                    <li>Energy Efficiency <br />
-                      <span className="text-[16px] text-[#4E4E4E]">Reduced energy demand through efficient systems and continuous optimisation.</span>
+                    <li className="text-[#00272F] text-sm md:text-[20px] font-[700]">Energy Efficiency <br />
+                      <span className="text-[#00272F] text-sm md:text-[16px] font-[400] leading-[25px]">Reduced energy demand through efficient systems and continuous optimisation.</span>
                     </li>
-                    <li>Waste Reduction <br />
-                      <span className="text-[16px] text-[#4E4E4E]">Material kept in circulation via reuse, separation, and by-product recovery.</span>
+                    <li className="text-[#00272F] text-sm md:text-[20px] font-[700]">Waste Reduction <br />
+                      <span className="text-[#00272F] text-sm md:text-[16px] font-[400] leading-[25px]">Material kept in circulation via reuse, separation, and by-product recovery.</span>
                     </li>
-                    <li>Emissions Management <br />
-                      <span className="text-[16px] text-[#4E4E4E]">Ongoing monitoring and reduction of greenhouse outputs across handling and processing.</span>
+                    <li className="text-[#00272F] text-sm md:text-[20px] font-[700]">Emissions Management <br />
+                      <span className="text-[#00272F] text-sm md:text-[16px] font-[400] leading-[25px]">Ongoing monitoring and reduction of greenhouse outputs across handling and processing.</span>
                     </li>
                   </ul>
                 </div>
