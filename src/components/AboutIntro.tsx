@@ -15,7 +15,8 @@ export default function AboutIntro({
   withWave,
   className = "",
   badgeSize,
-  titleSize
+  titleSize,
+  fontWeight
 }: {
   badge?: string
   title?: React.ReactNode
@@ -27,6 +28,7 @@ export default function AboutIntro({
   className?: string
   badgeSize?: string
   titleSize?: string
+  fontWeight?: string
 }) {
   const wrapRef = useRef<HTMLDivElement | null>(null)
   const hRef = useRef<HTMLHeadingElement | null>(null)
@@ -70,7 +72,7 @@ export default function AboutIntro({
         )}
         <div className="heading-abt-wrap">
           {(title || accent) && (
-            <h2 ref={hRef} className="heading-about text-[20px] sm:text-[26px] md:text-[36px] lg:text-[42px] xl:text-[48px]" style={titleSize ? { fontSize: titleSize, lineHeight: 1.6 } : undefined}>
+            <h2 ref={hRef} className={`heading-about text-[20px] sm:text-[26px] md:text-[36px] lg:text-[42px] xl:text-[48px] ${fontWeight ? `font-[${fontWeight}]` : ''}`} style={titleSize ? { fontSize: titleSize, lineHeight: 1.6 } : undefined}>
               {title}{accent && <span className="accent">{accent}</span>}
             </h2>
           )}

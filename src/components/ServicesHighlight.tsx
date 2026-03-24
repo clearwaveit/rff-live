@@ -53,8 +53,8 @@ function ServiceCardRow({
         </div>
         {/* Content Section */}
         <div className="service-card-content px-5 sm:px-8 lg:px-10 pb-12 lg:pb-20 pt-5 flex flex-col flex-grow">
-          <h3 className="text-[28px] lg:text-[32px] font-semibold text-gray-900 leading-tight">{title}</h3>
-          <p className="mt-4 text-[15px] leading-[1.7] text-[#696969] flex-grow">{desc}</p>
+          <h3 className="text-[22px] lg:text-[26px] font-[700] text-gray-900 leading-tight">{title}</h3>
+          <p className="mt-4 text-[15px] leading-[25px] font-[400] text-[#00272F] flex-grow">{desc}</p>
           <div className="mt-6">
             <Cta href={href} label="LEARN MORE" tone="light" as="div" />
           </div>
@@ -67,7 +67,7 @@ function ServiceCardRow({
 export default function ServicesHighlight({
   heading = (
     <>
-      <span className="leading-tight text-[30px] sm:text-[40px] md:text-[60px] font-light">Recycling services suited <br /> for every industry across the UK</span>
+      <span className="leading-[48px] text-[30px] sm:text-[40px] md:text-[48px] font-[700]">Recycling services suited <br /> for every industry across the UK</span>
     </>
   ),
   layout = "row",

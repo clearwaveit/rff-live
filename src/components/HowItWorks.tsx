@@ -29,7 +29,7 @@ export type HowItWorksStep = {
 }
 
 /** Same responsive scale as other section titles (CustomSection, .heading-2): short or long titles both use this. */
-const SECTION_TITLE_CLASS = "text-[28px] sm:text-[32px] md:text-[48px] lg:text-[60px] font-light leading-tight"
+const SECTION_TITLE_CLASS = "text-[28px] sm:text-[32px] md:text-[48px] lg:text-[94px] font-[700] leading-tight"
 
 type HowItWorksProps = {
   title?: ReactNode

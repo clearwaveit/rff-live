@@ -64,21 +64,21 @@ export default function PlasticRecyclingPage() {
       <section className="relative min-h-[50vh] sm:min-h-[60vh] overflow-hidden">
         <Image src="/banner-plastic.png" alt="Plastic Recycling" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-4 sm:px-[2%] pb-10 sm:pb-16">
-          <h1 className="page-hero-title text-white text-3xl sm:text-5xl md:text-6xl font-light tracking-tight">Plastic Recycling</h1>
+          <h1 className="page-hero-title text-white text-3xl sm:text-5xl md:text-6xl font-[700] tracking-tight">Plastic Recycling</h1>
         </div>
       </section>
 
       <section className="relative">
         <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
-          <div className="max-w-[1150px] mx-auto text-center">
-            <p className="page-intro text-[#00272F] font-[300] text-[22px] sm:text-[32px] md:text-[38px] lg:text-[45px] leading-[1.2] tracking-tight">
+          <div className="max-w-[850px] mx-auto text-center">
+            <p className="page-intro text-[#00272F] font-[400] text-[22px] md:text-[26px] leading-[36px] tracking-tight">
             Our end-to-end plastic recycling services are designed to reduce environmental impact, improve operational efficiency, and support a truly circular economy. We process a wide range of commercial plastics into high-quality recycled materials suitable for reuse in manufacturing.
             </p>
           </div>
         </div>
       </section>
 
-      <LeafDivider className="my-4" />
+      {/* <LeafDivider className="my-4" /> */}
 
       <HowItWorks
         title="How it Works"
@@ -207,12 +207,12 @@ export default function PlasticRecyclingPage() {
         ]}
       />
 
-      <CustomSection title="Tailored Solutions for Reliable Collaborations" paragraph="Partnering with us helps businesses reduce plastic waste and embrace sustainable practices. Our custom blends of recycled plastics and additives are crafted in close collaboration with you, ensuring the final product exceeds your expectations. This careful compounding process combines recycled materials with targeted additives to enhance properties like color, strength, flexibility, and UV resistance, providing high-quality solutions tailored to your specific needs." img="/Rectangle 8.png" />
+      <CustomSection title="Custom blends for trusted partnerships" paragraph="We work in partnership with our clients to develop customized recycled pallets and compounds ensuring materials are tailored to specific applications, performance requirements, and production needs." img="/Rectangle 8.png" />
 
       <section className="relative">
         <div className="mx-auto max-w-[auto]">
           <div className="flex flex-col items-center justify-center min-h-[280px] sm:min-h-[320px] md:h-[400px] bg-[#3B6060] text-white px-4 sm:px-8 md:px-20 lg:px-32 py-8 sm:py-10 text-center">
-            <h3 className="text-[24px] sm:text-[32px] md:text-[48px] lg:text-[64px] font-[300] leading-tight text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
+            <h3 className="text-[24px] sm:text-[32px] md:text-[48px] lg:text-[48px] font-[700] leading-[58px] text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
             <div className="mt-4 sm:mt-6 flex justify-center"><Cta href="/contact" label="LEARN MORE" tone="dark" /></div>
           </div>
         </div>
@@ -220,12 +220,14 @@ export default function PlasticRecyclingPage() {
 
       <AboutIntro
         badge="WHY US?"
-        title="At Recycle for Future Ltd, we help businesses "
-        accent="embrace sustainability and support a circular economy. Our quality services make us the ideal partner for your plastic recycling needs."
-        paragraph="We work closely with businesses to ensure recycled materials meet operational, regulatory, and sustainability requirements, providing a reliable recycling partnership from start to finish."
+        title="At Recycle for Future Ltd, we help businesses embrace sustainability and support a circular economy. Our quality services make us the ideal partner for your plastic recycling needs."
+        accent=""
+        paragraph=""
         ctaLabel="CONTACT US"
         ctaHref="/contact"
         withWave={false}
+        titleSize="26px"
+        fontWeight="400"
       />
     </main >
   )

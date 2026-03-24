@@ -138,8 +138,8 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
             <div className="w-full max-w-xl">
               <div className="contact-title-anim mb-12">
-                <h1 className="text-[#00272F] text-[56px] md:text-[70px] font-light leading-none mb-6">Contact Us</h1>
-                <p className="text-[#696969] text-[18px] md:text-[36px] font-[300] leading-relaxed max-w-xl">
+                <h1 className="text-[#00272F] text-[56px] md:text-[70px] font-[700] leading-none mb-6">Contact Us</h1>
+                <p className="text-[#00272F] text-sm md:text-[26px] font-[400] leading-[36px] max-w-xl">
                   We greatly appreciate your interest and will get back to you quickly when you contact us.
                 </p>
               </div>

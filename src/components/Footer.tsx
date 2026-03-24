@@ -50,28 +50,29 @@ export default function Footer() {
             <div className="footer-col">
               <h3 className="footer-link-heading">WHO WE ARE</h3>
               <ul className="footer-link-list">
-                <li><Link href="/about">Our Story</Link></li>
-                <li><Link href="/about#mission">Mission &amp; Values</Link></li>
-                <li><Link href="/certifications">Certifications</Link></li>
-                <li><Link href="/about#reach">UK Presence &amp; Global Reach</Link></li>
+              <li><Link href="#">About Us</Link></li>
+                <li><Link href="#">Mission &amp; Values</Link></li>
+                <li><Link href="#">Our Story</Link></li>
+                <li><Link href="#">Partners</Link></li>
+                {/* <li><Link href="#">UK Presence &amp; Global Reach</Link></li> */}
               </ul>
             </div>
             <div className="footer-col">
               <h3 className="footer-link-heading">SERVICES</h3>
               <ul className="footer-link-list">
                 <li><Link href="/services/plastic-recycling">Plastic Scrap Sourcing</Link></li>
-                <li><Link href="/services/pellet-and-compounds">Material Processing</Link></li>
-                <li><Link href="/services/toll-processing">Manufacturing Through Partners</Link></li>
-                <li><Link href="/services">Export &amp; Logistics Support</Link></li>
+                <li><Link href="/services/pellet-and-compounds">Compounding</Link></li>
+                <li><Link href="/services/toll-processing">Toll Processing</Link></li>
+                {/* <li><Link href="#">Export &amp; Logistics Support</Link></li> */}
               </ul>
             </div>
             <div className="footer-col">
               <h3 className="footer-link-heading">MORE</h3>
               <ul className="footer-link-list">
-                <li><Link href="/industries">Industries</Link></li>
-                <li><Link href="/quality">Quality Assurance</Link></li>
+                <li><Link href="#">Industries</Link></li>
+                <li><Link href="#">Quality Assurance</Link></li>
                 <li><Link href="/sustainability">Sustainability</Link></li>
-                <li><Link href="/process">Our Process</Link></li>
+                <li><Link href="#">Stats</Link></li>
               </ul>
             </div>
             <div className="footer-col">
@@ -87,7 +88,7 @@ export default function Footer() {
                       className="footer-contact-icon-image"
                     />
                   </span>
-                  <span className="footer-contact-text">Recycle For Future Ltd. Jhumat 160 London</span>
+                  <span className="footer-contact-text">Recycle For Future Ltd. 183 Fengate, Peterborough PE1 5BH, United Kingdom</span>
                 </li>
                 <li>
                   <span className="footer-contact-icon" aria-hidden>
@@ -99,7 +100,9 @@ export default function Footer() {
                       className="footer-contact-icon-image"
                     />
                   </span>
-                  <span className="footer-contact-text">020 8214 1353</span>
+                  <a className="footer-contact-text" href="tel:+441733358807">
+                    01733 358807
+                  </a>
                 </li>
                 <li>
                   <span className="footer-contact-icon" aria-hidden>
@@ -111,7 +114,9 @@ export default function Footer() {
                       className="footer-contact-icon-image"
                     />
                   </span>
-                  <span className="footer-contact-text">info@recycleforfuture.com</span>
+                  <a className="footer-contact-text" href="mailto:info@recycleforfuture.com">
+                    info@recycleforfuture.com
+                  </a>
                 </li>
               </ul>
             </div>
@@ -130,11 +135,11 @@ export default function Footer() {
 
           {/* Bottom Bar */}
           <div className="footer-bottom">
-            <span>Sensei © 2026 All rights reserved</span>
+            <span>Recycle For Future © 2026 All rights reserved</span>
+            <div className="flex gap-4">
             <span><Link href="/privacy">Privacy policy</Link></span>
             <span><Link href="/terms">Terms &amp; Conditions</Link></span>
-            <span><Link href="/funding">Funding</Link></span>
-            <span>Shaped by Onda</span>
+            </div>
           </div>
         </div>
       </div>
