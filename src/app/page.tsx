@@ -85,7 +85,8 @@ export default function Page() {
         badge="ENVIRONMENT"
         badgeSize="160px"
         titleSize="26px"
-        title={<>At Recycle for Future , environmental responsibility shapes every stage of <br/> the recycling process. A strict zero-landfill approach ensures plastics are <br/> retained within recovery pathways, preserving valuable resources and <br/> preventing unnecessary environmental impact. Through circular processing <br/> systems and responsible sourcing practices, waste materials are <br/> transformed into long-term industrial value while supporting the transition <br/> towards more sustainable manufacturing.</>}
+        title={<>At Recycle for Future , environmental responsibility shapes every stage of the recycling process. A strict zero-landfill approach ensures plastics are retained within recovery pathways, preserving valuable resources and preventing unnecessary environmental impact. Through circular processing systems and responsible sourcing practices, waste materials are transformed into long-term industrial value while supporting the transition towards more sustainable manufacturing.</>}
+        fontWeight="400"
       />
       <CircleFeatures />
       <VideoShowcase />

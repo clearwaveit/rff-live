@@ -105,7 +105,7 @@ export default function AboutPage() {
               Our Values
             </span>
             <h2 className="text-[36px] md:text-[52px] leading-[1.2] font-[700] text-[#00272F] mb-6">
-              We prioritize Responsibility and<br className="hidden md:block" /> Excellence in <span className="text-[#579C9C]">Recycling.</span>
+              We prioritize Responsibility and<br className="hidden md:block" /> Excellence in <span>Recycling.</span>
             </h2>
             <p className="text-[16px] md:text-[18px] text-[#4E4E4E] font-[400] leading-relaxed max-w-[750px] mb-8">
               Environmental responsibility, transparency, and continuous improvement guide our approach. We prioritise efficient material use, honest communication, and strong customer partnerships built on trust and shared sustainability outcomes.

@@ -76,7 +76,7 @@ export default function EmbeddedPartner({ className = "", noBottomPadding = fals
             </div>
           </div>
           <div className="px-4 sm:px-6 md:px-8 lg:pl-16 lg:pr-20">
-            <h2 className="heading-embed text-[#013138]">An embedded partner for your recycling <span className="accent">journey towards a greener future</span></h2>
+            <h2 className="heading-embed text-[#013138]">An embedded partner for your recycling <span>journey towards a greener future</span></h2>
             <p className="mt-5 sm:mt-7 max-w-2xl leading-relaxed text-[#013138] text-base sm:text-lg font-[400]">We work alongside businesses to reduce plastic waste, meet sustainability objectives, and integrate recycled materials into their operations with confidence.</p>
             <div className="mt-8 sm:mt-11 divide-y divide-gray-200">
               {["Clear reporting and material traceability", "Full handling transparency", "Dedicated collection planning", "Responsible reprocessing", "Circular reintegration opportunities"].map((item) => (
