@@ -62,15 +62,15 @@ export default function TollProcessingPage() {
       <section className="relative min-h-[50vh] sm:min-h-[60vh] overflow-hidden">
         <Image src="/banner-toll.png" alt="Toll Processing" fill priority className="object-cover" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-[1600px] px-4 sm:px-[2%] pb-10 sm:pb-16">
-          <h1 className="page-hero-title text-white text-3xl sm:text-5xl md:text-6xl font-light tracking-tight">Toll Processing</h1>
+          <h1 className="page-hero-title text-white text-3xl sm:text-5xl md:text-6xl font-[700] tracking-tight">Toll Processing</h1>
         </div>
       </section>
 
       <section className="relative">
         <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-[2%] py-12 sm:py-16 lg:py-24">
-          <div className="max-w-[800px] mx-auto text-center">
-            <p className="page-intro text-[#00272F] font-[300] text-[22px] sm:text-[30px] md:text-[36px] lg:text-[40px] leading-[1.2] tracking-tight">
-              At Recycle for Future, we offer toll processing services that help bu<span className="text-[#BCDFD8]">sinesses convert plastic waste into reusable materials, supporting your sustainability goals.</span>
+          <div className="max-w-[850px] mx-auto text-center">
+            <p className="page-intro text-[#00272F] font-[400] text-[22px] md:text-[26px] leading-[36px] tracking-tight">
+            At Recycle for Future, we offer toll processing services that help businesses convert plastic waste into reusable materials, supporting your sustainability goals.
             </p>
           </div>
         </div>
@@ -84,9 +84,9 @@ export default function TollProcessingPage() {
             <div className="benefits-image relative h-[280px] sm:h-[360px] md:h-[480px] lg:h-[600px] rounded-[12px] overflow-hidden">
               <Image src="/Rectangle 7 (2).png" alt="" fill className="object-cover" />
             </div>
-            <div className="pe-0 lg:pe-[80px] xl:pe-[100px]">
-              <h2 className="text-[32px] sm:text-[42px] md:text-[50px] lg:text-[60px] leading-tight">What Is <br /><span className="text-[#BCDFD8]">Toll Processing?</span></h2>
-              <p className="mt-3 text-[15px] sm:text-[16px] lg:text-[18px] text-[#696969]">Toll processing allows you to leverage our expertise and state-of-the-art facilities without the investment in your own equipment or the need to develop specialised in-house knowledge. We take your plastic waste and process it to your specifications, returning the recycled material to you for reuse in your operations or for sale to other companies.</p>
+            <div className="max-w-[750px]">
+              <h2 className="text-[28px] sm:text-[32px] md:text-[48px] lg:text-[48px] font-[700] leading-[58px]">What Is <br /><span>Toll Processing?</span></h2>
+              <p className="mt-3 text-[#00272F] text-sm md:text-[16px] font-[400] leading-[25px]">Toll processing allows you to leverage our expertise and state-of-the-art facilities without the investment in your own equipment or the need to develop specialised in-house knowledge. We take your plastic waste and process it to your specifications, returning the recycled material to you for reuse in your operations or for sale to other companies.</p>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function TollProcessingPage() {
       <HowItWorks
         title={
           <>
-            Toll processing services <span className="text-[#BCDFD8] font-light">to suit your specific needs</span>
+            How it works
           </>
         }
         steps={[
@@ -184,7 +184,7 @@ export default function TollProcessingPage() {
       <section className="relative">
         <div className="mx-auto max-w-[auto]">
           <div className="flex flex-col items-center justify-center min-h-[280px] sm:min-h-[320px] md:h-[400px] bg-[#3B6060] text-white px-4 sm:px-8 md:px-20 lg:px-32 py-10 sm:py-12 text-center">
-            <h3 className="text-[22px] sm:text-[28px] md:text-[40px] lg:text-[52px] xl:text-[64px] font-[300] leading-tight text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
+            <h3 className="text-[24px] sm:text-[32px] md:text-[48px] lg:text-[48px] font-[700] leading-[58px] text-center">Join us in ensuring a sustainable <br /><span className="text-[#BFD893]">future with our compliance</span></h3>
             <div className="mt-4 sm:mt-6 flex justify-center"><Cta href="/contact" label="LEARN MORE" tone="dark" /></div>
           </div>
         </div>
@@ -192,12 +192,14 @@ export default function TollProcessingPage() {
 
       <AboutIntro
         badge="WHY US?"
-        title="At Recycle for Future Ltd, we help businesses "
-        accent="embrace sustainability and support a circular economy. Our quality services make us the ideal partner for your plastic recycling needs."
+        title="Our state-of-the-art facilities are designed to effectively handle plastic waste, and our committed team prioritizes exceptional service tailored to your specific requirements."
+        accent=""
         paragraph=""
         ctaLabel="CONTACT US"
         ctaHref="/contact"
         withWave={false}
+        titleSize="26px"
+        fontWeight="400"
       />
     </main>
   )

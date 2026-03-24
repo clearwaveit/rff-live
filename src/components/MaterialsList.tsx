@@ -255,10 +255,10 @@ export default function MaterialsList() {
       <div ref={ref} className="mx-auto max-w-7xl px-4 sm:px-6 md:px-[2%] pt-12 sm:pt-16 lg:pt-24">
         <div className="py-10 sm:py-16">
 
-        <h2 className="text-center text-2xl sm:text-4xl md:text-[60px] font-light text-[#00333E] font-rubik">
-          <span className="font-light">Our Recycled Polymer Grades</span>
+        <h2 className="text-center text-2xl sm:text-4xl md:text-[48px] font-[700] text-[#00333E]">
+          <span className="font-[700]">Our Recycled Polymer Grades</span>
         </h2>
-        <p className="text-center mt-3 sm:mt-4 mb-6 sm:mb-10 max-w-5xl mx-auto text-[#696969] text-base sm:text-lg font-light">
+        <p className="text-center mt-3 sm:mt-4 mb-6 sm:mb-10 max-w-5xl mx-auto text-[#00272F] text-base sm:text-lg font-[400]">
           Recycle For Future supplies high-performance recycled polymers engineered for demanding industrial applications. Our materials deliver commercial efficiency, technical reliability, and measurable carbon reduction — without compromising processing performance.
 
         </p>
@@ -271,7 +271,7 @@ export default function MaterialsList() {
               <button
                 key={tab.code}
                 onClick={() => handleTabClick(i)}
-                className={`material-row flex-shrink-0 min-w-[126px] max-h-[52px] w-auto px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-[18px] font-normal uppercase tracking-wide transition-colors rounded-t-[8px] whitespace-nowrap ${activeTab === i
+                className={`material-row flex-shrink-0 min-w-[126px] max-h-[52px] w-auto px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-[20px] font-[700] uppercase tracking-wide transition-colors rounded-t-[8px] whitespace-nowrap ${activeTab === i
                     ? "bg-[#518383] text-white -mb-0.5 z-10 max-h-none"
                     : "bg-[#F6F4EE] text-[#00333E] hover:bg-[#E8EDE4]"
                   }`}
@@ -287,7 +287,7 @@ export default function MaterialsList() {
       <div className="w-full bg-[#F6F4EE] -mt-px pt-6 sm:pt-8 py-10 sm:py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-[2%]">
           {/* Main content for active tab */}
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-[#518383] mb-3 sm:mb-4">{currentTab.title}</h3>
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-[700] text-[#518383] mb-3 sm:mb-4">{currentTab.title}</h3>
           <div className="material-row bg-[#ffffff] p-4 sm:p-6 md:p-8 lg:p-12 mb-6 sm:mb-10 text-[#00333E] rounded-[8px]">
             <div className="space-y-4 text-[#4a4a4a] font-normal leading-relaxed max-w-6xl">
               {currentTab.description.map((para, idx) => (
@@ -301,7 +301,7 @@ export default function MaterialsList() {
             </div>
 
           </div>
-          <h4 className="text-lg sm:text-xl md:text-2xl font-normal text-[#3B6060] mt-8 sm:mt-10 mb-3 sm:mb-4">{currentTab.technicalSpecsTitle}</h4>
+          <h4 className="text-lg sm:text-xl md:text-2xl font-[700] text-[#3B6060] mt-8 sm:mt-10 mb-3 sm:mb-4">{currentTab.technicalSpecsTitle}</h4>
 
           {/* Accordion list - screenshot style */}
           <ul className="border border-[#E0E5E2] rounded-[8px] overflow-hidden">
@@ -320,9 +320,9 @@ export default function MaterialsList() {
                         }`}
                     >
                       <div className="flex flex-col gap-1 min-w-0">
-                        <span className="font-normal text-lg sm:text-xl">{item.title}</span>
+                        <span className="font-[700] text-lg sm:text-xl">{item.title}</span>
                         {isOpen && (
-                          <span className="text-sm font-normal text-white/90">
+                          <span className="text-sm font-[400] text-white/90">
                             {item.subtitle}
                           </span>
                         )}
